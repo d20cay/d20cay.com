@@ -271,4 +271,4 @@ $$
 
 Author(s): d20cay
 
-Last updated: 2020-12-11
+Last updated: See [changelog](https://d20cay.com/changelog)
