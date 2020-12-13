@@ -75,6 +75,8 @@
 			   uk-icon="reddit"></a>
 			<a href="https://twitter.com/d20cay" class="uk-icon-button  uk-margin-small-right"
 			   uk-icon="twitter"></a>
+			<a href="https://github.com/d20cay" class="uk-icon-button  uk-margin-small-right"
+			   uk-icon="github"></a>
 			<h4>One of my videos</h4>
 			<iframe height="100%" src="https://www.youtube.com/embed/5kVhs0jq6UI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
