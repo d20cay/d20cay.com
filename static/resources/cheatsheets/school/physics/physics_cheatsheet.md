@@ -129,7 +129,7 @@ $$
 
 $$
 t = \frac{s}{v} \\
-t = \frac{s}{\frac{v1+v2}{2}}
+t = \frac{s}{\overline{v}} = \frac{2s}{v1+v2}
 $$
 
 ### 2. Newtonsches Axiom
@@ -271,4 +271,4 @@ $$
 
 Author(s): d20cay
 
-Last updated: 2020-12-11
+Last updated: See [changelog](https://d20cay.com/changelog)
