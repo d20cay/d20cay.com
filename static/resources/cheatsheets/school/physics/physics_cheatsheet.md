@@ -142,16 +142,12 @@ $$
 
 ## Arbeit
 
-$W$: Arbeit [$Nm$/$J$/$Ws$]
+$W$: Arbeit/Energie [$Nm$/$J$/$Ws$]
 
 Arbeit = Kraft (in Wegrichtung) * Strecke
 $$
 W = F \cdot s
 $$
-
-### Energie
-
-$E$: Energie [$J$]
 
 ### Leistung
 
@@ -159,7 +155,7 @@ $P$: Leistung [$W$]
 
 Leistung = Kraft (in Wegrichtung) * Geschwindigkeit (* Reibungskoeffizient)
 $$
-P = \frac{\Delta W}{\Delta t} \\
+P = \frac{\Delta E}{\Delta t} \\
 P = F \cdot v \\
 P = F \cdot v \cdot \mu
 $$
