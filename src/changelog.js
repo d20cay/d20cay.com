@@ -29,6 +29,24 @@ export const changelog = [
 		version: `2020.50.2`,
 		changes: [
 			{
+				text: `Github link to footer and home page.`,
+				type: Type.ADDED
+			},
+			{
+				text: `Physics cheatsheet to clarify some formulas.`,
+				type: Type.CHANGED
+			},
+			{
+				text: `Changelog revision numbers from 2020.50.2 to 2020.50.1.`,
+				type: Type.FIXED
+			},
+		]
+	},
+	{
+		date: `2020-12-11`,
+		version: `2020.50.1`,
+		changes: [
+			{
 				text: `Changelog revision from date 2020-11-29 to correct version.`,
 				type: Type.FIXED
 			},
