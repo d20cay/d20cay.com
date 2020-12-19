@@ -3,6 +3,7 @@
 	import Navbar from '../components/Navbar.svelte';
 	import Footer from '../components/Footer.svelte';
 	import {onDestroy} from "svelte";
+	import CookieModal from "../components/CookieModal.svelte";
 
 	let currentPageValue;
 
@@ -27,3 +28,5 @@
 	<div class="spacer"></div>
 	<Footer/>
 {/if}
+
+<CookieModal/>
