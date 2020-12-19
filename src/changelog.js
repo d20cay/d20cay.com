@@ -25,6 +25,24 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2020-12-19',
+		version: '2020.51.2',
+		changes: [
+			{
+				text: 'Imprint page for better legal compliance.',
+				type: Type.ADDED
+			},
+			{
+				text: 'Privacy policy page for better legal compliance.',
+				type: Type.ADDED
+			},
+			{
+				text: 'Cookie modal that has to be accepted to use the website.',
+				type: Type.ADDED
+			},
+		]
+	},
+	{
 		date: `2020-12-15`,
 		version: `2020.51.1`,
 		changes: [
