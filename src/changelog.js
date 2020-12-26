@@ -25,6 +25,16 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2020-12-26',
+		version: '2020.52.1',
+		changes: [
+			{
+				text: 'Hypixel Bedwars Stats page inability to handle a player not existing in some cases.',
+				type: Type.FIXED
+			},
+		]
+	},
+	{
 		date: '2020-12-19',
 		version: '2020.51.2',
 		changes: [
