@@ -3,6 +3,7 @@ from simplejson.errors import JSONDecodeError
 import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.requests import Request
 
 import hypixel_stats
 from constant import NO_STATS_ERROR, NO_PLAYER_ERROR
