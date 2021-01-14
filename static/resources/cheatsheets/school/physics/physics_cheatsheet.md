@@ -252,15 +252,34 @@ $T$: Periodendauer [$s$]
 $f$: Frequenz der Umdrehung [$\frac{1}{s}$]
 $$
 \omega = \frac{\Delta \phi}{\Delta t} = \frac{2 \pi}{T} = 2 \pi \cdot f \\
-v = \frac{U}{T} = \frac{2 \pi \cdot r}{T} = \omega \cdot r
+v = \frac{U}{T} = \frac{2 \pi \cdot r}{T} = \omega \cdot r \\
 $$
 <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\angular_force.png">
 
 $a_z$: Anzugsbeschleunigung zum Zentrum
 $F_z$: Anzugskraft zum Zentrum (=$F_R$)
+$\hat{y}$ / $\hat{x}$: Amplitude
+$y$ / $x$: (momentane) Auslenkung
 $$
 a_z = \frac{2\pi \cdot v}{T} = \omega \cdot v = \omega^2 \cdot r = \frac{v^2}{r} \\
+\phi = \omega \cdot t \\
 F_z = m \cdot a_z
+$$
+
+#### Harmonische Schwingung
+
+<img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine.png">
+$$
+v = \hat{y} \cdot sin(\omega \cdot t) \\
+\hat{v} = \omega \cdot \hat{y} \\
+\hat{a} = \omega \cdot \hat{v} = \omega^2 \cdot \hat{y}
+$$
+
+#### Federpendel
+
+$$
+T = 2\pi\sqrt{\frac{m}{D}} \\
+T = 2\pi\sqrt{\frac{l}{g}}
 $$
 
 ## Acknowledgements
