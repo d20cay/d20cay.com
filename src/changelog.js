@@ -25,7 +25,49 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
-		date: `2020-12-11`,
+		date: '2020-12-26',
+		version: '2020.52.1',
+		changes: [
+			{
+				text: 'Hypixel Bedwars Stats page inability to handle a player not existing in some cases.',
+				type: Type.FIXED
+			},
+		]
+	},
+	{
+		date: '2020-12-19',
+		version: '2020.51.2',
+		changes: [
+			{
+				text: 'Imprint page for better legal compliance.',
+				type: Type.ADDED
+			},
+			{
+				text: 'Privacy policy page for better legal compliance.',
+				type: Type.ADDED
+			},
+			{
+				text: 'Cookie modal that has to be accepted to use the website.',
+				type: Type.ADDED
+			},
+		]
+	},
+	{
+		date: `2020-12-15`,
+		version: `2020.51.1`,
+		changes: [
+			{
+				text: `Physics cheatsheet unit for performance.`,
+				type: Type.FIXED
+			},
+			{
+				text: `Changelog revision 2020.50.2 to use the correct date.`,
+				type: Type.FIXED
+			},
+		]
+	},
+	{
+		date: `2020-12-13`,
 		version: `2020.50.2`,
 		changes: [
 			{
