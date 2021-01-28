@@ -25,6 +25,16 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-01-14',
+		version: '2021.2.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add harmonic oscillation formulas and sketch.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
 		date: '2020-12-26',
 		version: '2020.52.1',
 		changes: [

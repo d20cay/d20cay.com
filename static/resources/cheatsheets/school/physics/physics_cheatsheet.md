@@ -270,7 +270,7 @@ $$
 
 <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine.png">
 $$
-v = \hat{y} \cdot sin(\omega \cdot t) \\
+y = \hat{y} \cdot sin(\omega \cdot t) \\
 \hat{v} = \omega \cdot \hat{y} \\
 \hat{a} = \omega \cdot \hat{v} = \omega^2 \cdot \hat{y}
 $$
