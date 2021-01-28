@@ -258,24 +258,39 @@ $$
 
 $a_z$: Anzugsbeschleunigung zum Zentrum
 $F_z$: Anzugskraft zum Zentrum (=$F_R$)
-$\hat{y}$ / $\hat{x}$: Amplitude
-$y$ / $x$: (momentane) Auslenkung
 $$
 a_z = \frac{2\pi \cdot v}{T} = \omega \cdot v = \omega^2 \cdot r = \frac{v^2}{r} \\
 \phi = \omega \cdot t \\
 F_z = m \cdot a_z
 $$
 
-#### Harmonische Schwingung
+## Schwingungen
 
-<img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine.png">
+### Harmonische Schwingungen
+
+$\hat{y}$ / $\hat{x}$: Amplitude
+$y$ / $x$: (momentane) Auslenkung
+
+<img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine_time.png">
 $$
 y = \hat{y} \cdot sin(\omega \cdot t) \\
 \hat{v} = \omega \cdot \hat{y} \\
 \hat{a} = \omega \cdot \hat{v} = \omega^2 \cdot \hat{y}
 $$
 
-#### Federpendel
+$k$: Wellenzahl
+$v$ / $c$: Ausbreitungsgeschwindigkeit
+$\lambda$: Wellenlänge
+
+<img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine_distance.png">
+$$
+k = \frac{2 \cdot \pi}{\lambda} \\
+y = \hat{y} \cdot sin(k \cdot x) \\
+c = \hat{y} \cdot sin(\omega \cdot t \pm k \cdot x) = \frac{\lambda}{T} = \lambda \cdot f
+$$
+Der Operand $\pm$  kann geändert werden je nachdem in welche Richtung sich die Welle im Koordinatensystem ausbreitet. $-$ für rechts oder ins positive $x$ und $+$ für links oder ins negative $x$.
+
+### Federpendel
 
 $$
 T = 2\pi\sqrt{\frac{m}{D}} \\
