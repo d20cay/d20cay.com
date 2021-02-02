@@ -25,6 +25,16 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-02-02',
+		version: '2021.5.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add some clarifications for theory that isn\'t understandable after not having looked at it for a while.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
 		date: '2021-01-28',
 		version: '2021.4.1',
 		changes: [
