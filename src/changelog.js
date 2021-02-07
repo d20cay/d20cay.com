@@ -25,6 +25,46 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-02-02',
+		version: '2021.5.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add some clarifications for theory that isn\'t understandable after not having looked at it for a while.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2021-01-28',
+		version: '2021.4.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add some more harmonic oscillation formulas and sketch.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2021-01-14',
+		version: '2021.2.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add harmonic oscillation formulas and sketch.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2020-12-26',
+		version: '2020.52.1',
+		changes: [
+			{
+				text: 'Hypixel Bedwars Stats page inability to handle a player not existing in some cases.',
+				type: Type.FIXED
+			},
+		]
+	},
+	{
 		date: '2020-12-19',
 		version: '2020.51.2',
 		changes: [
