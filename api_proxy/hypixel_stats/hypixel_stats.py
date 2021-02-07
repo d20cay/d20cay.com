@@ -1,4 +1,5 @@
 from constant import NO_BEDWARS_STATS_ERROR
+from hypixel_stats.fkd import build_fkd
 
 
 def bedwars_overview(stats_src):
@@ -30,7 +31,7 @@ def build_bedwars(stats_src):
             bedwars_stats.update(build_general_info(bedwars_src))
             bedwars_stats.update(build_wl(bedwars_src, stats_src))
             bedwars_stats.update(build_kd(bedwars_src))
-            bedwars_stats.update(build_fkd(bedwars_src))
+            bedwars_stats['fkd'] = build_fkd(bedwars_src)
             bedwars_stats.update(build_resources_collected(bedwars_src))
             bedwars_stats.update(build_items_purchased(bedwars_src))
             bedwars_stats.update(build_ws(bedwars_src))
@@ -95,17 +96,6 @@ def build_kd(bedwars_src):
     return stats
 
 
-def build_fkd(bedwars_src):
-    stats = {}
-    if 'final_kills_bedwars' in bedwars_src:
-        stats['final_kills'] = bedwars_src['final_kills_bedwars']
-    if 'final_deaths_bedwars' in bedwars_src:
-        stats['final_deaths'] = bedwars_src['final_deaths_bedwars']
-    if 'final_kills_bedwars' in bedwars_src and 'final_deaths_bedwars' in bedwars_src:
-        stats['final_kd_ratio'] = get_fkd_ratio(bedwars_src)
-    return stats
-
-
 def build_resources_collected(bedwars_src):
     stats = {}
     if 'resources_collected_bedwars' in bedwars_src:
@@ -145,8 +135,3 @@ def get_wl_ratio(stats_src):
 
 def get_kd_ratio(bedwars_src):
     return bedwars_src['kills_bedwars'] / bedwars_src['deaths_bedwars']
-
-
-def get_fkd_ratio(bedwars_src):
-    return bedwars_src['final_kills_bedwars'] / bedwars_src[
-        'final_deaths_bedwars']

@@ -1,13 +1,12 @@
-from simplejson.errors import JSONDecodeError
-
 import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from simplejson.errors import JSONDecodeError
 from starlette.requests import Request
 from starlette.responses import Response
 
-import hypixel_stats
 from constant import NO_STATS_ERROR, NO_PLAYER_ERROR
+from hypixel_stats.hypixel_stats import bedwars_overview
 
 app = FastAPI()
 
@@ -18,6 +17,7 @@ origins = [
     "https://dev.d20cay.com",
     "http://localhost:3000",
     ]
+
 
 async def catch_exceptions_middleware(request: Request, call_next):
     try:
@@ -51,7 +51,7 @@ def read_hypixel_bedwars_stats(player: str):
         hypixel_json = hypixel_response.json()
         if hypixel_json is None or hypixel_json['player'] is None:
             return NO_STATS_ERROR
-        condensed_stats = hypixel_stats.bedwars_overview(hypixel_json)
+        condensed_stats = bedwars_overview(hypixel_json)
     except JSONDecodeError:
         return NO_STATS_ERROR
 
