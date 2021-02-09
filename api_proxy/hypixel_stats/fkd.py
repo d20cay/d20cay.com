@@ -29,7 +29,7 @@ def build_mode_fkd(bedwars_src, team_count, team_player_count):
     deaths = bedwars_src[death_key]
     kd = bedwars_src[kill_key] / bedwars_src[death_key]
     return {
-        f'final_kills': kills,
-        f'final_deaths': deaths,
-        f'final_kd_ratio': kd,
+        'final_kills': kills,
+        'final_deaths': deaths,
+        'final_kd_ratio': kd,
         }

@@ -25,7 +25,7 @@ def build_bedwars(stats_src):
         bedwars_stats.update(build_wl(bedwars_src, stats_src))
         bedwars_stats['kd'] = build_kd(bedwars_src)
         bedwars_stats['fkd'] = build_fkd(bedwars_src)
-        bedwars_stats.update(build_ws(bedwars_src))
+        bedwars_stats['ws'] = build_ws(bedwars_src)
 
     return bedwars_stats
 
@@ -64,29 +64,6 @@ def build_wl(bedwars_src, stats_src):
                 'achievements'] and 'losses_bedwars' in bedwars_src:
         stats['wl_ratio'] = get_wl_ratio(stats_src),
     return stats
-
-
-def build_ws(bedwars_src):
-    stats = {}
-    existing_winstreak_categories = []
-    if 'eight_one_winstreak' in bedwars_src:
-        existing_winstreak_categories.append(bedwars_src['eight_one_winstreak'])
-    if 'eight_two_winstreak' in bedwars_src:
-        existing_winstreak_categories.append(bedwars_src['eight_two_winstreak'])
-    if 'two_four_winstreak' in bedwars_src:
-        existing_winstreak_categories.append(bedwars_src['two_four_winstreak'])
-    if 'four_three_winstreak' in bedwars_src:
-        existing_winstreak_categories.append(
-            bedwars_src['four_three_winstreak'])
-    if 'four_four_winstreak' in bedwars_src:
-        existing_winstreak_categories.append(bedwars_src['four_four_winstreak'])
-    if (len(existing_winstreak_categories)):
-        stats['winstreak'] = get_winstreak(existing_winstreak_categories)
-    return stats
-
-
-def get_winstreak(existing_winstreak_categories):
-    return max(existing_winstreak_categories)
 
 
 def get_wl_ratio(stats_src):
