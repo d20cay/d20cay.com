@@ -1,4 +1,5 @@
 from constant import NO_BEDWARS_STATS_ERROR
+from hypixel_stats.bbbl import build_bbbl
 from hypixel_stats.fkd import build_fkd
 from hypixel_stats.kd import build_kd
 from hypixel_stats.wl import build_wl
@@ -25,8 +26,9 @@ def build_bedwars(stats_src):
 
         bedwars_stats.update(build_general_info(stats_src))
         bedwars_stats['wl'] = build_wl(bedwars_src)
-        bedwars_stats['kd'] = build_kd(bedwars_src)
         bedwars_stats['fkd'] = build_fkd(bedwars_src)
+        bedwars_stats['kd'] = build_kd(bedwars_src)
+        bedwars_stats['bbbl'] = build_bbbl(bedwars_src)
         bedwars_stats['ws'] = build_ws(bedwars_src)
 
     return bedwars_stats
