@@ -1,6 +1,7 @@
 from constant import NO_BEDWARS_STATS_ERROR
 from hypixel_stats.fkd import build_fkd
 from hypixel_stats.kd import build_kd
+from hypixel_stats.ws import build_ws
 
 
 def bedwars_overview(stats_src):
