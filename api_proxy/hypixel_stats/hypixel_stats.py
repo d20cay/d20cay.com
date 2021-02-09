@@ -33,7 +33,6 @@ def build_bedwars(stats_src):
             bedwars_stats.update(build_wl(bedwars_src, stats_src))
             bedwars_stats['kd'] = build_kd(bedwars_src)
             bedwars_stats['fkd'] = build_fkd(bedwars_src)
-            bedwars_stats.update(build_items_purchased(bedwars_src))
             bedwars_stats.update(build_ws(bedwars_src))
 
     return bedwars_stats
@@ -83,15 +82,6 @@ def build_ws(bedwars_src):
     if (len(existing_winstreak_categories)):
         stats['winstreak'] = get_winstreak(existing_winstreak_categories)
     return stats
-
-
-def build_items_purchased(bedwars_src):
-    stats = {}
-    if 'items_purchased_bedwars' in bedwars_src:
-        stats['items_purchased'] = bedwars_src[
-            'items_purchased_bedwars']
-    return stats
-
 
 def get_winstreak(existing_winstreak_categories):
     return max(existing_winstreak_categories)
