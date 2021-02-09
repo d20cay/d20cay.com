@@ -23,11 +23,14 @@ def build_mode_wl(bedwars_src, team_count, team_player_count):
     if not global_stats:
         team_count_word = NUMBER_WORD_MAP[team_count]
         team_player_count_word = NUMBER_WORD_MAP[team_player_count]
+    gp_key = 'games_played_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_games_played_bedwars'
     win_key = 'wins_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_wins_bedwars'
     loss_key = 'losses_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_losses_bedwars'
+    gp = bedwars_src[gp_key]
     wins = bedwars_src[win_key]
     losses = bedwars_src[loss_key]
     return {
+        'games_played': gp,
         'wins': wins,
         'losses': losses,
         'wl_ratio': wins / losses,

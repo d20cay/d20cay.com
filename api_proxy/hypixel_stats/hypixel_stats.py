@@ -43,14 +43,4 @@ def build_general_info(stats_src):
         if 'bedwars_wins' in stats_src['player']['achievements']:
             stats['wins'] = stats_src['player']['achievements'][
                 'bedwars_wins']
-
-    bedwars_src = stats_src['player']['stats']['Bedwars']
-    if 'games_played_bedwars_1' in bedwars_src:
-        stats['games_played'] = bedwars_src[
-            'games_played_bedwars_1']
-    if 'beds_broken_bedwars' in bedwars_src:
-        stats['beds_broken'] = bedwars_src[
-            'beds_broken_bedwars']
-    if 'beds_lost_bedwars' in bedwars_src:
-        stats['beds_lost'] = bedwars_src['beds_lost_bedwars']
     return stats
