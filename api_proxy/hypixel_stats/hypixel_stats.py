@@ -17,29 +17,30 @@ def bedwars_overview(stats_src):
 def build_bedwars(stats_src):
     bedwars_stats = {}
 
-    if 'player' in stats_src:
-        if 'achievements' in stats_src['player']:
-            if 'bedwars_level' in stats_src['player']['achievements']:
-                bedwars_stats['level'] = stats_src['player']['achievements'][
-                    'bedwars_level']
-            if 'bedwars_wins' in stats_src['player']['achievements']:
-                bedwars_stats['wins'] = stats_src['player']['achievements'][
-                    'bedwars_wins']
-        if 'stats' in stats_src['player'] and 'Bedwars' in stats_src['player'][
-            'stats']:
-            bedwars_src = stats_src['player']['stats']['Bedwars']
+    if 'player' in stats_src and 'stats' in stats_src['player'] and 'Bedwars' in \
+            stats_src['player']['stats']:
+        bedwars_src = stats_src['player']['stats']['Bedwars']
 
-            bedwars_stats.update(build_general_info(bedwars_src))
-            bedwars_stats.update(build_wl(bedwars_src, stats_src))
-            bedwars_stats['kd'] = build_kd(bedwars_src)
-            bedwars_stats['fkd'] = build_fkd(bedwars_src)
-            bedwars_stats.update(build_ws(bedwars_src))
+        bedwars_stats.update(build_general_info(stats_src))
+        bedwars_stats.update(build_wl(bedwars_src, stats_src))
+        bedwars_stats['kd'] = build_kd(bedwars_src)
+        bedwars_stats['fkd'] = build_fkd(bedwars_src)
+        bedwars_stats.update(build_ws(bedwars_src))
 
     return bedwars_stats
 
 
-def build_general_info(bedwars_src):
+def build_general_info(stats_src):
     stats = {}
+    if 'achievements' in stats_src['player']:
+        if 'bedwars_level' in stats_src['player']['achievements']:
+            stats['level'] = stats_src['player']['achievements'][
+                'bedwars_level']
+        if 'bedwars_wins' in stats_src['player']['achievements']:
+            stats['wins'] = stats_src['player']['achievements'][
+                'bedwars_wins']
+
+    bedwars_src = stats_src['player']['stats']['Bedwars']
     if 'games_played_bedwars_1' in bedwars_src:
         stats['games_played'] = bedwars_src[
             'games_played_bedwars_1']
@@ -82,6 +83,7 @@ def build_ws(bedwars_src):
     if (len(existing_winstreak_categories)):
         stats['winstreak'] = get_winstreak(existing_winstreak_categories)
     return stats
+
 
 def get_winstreak(existing_winstreak_categories):
     return max(existing_winstreak_categories)
