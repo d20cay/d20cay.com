@@ -18,7 +18,7 @@ def build_mode_kd(bedwars_src, team_count, team_player_count):
     :param bedwars_src: All bedwars stats
     :param team_count: Amount of teams in a game in this mode
     :param team_player_count: Amount of players on a team in this mode
-    :return: Final kill, final death and fkd ratio in dict
+    :return: Kill, death and kd ratio in dict
     """
     global_stats = team_count == 0 and team_player_count == 0
     if not global_stats:
@@ -28,9 +28,8 @@ def build_mode_kd(bedwars_src, team_count, team_player_count):
     death_key = 'deaths_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_deaths_bedwars'
     kills = bedwars_src[kill_key]
     deaths = bedwars_src[death_key]
-    kd = bedwars_src[kill_key] / bedwars_src[death_key]
     return {
         'kills': kills,
         'deaths': deaths,
-        'kd_ratio': kd,
+        'kd_ratio': kills / deaths,
         }

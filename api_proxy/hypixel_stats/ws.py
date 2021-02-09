@@ -18,7 +18,7 @@ def build_mode_ws(bedwars_src, team_count, team_player_count):
     :param bedwars_src: All bedwars stats
     :param team_count: Amount of teams in a game in this mode
     :param team_player_count: Amount of players on a team in this mode
-    :return: Final kill, final death and fkd ratio in dict
+    :return: Current winstreak in dict
     """
     team_count_word = NUMBER_WORD_MAP[team_count]
     team_player_count_word = NUMBER_WORD_MAP[team_player_count]

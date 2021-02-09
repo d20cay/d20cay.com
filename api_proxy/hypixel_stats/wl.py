@@ -17,7 +17,7 @@ def build_mode_wl(bedwars_src, team_count, team_player_count):
     :param bedwars_src: All bedwars stats
     :param team_count: Amount of teams in a game in this mode
     :param team_player_count: Amount of players on a team in this mode
-    :return: Final kill, final death and fkd ratio in dict
+    :return: win, loss and wl ratio in dict
     """
     global_stats = team_count == 0 and team_player_count == 0
     if not global_stats:

@@ -27,9 +27,8 @@ def build_mode_fkd(bedwars_src, team_count, team_player_count):
     death_key = 'final_deaths_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_final_deaths_bedwars'
     kills = bedwars_src[kill_key]
     deaths = bedwars_src[death_key]
-    kd = bedwars_src[kill_key] / bedwars_src[death_key]
     return {
         'final_kills': kills,
         'final_deaths': deaths,
-        'final_kd_ratio': kd,
+        'final_kd_ratio': kills / deaths,
         }
