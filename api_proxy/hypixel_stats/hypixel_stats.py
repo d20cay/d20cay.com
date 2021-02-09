@@ -1,5 +1,6 @@
 from constant import NO_BEDWARS_STATS_ERROR
 from hypixel_stats.fkd import build_fkd
+from hypixel_stats.kd import build_kd
 
 
 def bedwars_overview(stats_src):
@@ -30,9 +31,8 @@ def build_bedwars(stats_src):
 
             bedwars_stats.update(build_general_info(bedwars_src))
             bedwars_stats.update(build_wl(bedwars_src, stats_src))
-            bedwars_stats.update(build_kd(bedwars_src))
+            bedwars_stats['kd'] = build_kd(bedwars_src)
             bedwars_stats['fkd'] = build_fkd(bedwars_src)
-            bedwars_stats.update(build_resources_collected(bedwars_src))
             bedwars_stats.update(build_items_purchased(bedwars_src))
             bedwars_stats.update(build_ws(bedwars_src))
 
@@ -85,37 +85,6 @@ def build_ws(bedwars_src):
     return stats
 
 
-def build_kd(bedwars_src):
-    stats = {}
-    if 'kills_bedwars' in bedwars_src:
-        stats['kills'] = bedwars_src['kills_bedwars']
-    if 'deaths_bedwars' in bedwars_src:
-        stats['deaths'] = bedwars_src['deaths_bedwars']
-    if 'kills_bedwars' in bedwars_src and 'deaths_bedwars' in bedwars_src:
-        stats['kd_ratio'] = get_kd_ratio(bedwars_src)
-    return stats
-
-
-def build_resources_collected(bedwars_src):
-    stats = {}
-    if 'resources_collected_bedwars' in bedwars_src:
-        stats['resources_collected'] = bedwars_src[
-            'resources_collected_bedwars']
-    if 'iron_resources_collected_bedwars' in bedwars_src:
-        stats['iron_collected'] = bedwars_src[
-            'iron_resources_collected_bedwars']
-    if 'gold_resources_collected_bedwars' in bedwars_src:
-        stats['gold_collected'] = bedwars_src[
-            'gold_resources_collected_bedwars']
-    if 'diamond_resources_collected_bedwars' in bedwars_src:
-        stats['diamonds_collected'] = bedwars_src[
-            'diamond_resources_collected_bedwars']
-    if 'emerald_resources_collected_bedwars' in bedwars_src:
-        stats['emeralds_collected'] = bedwars_src[
-            'emerald_resources_collected_bedwars']
-    return stats
-
-
 def build_items_purchased(bedwars_src):
     stats = {}
     if 'items_purchased_bedwars' in bedwars_src:
@@ -131,7 +100,3 @@ def get_winstreak(existing_winstreak_categories):
 def get_wl_ratio(stats_src):
     return stats_src['player']['achievements']['bedwars_wins'] / \
            stats_src['player']['stats']['Bedwars']['losses_bedwars']
-
-
-def get_kd_ratio(bedwars_src):
-    return bedwars_src['kills_bedwars'] / bedwars_src['deaths_bedwars']
