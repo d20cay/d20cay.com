@@ -12,6 +12,7 @@ def build_kd(bedwars_src):
         }
 
 
+# TODO(d20cay): Fix all docstrings of copied files
 def build_mode_kd(bedwars_src, team_count, team_player_count):
     """
     :param bedwars_src: All bedwars stats
