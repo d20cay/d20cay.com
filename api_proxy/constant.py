@@ -10,4 +10,11 @@ NUMBER_WORD_MAP = {
     8: 'eight',
     }
 
-MODE_COUNTS_LIST = [[8, 1], [8, 2], [4, 3], [4, 4], [2, 4], [0, 0]]
+MODE_COUNTS_LIST = [[0, 0], [8, 1], [8, 2], [4, 3], [4, 4], [2, 4]]
+
+STATS_LIST = {
+    'wl': ['wins', 'losses'],
+    'fkd': ['final_kills', 'final_deaths'],
+    'kd': ['kills', 'deaths'],
+    'bbbl': ['beds_broken', 'beds_lost']
+    }
