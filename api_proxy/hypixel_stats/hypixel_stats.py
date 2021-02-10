@@ -28,6 +28,7 @@ def build_bedwars(stats_src):
             for key in STATS_LIST:
                 bedwars_stats[mode_key(*mode)][key] = build_mode_statistic(
                     bedwars_src,
+                    key,
                     STATS_LIST[key][0],
                     STATS_LIST[key][1],
                     mode[0],
@@ -37,11 +38,12 @@ def build_bedwars(stats_src):
     return bedwars_stats
 
 
-def build_mode_statistic(bedwars_src, positive_statistic_name,
+def build_mode_statistic(bedwars_src, shorthand, positive_statistic_name,
                          negative_statistic_name,
                          team_count, team_player_count):
     """
     :param bedwars_src: All bedwars stats
+    :param shorthand: acronym for the stat and part of the key of the ratio field
     :param positive_statistic_name: type of the positive statistic to be returned
     :param negative_statistic_name: type of the negative statistic to be returned
     :param team_count: Amount of teams in a game in this mode
@@ -59,7 +61,7 @@ def build_mode_statistic(bedwars_src, positive_statistic_name,
     return {
         positive_statistic_name: positive_statistic,
         negative_statistic_name: negative_statistic,
-        f'{positive_statistic_name}_{negative_statistic_name}_ratio': positive_statistic / negative_statistic,
+        f'{shorthand}_ratio': positive_statistic / negative_statistic,
         }
 
 
