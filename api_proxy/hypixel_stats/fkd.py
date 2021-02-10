@@ -1,4 +1,4 @@
-from constant import NUMBER_WORD_MAP
+from hypixel_stats.util import build_mode_statistic
 
 
 def build_fkd(bedwars_src):
@@ -19,16 +19,6 @@ def build_mode_fkd(bedwars_src, team_count, team_player_count):
     :param team_player_count: Amount of players on a team in this mode
     :return: Final kill, final death and fkd ratio in dict
     """
-    global_stats = team_count == 0 and team_player_count == 0
-    if not global_stats:
-        team_count_word = NUMBER_WORD_MAP[team_count]
-        team_player_count_word = NUMBER_WORD_MAP[team_player_count]
-    kill_key = 'final_kills_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_final_kills_bedwars'
-    death_key = 'final_deaths_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_final_deaths_bedwars'
-    kills = bedwars_src[kill_key]
-    deaths = bedwars_src[death_key]
-    return {
-        'final_kills': kills,
-        'final_deaths': deaths,
-        'final_kd_ratio': kills / deaths,
-        }
+    return build_mode_statistic(bedwars_src, "final_kills", "final_deaths",
+                                team_count,
+                                team_player_count)

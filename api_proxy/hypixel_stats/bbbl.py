@@ -1,4 +1,4 @@
-from constant import NUMBER_WORD_MAP
+from hypixel_stats.util import build_mode_statistic
 
 
 def build_bbbl(bedwars_src):
@@ -19,16 +19,5 @@ def build_mode_bbbl(bedwars_src, team_count, team_player_count):
     :param team_player_count: Amount of players on a team in this mode
     :return: bed broken, bed lost and bbbl ratio in dict
     """
-    global_stats = team_count == 0 and team_player_count == 0
-    if not global_stats:
-        team_count_word = NUMBER_WORD_MAP[team_count]
-        team_player_count_word = NUMBER_WORD_MAP[team_player_count]
-    bb_key = 'wins_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_beds_broken_bedwars'
-    bl_key = 'losses_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_beds_lost_bedwars'
-    bb = bedwars_src[bb_key]
-    bl = bedwars_src[bl_key]
-    return {
-        'beds_broken': bb,
-        'beds_lost': bl,
-        'bbbl_ratio': bb / bl,
-        }
+    return build_mode_statistic(bedwars_src, "beds_broken", "beds_lost", team_count,
+                         team_player_count)

@@ -1,4 +1,4 @@
-from constant import NUMBER_WORD_MAP
+from hypixel_stats.util import build_mode_statistic
 
 
 def build_kd(bedwars_src):
@@ -12,7 +12,6 @@ def build_kd(bedwars_src):
         }
 
 
-# TODO(d20cay): Fix all docstrings of copied files
 def build_mode_kd(bedwars_src, team_count, team_player_count):
     """
     :param bedwars_src: All bedwars stats
@@ -20,16 +19,5 @@ def build_mode_kd(bedwars_src, team_count, team_player_count):
     :param team_player_count: Amount of players on a team in this mode
     :return: Kill, death and kd ratio in dict
     """
-    global_stats = team_count == 0 and team_player_count == 0
-    if not global_stats:
-        team_count_word = NUMBER_WORD_MAP[team_count]
-        team_player_count_word = NUMBER_WORD_MAP[team_player_count]
-    kill_key = 'kills_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_kills_bedwars'
-    death_key = 'deaths_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_deaths_bedwars'
-    kills = bedwars_src[kill_key]
-    deaths = bedwars_src[death_key]
-    return {
-        'kills': kills,
-        'deaths': deaths,
-        'kd_ratio': kills / deaths,
-        }
+    return build_mode_statistic(bedwars_src, "kills", "deaths", team_count,
+                                team_player_count)
