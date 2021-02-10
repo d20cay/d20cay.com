@@ -25,3 +25,7 @@ def build_mode_statistic(bedwars_src, positive_statistic_name,
         negative_statistic_name: negative_statistic,
         f'{positive_statistic_name}_{negative_statistic_name}_ratio': positive_statistic / negative_statistic,
         }
+
+
+def mode_key(player_count, team_player_count):
+    return 'global' if player_count == 0 or team_player_count == 0 else f'{player_count}_{team_player_count}'
