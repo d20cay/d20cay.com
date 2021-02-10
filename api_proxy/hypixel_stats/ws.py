@@ -1,14 +1,12 @@
-from constant import NUMBER_WORD_MAP
+from constant import NUMBER_WORD_MAP, MODE_COUNTS_LIST
 
 
 def build_ws(bedwars_src):
-    stats = {
-        '8_1': build_mode_ws(bedwars_src, 8, 1),
-        '8_2': build_mode_ws(bedwars_src, 8, 2),
-        '4_3': build_mode_ws(bedwars_src, 4, 3),
-        '4_4': build_mode_ws(bedwars_src, 4, 4),
-        '2_4': build_mode_ws(bedwars_src, 2, 4),
-        }
+    stats = {}
+    for mode in MODE_COUNTS_LIST:
+        if max(mode) != 0:
+            stats[f'{mode[0]}_{mode[1]}'] = build_mode_ws(bedwars_src, mode[0],
+                                                          mode[1])
     stats['global'] = max(stats.values())
     return stats
 

@@ -12,7 +12,7 @@ def build_mode_statistic(bedwars_src, positive_statistic_name,
     :param team_player_count: Amount of players on a team in this mode
     :return: Result positive thing, negative thing and positive/negative ratio
     """
-    global_stats = team_count == 0 and team_player_count == 0
+    global_stats = team_count == 0 or team_player_count == 0
     if not global_stats:
         team_count_word = NUMBER_WORD_MAP[team_count]
         team_player_count_word = NUMBER_WORD_MAP[team_player_count]

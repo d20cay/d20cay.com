@@ -9,3 +9,5 @@ NUMBER_WORD_MAP = {
     4: 'four',
     8: 'eight',
     }
+
+MODE_COUNTS_LIST = [[8, 1], [8, 2], [4, 3], [4, 4], [2, 4], [0, 0]]
