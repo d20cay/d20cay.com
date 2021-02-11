@@ -239,6 +239,7 @@
 	</div>
 
 
+	<!-- TODO(d20cay): Allow interactivity between tab and username of current stats in url without overwriting. -->
 	<ul uk-tab>
 		<li class:uk-active={linkMode === Mode.GLOBAL}>
 			<a href="#" on:click={() => updateModeState(Mode.GLOBAL)}>Global</a>
