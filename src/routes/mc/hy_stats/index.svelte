@@ -239,44 +239,53 @@
 
 
 	<!-- TODO(d20cay): Allow interactivity between tab and username of current stats in url without overwriting. -->
-	<ul uk-tab>
-		<li class:uk-active={linkMode === Mode.GLOBAL}>
-			<a href="#" on:click={() => updateModeState(Mode.GLOBAL)}>Global</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.EIGHT_ONE}>
-			<a href="#" on:click={() => updateModeState(Mode.EIGHT_ONE)}>Solo</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.EIGHT_TWO}>
-			<a href="#" on:click={() => updateModeState(Mode.EIGHT_TWO)}>Doubles</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.FOUR_THREE}>
-			<a href="#" on:click={() => updateModeState(Mode.FOUR_THREE)}>Threes</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.FOUR_FOUR}>
-			<a href="#" on:click={() => updateModeState(Mode.FOUR_FOUR)}>Fours</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.TWO_FOUR}>
-			<a href="#" on:click={() => updateModeState(Mode.TWO_FOUR)}>4v4</a>
-		</li>
-	</ul>
-	<ul class="uk-switcher uk-margin">
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="global"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_1"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_2"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_3"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_4"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="2_4"/>
-		</li>
-	</ul>
+	{#if Object.keys(stats).length}
+		<ul uk-tab>
+			<li class:uk-active={linkMode === Mode.GLOBAL}>
+				<a href="#" on:click={() => updateModeState(Mode.GLOBAL)}>Global</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.EIGHT_ONE}>
+				<a href="#" on:click={() => updateModeState(Mode.EIGHT_ONE)}>Solo</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.EIGHT_TWO}>
+				<a href="#" on:click={() => updateModeState(Mode.EIGHT_TWO)}>Doubles</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.FOUR_THREE}>
+				<a href="#" on:click={() => updateModeState(Mode.FOUR_THREE)}>Threes</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.FOUR_FOUR}>
+				<a href="#" on:click={() => updateModeState(Mode.FOUR_FOUR)}>Fours</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.TWO_FOUR}>
+				<a href="#" on:click={() => updateModeState(Mode.TWO_FOUR)}>4v4</a>
+			</li>
+		</ul>
+		<ul class="uk-switcher uk-margin">
+			<li>
+				<ModeStats {stats}
+				           {loadingStatus}
+				           {expectedError}
+				           {isolatedUsername}
+				           mode="global"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_1"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_2"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_3"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_4"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="2_4"/>
+			</li>
+		</ul>
+	{/if}
+	<p class="uk-text-center uk-margin-medium">
+		Nothing here yet. Search for a player to show their stats here.
+	</p>
 </div>

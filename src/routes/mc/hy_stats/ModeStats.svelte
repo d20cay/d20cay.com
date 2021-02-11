@@ -162,8 +162,4 @@
 			</div>
 		</div>
 	</div>
-{:else}
-	<p class="uk-text-center uk-margin-medium">
-		Nothing here yet. Search for a player to show their stats here.
-	</p>
 {/if}
