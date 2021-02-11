@@ -12,15 +12,19 @@
 	}
 
 	function ratio(positive, negative) {
-		if (negative === 0) {
-			return 'infinity';
+		if (negative === 0 && positive === 0) {
+			return 0;
+		} else if (negative === 0) {
+			return 'infinity'
 		}
 		return positive / negative;
 	}
 
 	function roundedRatio(positive, negative) {
-		if (negative === 0) {
-			return '&infin;';
+		if (negative === 0 && positive === 0) {
+			return 0;
+		} else if (negative === 0) {
+			return '&infin;'
 		}
 		return Math.round(positive / negative * 100) / 100;
 	}
