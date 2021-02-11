@@ -20,7 +20,7 @@
 
 	function roundedRatio(positive, negative) {
 		if (negative === 0) {
-			return 'infinity';
+			return '&infin;';
 		}
 		return Math.round(positive / negative * 100) / 100;
 	}
@@ -94,7 +94,7 @@
 						</tr>
 						<tr>
 							<td>W/L</td>
-							<td><b>{roundedRatio(stats.bedwars[mode].wl.wins,
+							<td><b>{@html roundedRatio(stats.bedwars[mode].wl.wins,
 								stats.bedwars[mode].wl.losses)}</b>
 								<span class="uk-margin-small-right pointer-cursor"
 								      uk-icon="info"
@@ -123,7 +123,7 @@
 						</tr>
 						<tr>
 							<td>K/D</td>
-							<td><b>{roundedRatio(stats.bedwars[mode].kd.kills,
+							<td><b>{@html roundedRatio(stats.bedwars[mode].kd.kills,
 								stats.bedwars[mode].kd.deaths)}</b>
 								<span class="uk-margin-small-right pointer-cursor"
 								      uk-icon="info"
@@ -147,7 +147,7 @@
 						</tr>
 						<tr>
 							<td>Final K/D</td>
-							<td><b>{roundedRatio(stats.bedwars[mode].fkd.final_kills,
+							<td><b>{@html roundedRatio(stats.bedwars[mode].fkd.final_kills,
 								stats.bedwars[mode].fkd.final_deaths)}</b>
 								<span class="uk-margin-small-right pointer-cursor"
 								      uk-icon="info"
