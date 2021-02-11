@@ -54,8 +54,17 @@ def build_mode_statistic(bedwars_src, positive_statistic_name,
         team_player_count_word = NUMBER_WORD_MAP[team_player_count]
     positive_statistic_key = f'{positive_statistic_name}_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_{positive_statistic_name}_bedwars'
     negative_statistic_key = f'{negative_statistic_name}_bedwars' if global_stats else f'{team_count_word}_{team_player_count_word}_{negative_statistic_name}_bedwars'
-    positive_statistic = bedwars_src[positive_statistic_key]
-    negative_statistic = bedwars_src[negative_statistic_key]
+
+    if positive_statistic_key in bedwars_src:
+        positive_statistic = bedwars_src[positive_statistic_key]
+    else:
+        positive_statistic = 0
+
+    if negative_statistic_key in bedwars_src:
+        negative_statistic = bedwars_src[negative_statistic_key]
+    else:
+        negative_statistic = 0
+
     return {
         positive_statistic_name: positive_statistic,
         negative_statistic_name: negative_statistic

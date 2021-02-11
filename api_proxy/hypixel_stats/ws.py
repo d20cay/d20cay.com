@@ -21,4 +21,4 @@ def build_mode_ws(bedwars_src, team_count, team_player_count):
     team_count_word = NUMBER_WORD_MAP[team_count]
     team_player_count_word = NUMBER_WORD_MAP[team_player_count]
     ws_key = f'{team_count_word}_{team_player_count_word}_winstreak'
-    return bedwars_src[ws_key]
+    return bedwars_src[ws_key] if ws_key in bedwars_src else 0
