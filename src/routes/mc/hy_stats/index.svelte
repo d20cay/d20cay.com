@@ -91,7 +91,6 @@
 			}
 			loadingStatus = LoadingStatus.IDLE;
 			stats = data;
-			console.log(stats);
 			notify(`Successfully fetched stats. ${status}`,
 				Status.SUCCESS,
 				Pos.BOTTOM_LEFT,
