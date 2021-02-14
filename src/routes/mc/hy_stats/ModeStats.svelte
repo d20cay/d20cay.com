@@ -38,23 +38,7 @@
 </style>
 
 
-{#if loadingStatus === LoadingStatus.LOADING}
-	<div class="uk-text-center">
-		<span class="uk-margin-top" uk-spinner="ratio: 3"></span>
-	</div>
-{:else if loadingStatus === LoadingStatus.FAILED && expectedError}
-	<div class="uk-alert-warning" uk-alert>
-		<p>No bedwars stats found for the player {isolatedUsername}. This probably indicates
-			that the player doesn't exist, hasn't played on Hypixel or played Bedwars on
-			Hypixel. If you're certain that is not the case <a href="contact/">let me know</a>
-			so I can fix the issue.</p>
-	</div>
-{:else if loadingStatus === LoadingStatus.FAILED}
-	<div class="uk-alert-danger" uk-alert>
-		<p>Something bad happened. Some of my code probably broke. Please <a href="contact/">report
-			this incident</a> with any details you have. Thank you!</p>
-	</div>
-{:else if Object.keys(stats).length}
+
 	<h4>
 		{stats.playername}'s Hypixel Bedwars Statistics
 	</h4>
@@ -162,4 +146,3 @@
 			</div>
 		</div>
 	</div>
-{/if}
