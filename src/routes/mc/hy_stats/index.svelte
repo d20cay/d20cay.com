@@ -91,7 +91,6 @@
 			}
 			loadingStatus = LoadingStatus.IDLE;
 			stats = data;
-			console.log(stats);
 			notify(`Successfully fetched stats. ${status}`,
 				Status.SUCCESS,
 				Pos.BOTTOM_LEFT,
@@ -121,14 +120,6 @@
 		if (e.key === 'Enter') {
 			getStats(username);
 		}
-	}
-
-	function updateModeState(s) {
-		const mode = s;
-		const params = mode !== undefined ? [
-			['mode', ModeReversemap.get(mode)]
-		] : [];
-		updateUrl(params);
 	}
 </script>
 
@@ -239,45 +230,71 @@
 	</div>
 
 
-	<!-- TODO(d20cay): Allow interactivity between tab and username of current stats in url without overwriting. -->
-	<ul uk-tab>
-		<li class:uk-active={linkMode === Mode.GLOBAL}>
-			<a href="#" on:click={() => updateModeState(Mode.GLOBAL)}>Global</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.EIGHT_ONE}>
-			<a href="#" on:click={() => updateModeState(Mode.EIGHT_ONE)}>Solo</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.EIGHT_TWO}>
-			<a href="#" on:click={() => updateModeState(Mode.EIGHT_TWO)}>Doubles</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.FOUR_THREE}>
-			<a href="#" on:click={() => updateModeState(Mode.FOUR_THREE)}>Threes</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.FOUR_FOUR}>
-			<a href="#" on:click={() => updateModeState(Mode.FOUR_FOUR)}>Fours</a>
-		</li>
-		<li class:uk-active={linkMode === Mode.TWO_FOUR}>
-			<a href="#" on:click={() => updateModeState(Mode.TWO_FOUR)}>4v4</a>
-		</li>
-	</ul>
-	<ul class="uk-switcher uk-margin">
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="global"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_1"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_2"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_3"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_4"/>
-		</li>
-		<li>
-			<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="2_4"/>
-		</li>
-	</ul>
+	{#if loadingStatus === LoadingStatus.LOADING}
+		<div class="uk-text-center">
+			<span class="uk-margin-top" uk-spinner="ratio: 3"></span>
+		</div>
+	{:else if loadingStatus === LoadingStatus.FAILED && expectedError}
+		<div class="uk-alert-warning" uk-alert>
+			<p>No bedwars stats found for the player {isolatedUsername}. This probably indicates
+				that the player doesn't exist, hasn't played on Hypixel or played Bedwars on
+				Hypixel. If you're certain that is not the case <a href="contact/">let me know</a>
+				so I can fix the issue.</p>
+		</div>
+	{:else if loadingStatus === LoadingStatus.FAILED}
+		<div class="uk-alert-danger" uk-alert>
+			<p>Something bad happened. Some of my code probably broke. Please <a href="contact/">report
+				this incident</a> with any details you have. Thank you!</p>
+		</div>
+	{:else if Object.keys(stats).length}
+		<ul uk-tab>
+			<li class:uk-active={linkMode === Mode.GLOBAL}>
+				<a href="#">Global</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.EIGHT_ONE}>
+				<a href="#">Solo</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.EIGHT_TWO}>
+				<a href="#">Doubles</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.FOUR_THREE}>
+				<a href="#">Threes</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.FOUR_FOUR}>
+				<a href="#">Fours</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.TWO_FOUR}>
+				<a href="#">4v4</a>
+			</li>
+		</ul>
+		<ul class="uk-switcher uk-margin">
+			<li>
+				<ModeStats {stats}
+				           {loadingStatus}
+				           {expectedError}
+				           {isolatedUsername}
+				           mode="global"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_1"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_2"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_3"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_4"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="2_4"/>
+			</li>
+		</ul>
+	{:else}
+		<p class="uk-text-center uk-margin-medium">
+			Nothing here yet. Search for a player to show their stats here.
+		</p>
+
+	{/if}
 </div>
