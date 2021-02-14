@@ -25,6 +25,20 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-02-14',
+		version: '2021.6.1',
+		changes: [
+			{
+				text: 'Hypixel stats page to include all different modes and a download stats feature to help you plot your progress.',
+				type: Type.CHANGED
+			},
+			{
+				text: 'Hypixel stats backend completely to be much more readable and stable.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
 		date: '2021-02-02',
 		version: '2021.5.1',
 		changes: [
