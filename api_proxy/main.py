@@ -42,7 +42,7 @@ def read_hypixel_bedwars_stats(player: str):
     try:
         uuid_response = requests.get(mojang_api.format(player))
         player_uuid = uuid_response.json()['id']
-    except JSONDecodeError:
+    except (JSONDecodeError, KeyError):
         return NO_PLAYER_ERROR
 
     try:
