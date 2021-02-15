@@ -25,6 +25,16 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-02-15',
+		version: '2021.7.1',
+		changes: [
+			{
+				text: 'Homepage to include twitch link.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
 		date: '2021-02-14',
 		version: '2021.6.1',
 		changes: [

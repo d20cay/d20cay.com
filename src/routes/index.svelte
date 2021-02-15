@@ -71,6 +71,8 @@
 			<h3 class="uk-card-title">Social Media</h3>
 			<a href="https://www.youtube.com/channel/UCbFegF_v_6ywmP6EOkdnFIA"
 			   class="uk-icon-button  uk-margin-small-right" uk-icon="youtube"></a>
+			<a href="https://www.twitch.tv/d20cay"
+			   class="uk-icon-button  uk-margin-small-right" uk-icon="twitch"></a>
 			<a href="https://www.reddit.com/user/d20cay" class="uk-icon-button  uk-margin-small-right"
 			   uk-icon="reddit"></a>
 			<a href="https://twitter.com/d20cay" class="uk-icon-button  uk-margin-small-right"
