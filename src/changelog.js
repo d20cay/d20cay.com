@@ -25,8 +25,112 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
-		date: `2020-12-11`,
+		date: '2021-02-14',
+		version: '2021.6.1',
+		changes: [
+			{
+				text: 'Hypixel stats page to include all different modes and a download stats feature to help you plot your progress.',
+				type: Type.CHANGED
+			},
+			{
+				text: 'Hypixel stats backend completely to be much more readable and stable.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2021-02-02',
+		version: '2021.5.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add some clarifications for theory that isn\'t understandable after not having looked at it for a while.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2021-01-28',
+		version: '2021.4.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add some more harmonic oscillation formulas and sketch.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2021-01-14',
+		version: '2021.2.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add harmonic oscillation formulas and sketch.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2020-12-26',
+		version: '2020.52.1',
+		changes: [
+			{
+				text: 'Hypixel Bedwars Stats page inability to handle a player not existing in some cases.',
+				type: Type.FIXED
+			},
+		]
+	},
+	{
+		date: '2020-12-19',
+		version: '2020.51.2',
+		changes: [
+			{
+				text: 'Imprint page for better legal compliance.',
+				type: Type.ADDED
+			},
+			{
+				text: 'Privacy policy page for better legal compliance.',
+				type: Type.ADDED
+			},
+			{
+				text: 'Cookie modal that has to be accepted to use the website.',
+				type: Type.ADDED
+			},
+		]
+	},
+	{
+		date: `2020-12-15`,
+		version: `2020.51.1`,
+		changes: [
+			{
+				text: `Physics cheatsheet unit for performance.`,
+				type: Type.FIXED
+			},
+			{
+				text: `Changelog revision 2020.50.2 to use the correct date.`,
+				type: Type.FIXED
+			},
+		]
+	},
+	{
+		date: `2020-12-13`,
 		version: `2020.50.2`,
+		changes: [
+			{
+				text: `Github link to footer and home page.`,
+				type: Type.ADDED
+			},
+			{
+				text: `Physics cheatsheet to clarify some formulas.`,
+				type: Type.CHANGED
+			},
+			{
+				text: `Changelog revision numbers from 2020.50.2 to 2020.50.1.`,
+				type: Type.FIXED
+			},
+		]
+	},
+	{
+		date: `2020-12-11`,
+		version: `2020.50.1`,
 		changes: [
 			{
 				text: `Changelog revision from date 2020-11-29 to correct version.`,

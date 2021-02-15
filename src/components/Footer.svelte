@@ -51,5 +51,7 @@
 		</div>
 		<div><a href="contact/">Contact</a></div>
 		<div><a href="changelog/">Changelog</a></div>
+		<div><a href="imprint/">Imprint</a></div>
+		<div><a href="privacy/">Privacy & Security</a></div>
 	</div>
 </footer>

@@ -142,24 +142,20 @@ $$
 
 ## Arbeit
 
-$W$: Arbeit [$Nm$/$J$/$Ws$]
+$W$: Arbeit/Energie [$Nm$/$J$/$Ws$]
 
 Arbeit = Kraft (in Wegrichtung) * Strecke
 $$
 W = F \cdot s
 $$
 
-### Energie
-
-$E$: Energie [$J$]
-
 ### Leistung
 
 $P$: Leistung [$W$]
 
-Leistung = Kraft (in Wegrichtung) * Geschwindigkeit (* Reibungskoeffizient)
+Leistung = Kraft (in Wegrichtung) * Geschwindigkeit (* Reibungskoeffizient) pro Zeit
 $$
-P = \frac{\Delta W}{\Delta t} \\
+P = \frac{\Delta E}{t} \\
 P = F \cdot v \\
 P = F \cdot v \cdot \mu
 $$
@@ -204,10 +200,13 @@ $t_F$: Fallzeit [$s$]
 $$
 h = \frac{1}{2}g \cdot t^2 => t_F = \sqrt{\frac{2h}{g}} \\
 x_W = v_0 \cdot t_F \\
-v = \sqrt{v_0^2 + v_Z^2}
+v = \sqrt{v_0^2 + v_Z^2} \\
+\phi = tan^{-1}(\frac{v_z}{v_0})
 $$
 
 ### Bezugssystem nach unten
+
+Kann *generell* angewendet werden wenn Objekte *keine* Anfangsposition haben und nach *unten* fallen.
 
 <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\h_of_t.png">
 $$
@@ -231,10 +230,15 @@ $$
 
 ### Bezugssystem nach oben
 
+Kann *generell* angewendet werden wenn Objekte *eine* Anfangsposition haben und nach *unten* fallen.
+
 <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\z_of_t.png">
+
+$z'$:  Position eines Objekts nach einer bestimmten Fallzeit.
+$z''$: Position eines Objekts nach einer bestimmten Fallzeit, das eine Startgeschwindigkeit hat.
 $$
-z(t) = z_0 - \frac{1}{2}gt^2 \\
-z(t) = z_0 + v_0t - \frac{1}{2}gt^2 \\
+z(t)' = z_0 - \frac{1}{2}gt^2 \\
+z(t)'' = z_0 + v_0t - \frac{1}{2}gt^2 \\
 v = \sqrt{2gh} \\
 v = \sqrt{v_0^2 - 2gh}
 $$
@@ -253,10 +257,11 @@ $v$: Bahngeschwindigkeit [$\frac{m}{s}$]
 $r$: Bahnradius
 $U$: Umfang [$m$]
 $T$: Periodendauer [$s$]
-$f$: Frequenz der Umdrehung [$\frac{1}{s}$]
+$f$: Frequenz der Umdrehung [$\frac{1}{s}$/$Hz$]
 $$
 \omega = \frac{\Delta \phi}{\Delta t} = \frac{2 \pi}{T} = 2 \pi \cdot f \\
-v = \frac{U}{T} = \frac{2 \pi \cdot r}{T} = \omega \cdot r
+v = \frac{U}{T} = \frac{2 \pi \cdot r}{T} = \omega \cdot r \\
+T = \frac{1}{f} \Rightarrow f = \frac{1}{T}
 $$
 <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\angular_force.png">
 
@@ -264,7 +269,41 @@ $a_z$: Anzugsbeschleunigung zum Zentrum
 $F_z$: Anzugskraft zum Zentrum (=$F_R$)
 $$
 a_z = \frac{2\pi \cdot v}{T} = \omega \cdot v = \omega^2 \cdot r = \frac{v^2}{r} \\
+\phi = \omega \cdot t \\
 F_z = m \cdot a_z
+$$
+
+## Schwingungen
+
+### Harmonische Schwingungen
+
+$\hat{y}$ / $\hat{x}$: Amplitude
+$y$ / $x$: (momentane) Auslenkung
+
+<img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine_time.png">
+$$
+y = \hat{y} \cdot sin(\omega \cdot t) \\
+\hat{v} = \omega \cdot \hat{y} \\
+\hat{a} = \omega \cdot \hat{v} = \omega^2 \cdot \hat{y}
+$$
+
+$k$: Wellenzahl
+$v$ / $c$: Ausbreitungsgeschwindigkeit
+$\lambda$: Wellenlänge
+
+<img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine_distance.png">
+$$
+k = \frac{2 \cdot \pi}{\lambda} \\
+y = \hat{y} \cdot sin(k \cdot x) \\
+c = \hat{y} \cdot sin(\omega \cdot t \pm k \cdot x) = \frac{\lambda}{T} = \lambda \cdot f
+$$
+Der Operand $\pm$  kann geändert werden je nachdem in welche Richtung sich die Welle im Koordinatensystem ausbreitet. $-$ für rechts oder ins positive $x$ und $+$ für links oder ins negative $x$.
+
+### Federpendel
+
+$$
+T = 2\pi\sqrt{\frac{m}{D}} \\
+T = 2\pi\sqrt{\frac{l}{g}}
 $$
 
 ## Acknowledgements

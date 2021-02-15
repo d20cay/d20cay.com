@@ -1,11 +1,12 @@
-from simplejson.errors import JSONDecodeError
-
 import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from simplejson.errors import JSONDecodeError
+from starlette.requests import Request
+from starlette.responses import Response
 
-import hypixel_stats
 from constant import NO_STATS_ERROR, NO_PLAYER_ERROR
+from hypixel_stats.hypixel_stats import bedwars_overview
 
 app = FastAPI()
 
@@ -17,14 +18,15 @@ origins = [
     "http://localhost:3000",
     ]
 
-# async def catch_exceptions_middleware(request: Request, call_next):
-#     try:
-#         return await call_next(request)
-#     except Exception:
-#         return Response("Internal server error", status_code=500)
-#
-#
-# app.middleware('http')(catch_exceptions_middleware)
+
+async def catch_exceptions_middleware(request: Request, call_next):
+    try:
+        return await call_next(request)
+    except Exception:
+        return Response("Internal server error", status_code=500)
+
+
+app.middleware('http')(catch_exceptions_middleware)
 
 app.add_middleware(CORSMiddleware, allow_origins=origins,
                    allow_credentials=True, allow_methods=['*'],
@@ -40,14 +42,16 @@ def read_hypixel_bedwars_stats(player: str):
     try:
         uuid_response = requests.get(mojang_api.format(player))
         player_uuid = uuid_response.json()['id']
-    except JSONDecodeError:
+    except (JSONDecodeError, KeyError):
         return NO_PLAYER_ERROR
 
     try:
         hypixel_response = requests.get(
             hypixel_api.format(hypixel_api_key, player_uuid))
-        condensed_stats = hypixel_stats.bedwars_overview(
-            hypixel_response.json())
+        hypixel_json = hypixel_response.json()
+        if hypixel_json is None or hypixel_json['player'] is None:
+            return NO_STATS_ERROR
+        condensed_stats = bedwars_overview(hypixel_json)
     except JSONDecodeError:
         return NO_STATS_ERROR
 
