@@ -47,7 +47,7 @@ $$
 
 ### Reibung
 
-### <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\friction.png">
+<img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\friction.png">
 
 $F_R$: (maximal mögliche) Reibungskraft [N]
 
@@ -265,8 +265,8 @@ T = \frac{1}{f} \Rightarrow f = \frac{1}{T}
 $$
 <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\angular_force.png">
 
-$a_z$: Anzugsbeschleunigung zum Zentrum
-$F_z$: Anzugskraft zum Zentrum (=$F_R$)
+$a_z$: Anzugsbeschleunigung zum Zentrum [$m/s$]
+$F_z$: Anzugskraft zum Zentrum (=$F_R$) [$N$]
 $$
 a_z = \frac{2\pi \cdot v}{T} = \omega \cdot v = \omega^2 \cdot r = \frac{v^2}{r} \\
 \phi = \omega \cdot t \\
@@ -275,32 +275,44 @@ $$
 
 ## Schwingungen
 
-### Harmonische Schwingungen
+| Welle                                             | Stehende Welle                                               |              |
+| ------------------------------------------------- | ------------------------------------------------------------ | ------------ |
+| Wasserwelle<br />Elektromagnetische Welle (Licht) | Wasserwelle in Resonator<br />Licht in Laserresonator<br />feste Seilwelle | transversal  |
+| Schallwelle                                       | Schallwelle in Resonator                                     | longitudinal |
 
-$\hat{y}$ / $\hat{x}$: Amplitude
-$y$ / $x$: (momentane) Auslenkung
+Harmonische Schwingung ist gegeben wenn $F = -D \cdot y$.
+
+### Harmonische Schwingung
+
+$\hat{y}$ / $\hat{x}$: Amplitude [$m$]
+$y$ / $x$: (momentane) Auslenkung [$m$]
 
 <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine_time.png">
 $$
-y = \hat{y} \cdot sin(\omega \cdot t) \\
+y = \hat{y} \cdot sin(\omega \cdot t)
 \hat{v} = \omega \cdot \hat{y} \\
 \hat{a} = \omega \cdot \hat{v} = \omega^2 \cdot \hat{y}
 $$
 
-$k$: Wellenzahl
-$v$ / $c$: Ausbreitungsgeschwindigkeit
-$\lambda$: Wellenlänge
+### Lineare Welle
+
+$k$: Wellenzahl [$\frac{1}{m}$]
+$v$ / $c$: Ausbreitungsgeschwindigkeit [$\frac{m}{s}$]
+$\lambda$: Wellenlänge [$m$]
 
 <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine_distance.png">
 $$
 k = \frac{2 \cdot \pi}{\lambda} \\
-y = \hat{y} \cdot sin(k \cdot x) \\
-c = \hat{y} \cdot sin(\omega \cdot t \pm k \cdot x) = \frac{\lambda}{T} = \lambda \cdot f
+y = \hat{y} \cdot sin(\omega \cdot t \pm k \cdot x) \\
+c = \frac{\lambda}{T} = \lambda \cdot f
 $$
 Der Operand $\pm$  kann geändert werden je nachdem in welche Richtung sich die Welle im Koordinatensystem ausbreitet. $-$ für rechts oder ins positive $x$ und $+$ für links oder ins negative $x$.
 
 ### Federpendel
 
+$m$: Masse des schwingenden Körpers [$kg$]
+$D$: Federkonstante [$\frac{N}{m}$]
+$l$: Pendellänge [$m$]
 $$
 T = 2\pi\sqrt{\frac{m}{D}} \\
 T = 2\pi\sqrt{\frac{l}{g}}
