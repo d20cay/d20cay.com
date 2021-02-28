@@ -1,5 +1,5 @@
 <script>
-	import {currentPage, Page} from "../../stores";
+	import {currentPage, Page} from "../../../stores";
 	import {
 		isDevInstance,
 		isProdInstance,
@@ -8,16 +8,43 @@
 		NotificationStatus as Status,
 		NotificationTimeout as Timeout,
 		notify,
-		overwriteClipboard,
-		updateUrl
-	} from "../../global";
+		overwriteClipboard, updateUrl
+	} from "../../../global";
 	import {onMount} from "svelte";
+	import ModeStats from "./ModeStats.svelte";
 
 	currentPage.set(Page.HY_STATS);
 
 	const USER_INEXISTENT_ERROR = {code: -2, message: 'User doesn\'t have bedwars stats.'};
 	const USER_MISSING_ERROR = {code: -3, message: 'User doesn\'t exist.'};
 	const STATS_MISSING_ERROR = {code: -4, message: 'Stats not found for this user.'};
+
+	const Mode = {
+		GLOBAL: 0,
+		EIGHT_ONE: 1,
+		EIGHT_TWO: 3,
+		FOUR_THREE: 4,
+		FOUR_FOUR: 5,
+		TWO_FOUR: 6,
+	};
+
+	const ModeMap = new Map([
+		['global', Mode.GLOBAL],
+		['8_1', Mode.EIGHT_ONE],
+		['8_2', Mode.EIGHT_TWO],
+		['4_3', Mode.FOUR_THREE],
+		['4_4', Mode.FOUR_FOUR],
+		['2_4', Mode.TWO_FOUR],
+	]);
+
+	const ModeReversemap = new Map([
+		[Mode.GLOBAL, 'global'],
+		[Mode.EIGHT_ONE, '8_1'],
+		[Mode.EIGHT_TWO, '8_2'],
+		[Mode.FOUR_THREE, '4_3'],
+		[Mode.FOUR_FOUR, '4_4'],
+		[Mode.TWO_FOUR, '2_4'],
+	]);
 
 	let loadingStatus = LoadingStatus.IDLE;
 
@@ -26,6 +53,12 @@
 	let expectedError = true;
 	let uuid = '';
 	let stats = {};
+	$: downloadableStats =
+		"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(stats));
+	$: downloadFileName = downloadableStatsFileName(stats, new Date());
+
+	let linkMode;
+	let mode;
 
 	onMount(() => {
 		const urlParams = window.location.search;
@@ -85,23 +118,34 @@
 		});
 	}
 
+	function downloadableStatsFileName(stats, date) {
+		const year = formatDatePart(date.getFullYear());
+		const month = formatDatePart((date.getMonth() + 1));
+		const day = formatDatePart(date.getDate());
+		const hours = formatDatePart(date.getHours());
+		const minutes = formatDatePart(date.getMinutes());
+		const seconds = formatDatePart(date.getSeconds());
+		return `${stats.playername}_stats_${year}-${month}-${day}_${hours}-${minutes}-${seconds}.json`;
+	}
+
+	function formatDatePart(num) {
+		const numString = num.toString();
+		return numString.length > 1 ? numString : "0" + numString;
+	}
+
 	function keyPressed(e) {
 		updateUrl([['username', username]]);
 		if (e.key === 'Enter') {
 			getStats(username);
 		}
 	}
-
-	function vo(value) {
-		return value ? value : 'NaN';
-	}
 </script>
 
 <style>
-	/** Changes the mouse cursor into a point (hand) when hovering over objects with this class. */
-	.pointer-cursor:hover {
-		cursor: pointer;
-	}
+    /** Changes the mouse cursor into a point (hand) when hovering over objects with this class. */
+    .pointer-cursor:hover {
+        cursor: pointer;
+    }
 </style>
 
 <svelte:head>
@@ -182,13 +226,24 @@
 					      class="uk-icon-button pointer-cursor uk-animation-fade uk-animation-fast"
 					      uk-icon="search"></span>
 				</div>
-			{/if}
-			{#if loadingStatus === LoadingStatus.LOADING}
+			{:else if loadingStatus === LoadingStatus.LOADING}
 				<span uk-tooltip="Loading..."
 				      class="uk-icon-button uk-animation-fade uk-animation-fast"><div
 						uk-spinner></div></span>
 			{/if}
 		</div>
+		{#if Object.keys(stats).length}
+			<div class="uk-width-auto">
+				<label for="alignment-hack">&nbsp;<br></label>
+				<div class="uk-flex-bottom">
+					<a href={downloadableStats}
+					   download={downloadFileName}
+					   uk-tooltip="Download stats"
+					   class="uk-icon-button pointer-cursor uk-animation-fade uk-animation-fast"
+					   uk-icon="download"></a>
+				</div>
+			</div>
+		{/if}
 		{#if username}
 			<div class="uk-width-auto">
 				<label for="alignment-hack">&nbsp;<br></label>
@@ -202,6 +257,7 @@
 			</div>
 		{/if}
 	</div>
+
 
 	{#if loadingStatus === LoadingStatus.LOADING}
 		<div class="uk-text-center">
@@ -220,157 +276,54 @@
 				this incident</a> with any details you have. Thank you!</p>
 		</div>
 	{:else if Object.keys(stats).length}
-		<h4>
-			{stats.playername}'s Hypixel Bedwars Statistics
-		</h4>
-		<div uk-grid>
-			<div class="uk-width-1-4@l uk-width-1-2@s">
-				<div class="uk-overflow-auto">
-					<table class="uk-table uk-table-small uk-table-divider">
-						<tbody>
-							<tr>
-								<td><span class="uk-margin-small-right" uk-icon="star"></span></td>
-								<td>{vo(stats.bedwars.level)}</td>
-							</tr>
-							<tr>
-								<td>Games Played</td>
-								<td>{vo(stats.bedwars.games_played)}</td>
-							</tr>
-							<tr>
-								<td>Beds Broken</td>
-								<td>{vo(stats.bedwars.beds_broken)}</td>
-							</tr>
-							<tr>
-								<td>Beds Lost</td>
-								<td>{vo(stats.bedwars.beds_lost)}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="uk-width-1-4@l uk-width-1-2@s">
-				<div class="uk-overflow-auto">
-					<table class="uk-table uk-table-small uk-table-divider">
-						<tbody>
-							<tr>
-								<td>Wins</td>
-								<td>{vo(stats.bedwars.wins)}</td>
-							</tr>
-							<tr>
-								<td>Losses</td>
-								<td>{vo(stats.bedwars.losses)}</td>
-							</tr>
-							<tr>
-								<td>W/L</td>
-								<td><b>{vo(Math.round(stats.bedwars.wl_ratio * 100) / 100)}</b>
-									<span class="uk-margin-small-right pointer-cursor"
-									      uk-icon="info"
-									      uk-tooltip={vo(stats.bedwars.wl_ratio)}></span></td>
-							</tr>
-							<tr>
-								<td>Winstreak</td>
-								<td>{vo(stats.bedwars.winstreak)}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="uk-width-1-4@l uk-width-1-2@s">
-				<div>
-					<table class="uk-table uk-table-small uk-table-divider">
-						<tbody>
-							<tr>
-								<td>Kills</td>
-								<td>{vo(stats.bedwars.kills)}</td>
-							</tr>
-							<tr>
-								<td>Deaths</td>
-								<td>{vo(stats.bedwars.deaths)}</td>
-							</tr>
-							<tr>
-								<td>K/D</td>
-								<td><b>{vo(Math.round(stats.bedwars.kd_ratio * 100) / 100)}</b>
-									<span class="uk-margin-small-right pointer-cursor"
-									      uk-icon="info"
-									      uk-tooltip={vo(stats.bedwars.kd_ratio)}></span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="uk-width-1-4@l uk-width-1-2@s">
-				<div>
-					<table class="uk-table uk-table-small uk-table-divider">
-						<tbody>
-							<tr>
-								<td>Final Kills</td>
-								<td>{vo(stats.bedwars.final_kills)}</td>
-							</tr>
-							<tr>
-								<td>Final Deaths</td>
-								<td>{vo(stats.bedwars.final_deaths)}</td>
-							</tr>
-							<tr>
-								<td>Final K/D</td>
-								<td><b>{vo(Math.round(stats.bedwars.final_kd_ratio * 100) /
-									100)}</b>
-									<span class="uk-margin-small-right pointer-cursor"
-									      uk-icon="info"
-									      uk-tooltip={vo(stats.bedwars.final_kd_ratio)}></span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<ul uk-accordion>
+		<ul uk-tab>
+			<li class:uk-active={linkMode === Mode.GLOBAL}>
+				<a href="#">Global</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.EIGHT_ONE}>
+				<a href="#">Solo</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.EIGHT_TWO}>
+				<a href="#">Doubles</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.FOUR_THREE}>
+				<a href="#">Threes</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.FOUR_FOUR}>
+				<a href="#">Fours</a>
+			</li>
+			<li class:uk-active={linkMode === Mode.TWO_FOUR}>
+				<a href="#">4v4</a>
+			</li>
+		</ul>
+		<ul class="uk-switcher uk-margin">
 			<li>
-				<a class="uk-accordion-title" href="#">More stats</a>
-				<div class="uk-accordion-content">
-					<div uk-grid>
-						<div class="uk-width-1-4@l uk-width-1-2@s">
-							<table class="uk-table uk-table-small uk-table-divider">
-								<tbody>
-									<tr>
-										<td>Resources Collected</td>
-										<td>{vo(stats.bedwars.resources_collected)}</td>
-									</tr>
-									<tr>
-										<td>Iron Collected</td>
-										<td>{vo(stats.bedwars.iron_collected)}</td>
-									</tr>
-									<tr>
-										<td>Gold Collected</td>
-										<td>{vo(stats.bedwars.gold_collected)}</td>
-									</tr>
-									<tr>
-										<td>Diamonds Collected</td>
-										<td>{vo(stats.bedwars.diamonds_collected)}</td>
-									</tr>
-									<tr>
-										<td>Emeralds Collected</td>
-										<td>{vo(stats.bedwars.emeralds_collected)}</td>
-									</tr>
-									<tr>
-										<td>Items purchased</td>
-										<td>{vo(stats.bedwars.items_purchased)}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="uk-width-3-4@l uk-width-1-2@s">
-							<p class="uk-text-center">
-								Do you think anything's missing? <a href="../../contact/">Let me
-								know</a> and I'll add it!
-							</p>
-						</div>
-					</div>
-				</div>
+				<ModeStats {stats}
+				           {loadingStatus}
+				           {expectedError}
+				           {isolatedUsername}
+				           mode="global"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_1"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_2"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_3"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_4"/>
+			</li>
+			<li>
+				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="2_4"/>
 			</li>
 		</ul>
 	{:else}
 		<p class="uk-text-center uk-margin-medium">
 			Nothing here yet. Search for a player to show their stats here.
 		</p>
+
 	{/if}
 </div>

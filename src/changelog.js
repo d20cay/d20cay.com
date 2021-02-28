@@ -25,6 +25,40 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-02-15',
+		version: '2021.7.1',
+		changes: [
+			{
+				text: 'Homepage to include twitch link.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2021-02-14',
+		version: '2021.6.1',
+		changes: [
+			{
+				text: 'Hypixel stats page to include all different modes and a download stats feature to help you plot your progress.',
+				type: Type.CHANGED
+			},
+			{
+				text: 'Hypixel stats backend completely to be much more readable and stable.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2021-02-02',
+		version: '2021.5.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add some clarifications for theory that isn\'t understandable after not having looked at it for a while.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
 		date: '2021-01-28',
 		version: '2021.4.1',
 		changes: [
