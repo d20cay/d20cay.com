@@ -2,6 +2,44 @@
 
 [TOC]
 
+## Hydrostatik
+
+Druck ist keine gerichtete Grösse!
+
+$p$: Druck [$\frac{N}{m^2}$]
+$\rho$: Dichte [$\frac{kg}{m^3}$]
+
+$p_0$: Luftdruck [$\frac{N}{m^2}$]
+$\Delta p$: Hydrostatischer Druck/Überdruck [$\frac{N}{m^2}$]
+$$
+\Delta p = \rho _{Fl} \cdot g \cdot h \\
+p(h) = p_0 + \Delta p = p_0 + \rho _{Fl} \cdot g \cdot h \\
+$$
+
+### Auftriebskraft
+
+$F_A$: Auftriebskraft [$N$]
+$V$: *eingetauchtes* Volumen des Körpers [$m^3$]
+$\rho _K$: *mittlere* Dichte eines Körpers [$\frac{kg}{m^3}$]
+$$
+F_A = \rho _{Fl} \cdot V \cdot g
+$$
+Schwimmen:
+$$
+\rho _K < \rho _{Fl} \\
+F_A = F_G
+$$
+Schweben:
+$$
+\rho _K = \rho _{Fl} \\
+F_A = F_G
+$$
+Sinken:
+$$
+\rho _K > \rho _{Fl} \\
+F_A < F_G
+$$
+
 ## Wärme
 
 $Q$: Wärmeenergie [$J$]
