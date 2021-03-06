@@ -2,6 +2,44 @@
 
 [TOC]
 
+## Hydrostatik
+
+Druck ist keine gerichtete Grösse!
+
+$p$: Druck [$\frac{N}{m^2}$]
+$\rho$: Dichte [$\frac{kg}{m^3}$]
+
+$p_0$: Luftdruck [$\frac{N}{m^2}$]
+$\Delta p$: Hydrostatischer Druck/Überdruck [$\frac{N}{m^2}$]
+$$
+\Delta p = \rho _{Fl} \cdot g \cdot h \\
+p(h) = p_0 + \Delta p = p_0 + \rho _{Fl} \cdot g \cdot h \\
+$$
+
+### Auftriebskraft
+
+$F_A$: Auftriebskraft [$N$]
+$V$: *eingetauchtes* Volumen des Körpers [$m^3$]
+$\rho _K$: *mittlere* Dichte eines Körpers [$\frac{kg}{m^3}$]
+$$
+F_A = \rho _{Fl} \cdot V \cdot g
+$$
+Schwimmen:
+$$
+\rho _K < \rho _{Fl} \\
+F_A = F_G
+$$
+Schweben:
+$$
+\rho _K = \rho _{Fl} \\
+F_A = F_G
+$$
+Sinken:
+$$
+\rho _K > \rho _{Fl} \\
+F_A < F_G
+$$
+
 ## Wärme
 
 $Q$: Wärmeenergie [$J$]
@@ -289,7 +327,7 @@ $y$ / $x$: (momentane) Auslenkung [$m$]
 
 <img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\harmonic_ossilation_sine_time.png">
 $$
-y = \hat{y} \cdot sin(\omega \cdot t)
+y = \hat{y} \cdot sin(\omega \cdot t) \\
 \hat{v} = \omega \cdot \hat{y} \\
 \hat{a} = \omega \cdot \hat{v} = \omega^2 \cdot \hat{y}
 $$
@@ -308,7 +346,7 @@ c = \frac{\lambda}{T} = \lambda \cdot f
 $$
 Der Operand $\pm$  kann geändert werden je nachdem in welche Richtung sich die Welle im Koordinatensystem ausbreitet. $-$ für rechts oder ins positive $x$ und $+$ für links oder ins negative $x$.
 
-### Federpendel
+### Feder & Pendel
 
 $m$: Masse des schwingenden Körpers [$kg$]
 $D$: Federkonstante [$\frac{N}{m}$]
@@ -316,6 +354,37 @@ $l$: Pendellänge [$m$]
 $$
 T = 2\pi\sqrt{\frac{m}{D}} \\
 T = 2\pi\sqrt{\frac{l}{g}}
+$$
+
+## Elektrizität
+
+$Q$: Ladung [$C$ (Coulomb)]
+$I$: Strom [$A$]
+$U$: Spannung [$V$]
+$$
+1C = 6.24 \cdot 10^{18}e \\
+I = \frac{\Delta Q}{\Delta t} \\
+U = \frac{\Delta W}{\Delta Q}
+$$
+
+### Spezifischer Widerstand
+
+$\sigma$: spezifische Leitfähigkeit []
+$\rho$: spezifischer Widerstand [$\Omega \cdot m$ / $\Omega \cdot \frac{mm^2}{m}$]
+$A$: Fläche Leiter [$m^2$]
+$l$: Länge Leiter [$m$]
+$$
+I = \sigma \cdot \frac{A}{l} \cdot \Delta U \\
+\Delta U = \frac{1}{\sigma} \cdot \frac{l}{A} \cdot I \\
+\rho = \frac{1}{\sigma} \\
+R = \rho \cdot \frac{l}{A}
+$$
+
+### Ohmsches Gesetz
+
+$R$: Widerstand [$\Omega$]
+$$
+U = R \cdot I \Rightarrow R = \frac{U}{I}
 $$
 
 ## Acknowledgements
