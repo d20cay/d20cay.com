@@ -25,7 +25,21 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
-		date: '2021-02-15',
+		date: '2021-03-06',
+		version: '2021.9.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to fix oscillation and waves formulas.',
+				type: Type.CHANGED
+			},
+			{
+				text: 'Physics cheatsheet to add hydrostatics formulas.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2021-02-28',
 		version: '2021.8.1',
 		changes: [
 			{
