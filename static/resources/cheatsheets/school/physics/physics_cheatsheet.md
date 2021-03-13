@@ -44,7 +44,30 @@ $$
 
 $Q$: Wärmeenergie [$J$]
 $$
-\Delta Q = m c \cdot \Delta T
+\Delta Q = m c \cdot \Delta T  \\
+0 K = -273.15 ^\circ C
+$$
+
+### Gasgesetze
+
+Solange $T$ *konstant*:
+$$
+p_1 \cdot V_1 = p_2 \cdot V_2 \\
+p_3 \cdot V_3 = p_1 \cdot V_1 + p_2 \cdot V_2
+$$
+Solange $p$ konstant:
+$$
+\frac{V_1}{T_1} = \frac{V_2}{T_2}
+$$
+Allgemein:
+
+$R_S$: spezifische Gaskonstante [$\frac{J}{kg \cdot K}$]
+$R$: allg. Gaskonstante = $8.314 \frac{J}{kg \cdot K}$
+$n$: Stoffmenge [$mol$]
+$$
+\frac{p_1 \cdot V_1}{T_1} = \frac{p_2 \cdot V_2}{T_2} \\
+\frac{p \cdot V}{T} = m \cdot R_S \\
+\frac{p \cdot V}{T} = n \cdot R
 $$
 
 ### Wärme aus Reibung
@@ -385,6 +408,23 @@ $$
 $R$: Widerstand [$\Omega$]
 $$
 U = R \cdot I \Rightarrow R = \frac{U}{I}
+$$
+
+### Mehrere Widerstände
+
+<img style="width: 50%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\electricity_serial_parallel.png">
+
+*Seriell*:
+$$
+I = I_1 = I_2 \\
+U = U_1 + U_2 \\
+R = R_1 + R_2
+$$
+*Parallel*:
+$$
+I = I_1 + I_2 \\
+U = U_1 = U_2 \\
+R = \frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}
 $$
 
 ## Acknowledgements
