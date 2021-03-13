@@ -387,6 +387,23 @@ $$
 U = R \cdot I \Rightarrow R = \frac{U}{I}
 $$
 
+### Mehrere Widerstände
+
+<img style="width: 50%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\electricity_serial_parallel.png">
+
+*Seriell*:
+$$
+I = I_1 = I_2 \\
+U = U_1 + U_2 \\
+R = R_1 + R_2
+$$
+*Parallel*:
+$$
+I = I_1 + I_2 \\
+U = U_1 = U_2 \\
+R = \frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}
+$$
+
 ## Acknowledgements
 
 Author(s): d20cay
