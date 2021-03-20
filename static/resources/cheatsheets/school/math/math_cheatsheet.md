@@ -2,6 +2,21 @@
 
 [TOC]
 
+## Umformungsregeln
+
+$$
+a^m \cdot a^n = a^{m+n} \\
+\frac{a^m}{a^n} = a^{m-n} \\
+a^n \cdot b^n = (a \cdot b)^n \\
+\frac{a^n}{b^n} = (\frac{a}{b})^n \\
+(a^n)^m = a^{n \cdot m} \\
+\sqrt{a} = a^\frac{1}{2} \\~\\
+lg(a \cdot b) = lg(a) + lg(b) \\
+lg(\frac{a}{b}) = lg(a) - lg(b) \\
+lg(a^b) = b \cdot lg(a) \\
+a^{log_a(b)} = b
+$$
+
 ## Trigonometry
 
 Remember: *SOH CAH TOA*
