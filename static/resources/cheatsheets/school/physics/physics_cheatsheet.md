@@ -384,10 +384,12 @@ $$
 $Q$: Ladung [$C$ (Coulomb)]
 $I$: Strom [$A$]
 $U$: Spannung [$V$]
+$P$: Leistung [$W$]
 $$
 1C = 6.24 \cdot 10^{18}e \\
 I = \frac{\Delta Q}{\Delta t} \\
-U = \frac{\Delta W}{\Delta Q}
+U = \frac{\Delta W}{\Delta Q} \\
+P = U \cdot I = \frac{U^2}{R} = R \cdot I^2
 $$
 
 ### Spezifischer Widerstand
