@@ -25,6 +25,20 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-03-13',
+		version: '2021.10.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add parallel and serial resistor logic.',
+				type: Type.CHANGED
+			},
+			{
+				text: 'Physics cheatsheet to add gas law formulas.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
 		date: '2021-03-06',
 		version: '2021.9.1',
 		changes: [
