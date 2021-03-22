@@ -429,6 +429,25 @@ U = U_1 = U_2 \\
 R = \frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}
 $$
 
+### Ungenauigkeiten durch Messgeräte
+
+1. Schaltung: $I_1 \neq I$ weil $I_2 > 0$, für kleine Widerstände für $R$ geeignet
+2. Schaltung: $U_2 \neq U$ weil $U_1 > 0$, für grosse Widerstände für $R$ geeignet
+
+<img style="width: 50%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\electricity_measurement_inaccuracies.png">
+$$
+I_1 = I - I_2 = I - \frac{U}{R_V} \\
+U_2 = U - U_1 = U - R_A \cdot I
+$$
+
+### Modell Spannungsquelle
+
+<img style="width: 30%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\electricity_internal_resistor.png">
+$$
+U_a = U_0 - \Delta U = U_0 - R_i \cdot I
+$$
+
+
 ## Acknowledgements
 
 Author(s): d20cay
