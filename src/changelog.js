@@ -25,6 +25,20 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-03-24',
+		version: '2021.12.1',
+		changes: [
+			{
+				text: 'Physics cheatsheet to add thermal capacity formulas.',
+				type: Type.CHANGED
+			},
+			{
+				text: 'Physics cheatsheet to add electricity measurement device inaccuracies formulas.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
 		date: '2021-03-20',
 		version: '2021.11.1',
 		changes: [
