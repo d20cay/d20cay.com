@@ -48,6 +48,39 @@ $$
 0 K = -273.15 ^\circ C
 $$
 
+### Wärmekapazität
+
+$c$: spez. Wärmekapazität [$\frac{J}{kg \cdot K}$]
+$$
+C = m_1 \cdot c_1 + m_2 \cdot c_2 + ... \\
+\Delta Q = m \cdot c \cdot \Delta T \\
+\Delta Q = C \cdot \Delta T \\~\\
+
+\Delta Q_{zu} = \Delta Q_{ab} \\
+m_1 \cdot c_1 \cdot (T_1 - T_M) = m_2 \cdot c_2 \cdot (T_2 - T_M)
+$$
+
+$\Delta Q_f$: Schmelzwärme [$J$]
+$\Delta Q_v$: Verdampfungswärme [$J$]
+$L_f$: Schmelzwärme [$\frac{J}{kg}$]
+$L_v$: Verdampfungswärme [$\frac{J}{kg}$]
+
+<img style="width: 40%;" src="D:\MEGA\_edu\bms\physics\cheatsheet\phase_transitions.png">
+$$
+\Delta Q_f = m \cdot L_f \\
+\Delta Q_v = m \cdot L_v
+$$
+
+### Längenausdehnung
+
+$\alpha$: Längenausdehnungskoeffizient [$\frac{1}{K}$]
+$$
+\Delta l = l_0 \cdot \alpha \cdot \Delta T \\
+l = l_0 \cdot (1 + \alpha \cdot \Delta T) \\~\\
+\Delta V = V_0 \cdot \gamma \cdot \Delta T \\
+V = V_0 \cdot (1 + \alpha \cdot \Delta T)
+$$
+
 ### Gasgesetze
 
 Solange $T$ *konstant*:
