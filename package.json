@@ -1,7 +1,7 @@
 {
   "name": "d20cay.com",
   "description": "Personal portfolio of d20cay.com.",
-  "version": "2021.11.1",
+  "version": "2021.12.1",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
