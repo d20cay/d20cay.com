@@ -53,6 +53,8 @@
 								<a href="project/umlaut/">Umlaut</a></li>
 							<li class:uk-active={currentPage === Page.CRYPTO}>
 								<a href="project/crypto/">Cryptography</a></li>
+							<li class:uk-active={currentPage === Page.PI}>
+								<a href="project/pi/">Pi</a></li>
 						</ul>
 					</div>
 				</li>
@@ -133,7 +135,7 @@
 					<li class="uk-nav-divider"></li>
 					<li class:uk-active={currentPage === Page.CONTACT}>
 						<a href="contact/"><span class="uk-margin-small-right"
-						                               uk-icon="icon: mail"></span>Contact
+						                         uk-icon="icon: mail"></span>Contact
 							me</a></li>
 				</ul>
 			</div>
