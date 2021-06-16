@@ -25,6 +25,16 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-06-16',
+		version: '2021.23.1',
+		changes: [
+			{
+				text: 'Pi approximation project.',
+				type: Type.ADDED
+			},
+		]
+	},
+	{
 		date: '2021-03-24',
 		version: '2021.12.1',
 		changes: [
