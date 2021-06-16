@@ -84,7 +84,7 @@
 				<label for="alignment-hack">&nbsp;<br></label>
 				{#if status === Status.IDLE}
 					<span on:click={calc}
-					      uk-tooltip="Run/Continue calculation"
+					      uk-tooltip="{calculationStarted ? 'Continue' : 'Run'} calculation"
 					      class="uk-icon-button pointer-cursor uk-animation-fade uk-animation-fast"
 					      uk-icon="play-circle"></span>
 				{:else if status === Status.RUNNING}
