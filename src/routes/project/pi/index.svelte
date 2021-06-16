@@ -1,6 +1,6 @@
 <script>
 	import {currentPage, Page} from "../../../stores";
-	import {onMount} from "svelte";
+	import {onDestroy, onMount} from "svelte";
 
 	currentPage.set(Page.PI);
 
@@ -9,13 +9,14 @@
 		IDLE: 1,
 	};
 
+	const canvasSize = 1000;
 	let canvas;
 	let context;
 
 	let status = Status.IDLE;
 	let calculationStarted = false;
 
-	let delay = 10;
+	let delay = 1;
 	let delayValid = true;
 
 	let pi = 0;
@@ -26,6 +27,11 @@
 
 	onMount(() => {
 		context = canvas.getContext('2d');
+		drawCircle();
+	});
+
+	onDestroy(() => {
+		clearInterval(interval);
 	});
 
 	function calc() {
@@ -34,6 +40,7 @@
 		}
 		status = Status.RUNNING;
 		calculationStarted = true;
+		drawCircle();
 		updatePi();
 		interval = setInterval(updatePi, delay);
 	}
@@ -49,16 +56,39 @@
 		clearInterval(interval);
 		pi = 0;
 		points = [];
+		piPoints = [];
+		context.clearRect(0, 0, canvasSize, canvasSize);
 	}
 
 	function updatePi() {
 		const x = (Math.random() - 0.5) * 2;
 		const y = (Math.random() - 0.5) * 2;
+
 		points.push({x, y});
-		if (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)) <= 1) {
+		const isInCircle = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)) <= 1;
+		if (isInCircle) {
 			piPoints.push({x, y});
 		}
 		pi = 4 * piPoints.length / points.length;
+
+		updateCanvas(x, y, isInCircle)
+	}
+
+	function updateCanvas(x, y, isInCircle) {
+		const xPixel = (x + 1) * (canvasSize / 2)
+		const yPixel = (y + 1) * (canvasSize / 2);
+		if (isInCircle) {
+			context.fillStyle = 'red';
+
+		}
+		context.fillRect(xPixel, yPixel, 1, 1);
+		context.fillStyle = 'black';
+	}
+
+	function drawCircle() {
+		context.beginPath();
+		context.arc(canvasSize / 2, canvasSize / 2, canvasSize / 2, 0, 7);
+		context.stroke();
 	}
 
 	// over-the-top UX UTIL
@@ -99,17 +129,28 @@
 	Pi
 </h1>
 
-<p class="uk-text-center">Calculate pi using a very simple ratio concept.</p>
+<p class="uk-text-center">
+	Calculate pi using a very simple ratio concept.
+</p>
 
 <div uk-grid>
-	<div class="uk-width-1-3@m uk-width-1-1@s">
-		<canvas bind:this={canvas} width="500" height="500"></canvas>
-	</div>
 	<div class="uk-width-2-3@m uk-width-1-1@s">
-
+		<canvas bind:this={canvas} width={canvasSize} height={canvasSize} class="uk-border-rounded">
+			Your browser does not support the canvas tag. Please switch to a newer browser or update the current one you
+			are using.
+		</canvas>
+	</div>
+	<div class="uk-width-1-3@m uk-width-1-1@s">
+		<p>
+			Once you press the button to start the calculation random values
+			between -1 and 1 are generated, combined into points and input into the canvas you can see below. If the points are
+			in/on the circle they are added to an array of values called piPoints. All points are added to the array called
+			points. Every time a new point is added you can calculate an approximation of pi with the formula 4 * piPoints /
+			points.
+		</p>
 		<div class="uk-grid-small" uk-grid>
 			<div class="uk-width-expand">
-				<label for="username-input" class="uk-form-label">Delay</label>
+				<label for="username-input" class="uk-form-label">Delay (ms)</label>
 				<input type="number"
 				       min="0"
 				       step="1"
@@ -147,22 +188,5 @@
 		<p>
 			Value of pi: {pi}
 		</p>
-
-		<ul uk-accordion>
-			<li>
-				<a class="uk-accordion-title normal-text" href="#">Points</a>
-				<div class="uk-accordion-content">
-					{#if points.length !== 0}
-						<ul>
-							{#each points as point}
-								<li>point</li>
-							{/each}
-						</ul>
-					{:else}
-						No points generated yet. Press the <q>Run calculation</q> button to get going.
-					{/if}
-				</div>
-			</li>
-		</ul>
 	</div>
 </div>
