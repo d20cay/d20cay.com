@@ -17,7 +17,7 @@
 	let calculationStarted = false;
 
 	let delay = 1;
-	let delayValid = true;
+	let bulkSize = 10;
 
 	let pi = 0;
 	let points = [];
@@ -27,7 +27,7 @@
 
 	onMount(() => {
 		context = canvas.getContext('2d');
-		drawCircle();
+		prepareCanvas();
 	});
 
 	onDestroy(() => {
@@ -40,7 +40,6 @@
 		}
 		status = Status.RUNNING;
 		calculationStarted = true;
-		drawCircle();
 		updatePi();
 		interval = setInterval(updatePi, delay);
 	}
@@ -57,38 +56,56 @@
 		pi = 0;
 		points = [];
 		piPoints = [];
-		context.clearRect(0, 0, canvasSize, canvasSize);
+		prepareCanvas();
 	}
 
 	function updatePi() {
-		const x = (Math.random() - 0.5) * 2;
-		const y = (Math.random() - 0.5) * 2;
+		const newPoints = generatePoints(bulkSize);
+		const newPointsInCircle = newPoints.filter(p => Math.sqrt(Math.pow(p.x, 2) + Math.pow(p.y, 2)) <= 1);
+		const newPointsOutsideCircle = newPoints.filter(p => !newPointsInCircle.includes(p));
 
-		points.push({x, y});
-		const isInCircle = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)) <= 1;
-		if (isInCircle) {
-			piPoints.push({x, y});
-		}
+		points.push(...newPoints);
+		points = points;
+		piPoints.push(...newPointsInCircle);
+		piPoints = piPoints;
+
 		pi = 4 * piPoints.length / points.length;
 
-		updateCanvas(x, y, isInCircle)
+		updateCanvas(newPointsInCircle, newPointsOutsideCircle);
 	}
 
-	function updateCanvas(x, y, isInCircle) {
-		const xPixel = (x + 1) * (canvasSize / 2)
-		const yPixel = (y + 1) * (canvasSize / 2);
-		if (isInCircle) {
-			context.fillStyle = 'red';
-
+	function generatePoints(count) {
+		let p = [];
+		for (let i = 0; i < count; i++) {
+			p.push(generatePoint());
 		}
-		context.fillRect(xPixel, yPixel, 1, 1);
-		context.fillStyle = 'black';
+		return p;
 	}
 
-	function drawCircle() {
+	function generatePoint() {
+		return {x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2};
+	}
+
+	function updateCanvas(pointsInCircle, pointsOutsideCircle) {
+		pointsInCircle.map(p => mapPointToCanvas(p)).forEach(p => {
+			context.fillStyle = 'red';
+			context.fillRect(p.x, p.y, 1, 1);
+			context.fillStyle = 'black';
+		});
+		pointsOutsideCircle.map(p => mapPointToCanvas(p)).forEach(p => context.fillRect(p.x, p.y, 1, 1));
+	}
+
+	function prepareCanvas() {
 		context.beginPath();
+		context.clearRect(0, 0, canvasSize, canvasSize);
 		context.arc(canvasSize / 2, canvasSize / 2, canvasSize / 2, 0, 7);
 		context.stroke();
+	}
+
+	// Canvas UTIL
+
+	function mapPointToCanvas(p) {
+		return {x: (p.x + 1) * (canvasSize / 2), y: (p.y + 1) * (canvasSize / 2)};
 	}
 
 	// over-the-top UX UTIL
@@ -96,7 +113,7 @@
 	let runButtonTooltip = 'Run calculation';
 
 	function updateRunButtonTooltip(delay) {
-		if (delay === Math.floor(delay)) {
+		if (delay === Math.floor(delay) && bulkSize === Math.floor(bulkSize)) {
 			if (calculationStarted) {
 				runButtonTooltip = 'Continue calculation';
 			} else {
@@ -142,26 +159,51 @@
 	</div>
 	<div class="uk-width-1-3@m uk-width-1-1@s">
 		<p>
-			Once you press the button to start the calculation random values
-			between -1 and 1 are generated, combined into points and input into the canvas you can see below. If the points are
-			in/on the circle they are added to an array of values called piPoints. All points are added to the array called
-			points. Every time a new point is added you can calculate an approximation of pi with the formula 4 * piPoints /
-			points.
+			Once you press the button to start the calculation random values between -1 and 1 are generated, combined
+			into points and input into the canvas you can see below. If the points are in/on the circle they are added
+			to an array of values called <code>piPoints</code>. All points are added to the array
+			called<code>points</code>. Every time a new point is added you can calculate an approximation of pi with the
+			formula 4 * piPoints / points.
 		</p>
 		<div class="uk-grid-small" uk-grid>
 			<div class="uk-width-expand">
-				<label for="username-input" class="uk-form-label">Delay (ms)</label>
-				<input type="number"
-				       min="0"
-				       step="1"
-				       bind:value={delay}
-				       class="uk-input uk-border-rounded"
-				       class:uk-form-danger={delay !== Math.floor(delay)}
-				       uk-tooltip={delay !== Math.floor(delay) ? 'Delay must be an integer' : undefined}>
+				<div class="uk-margin">
+					<label for="delay-input" class="uk-form-label">
+						Delay (ms)
+						<span class="uk-margin-small-right pointer-cursor"
+						      uk-icon="info"
+						      uk-tooltip="How often a point(s) should be added"></span>
+					</label>
+					<input id="delay-input"
+					       type="number"
+					       min="0"
+					       step="1"
+					       bind:value={delay}
+					       class="uk-input uk-border-rounded"
+					       class:uk-form-danger={delay !== Math.floor(delay)}
+					       uk-tooltip={delay !== Math.floor(delay) ? 'Delay must be an integer' : undefined}>
+				</div>
+
+				<div class="uk-margin">
+					<label for="bulk-size-input" class="uk-form-label">
+						Bulk size
+						<span class="uk-margin-small-right pointer-cursor"
+						      uk-icon="info"
+						      uk-tooltip="How many points should be added at once"></span>
+					</label>
+					<input id="bulk-size-input"
+					       type="number"
+					       min="0"
+					       step="1"
+					       bind:value={bulkSize}
+					       class="uk-input uk-border-rounded"
+					       class:uk-form-danger={bulkSize !== Math.floor(bulkSize)}
+					       uk-tooltip={bulkSize !== Math.floor(bulkSize) ? 'Bulk size must be an integer' : undefined}>
+				</div>
 			</div>
 			<div class="uk-width-auto">
 				{#if calculationStarted}
-					<label htmlFor="alignment-hack">&nbsp;<br></label>
+					<label for="alignment-hack">&nbsp;<br></label>
 					<span on:click={stopCalc}
 					      uk-tooltip="Pause calculation"
 					      class="uk-icon-button pointer-cursor uk-animation-fade uk-animation-fast"
@@ -186,7 +228,9 @@
 			</div>
 		</div>
 		<p>
-			Value of pi: {pi}
+			Value of pi: {pi}<br>
+			<code>points</code> count: {points.length}<br>
+			<code>piPoints</code> count: {piPoints.length}<br>
 		</p>
 	</div>
 </div>
