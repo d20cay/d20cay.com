@@ -14,6 +14,7 @@
 	let status = Status.IDLE;
 	let calculationStarted = false;
 	let delay = 10;
+	let delayValid = true;
 	let pi = 0;
 
 	onMount(() => {
@@ -21,6 +22,9 @@
 	});
 
 	function calc() {
+	    if (delay !== Math.floor(delay)) {
+	        return;
+        }
 		status = Status.RUNNING;
 		calculationStarted = true;
 	}
@@ -33,6 +37,24 @@
 		status = Status.IDLE;
 		calculationStarted = false;
 	}
+
+	// UTIL
+
+	let runButtonTooltip = 'Run calculation';
+
+    function updateRunButtonTooltip(delay) {
+        if (delay === Math.floor(delay)) {
+            if (calculationStarted) {
+                runButtonTooltip = 'Continue calculation';
+            } else {
+                runButtonTooltip = 'Run calculation';
+            }
+        } else {
+            runButtonTooltip = 'Cannot run calculation with floating point delay'
+        }
+    }
+
+    $: updateRunButtonTooltip(delay)
 </script>
 
 <style>
@@ -69,7 +91,9 @@
 				       min="0"
 				       step="1"
 				       bind:value={delay}
-				       class="uk-input uk-border-rounded">
+				       class="uk-input uk-border-rounded"
+					   class:uk-form-danger={delay !== Math.floor(delay)}
+                       uk-tooltip={delay !== Math.floor(delay) ? 'Delay must be an integer' : undefined}>
 			</div>
 			<div class="uk-width-auto">
 				{#if calculationStarted}
@@ -84,9 +108,11 @@
 				<label for="alignment-hack">&nbsp;<br></label>
 				{#if status === Status.IDLE}
 					<span on:click={calc}
-					      uk-tooltip="{calculationStarted ? 'Continue' : 'Run'} calculation"
-					      class="uk-icon-button pointer-cursor uk-animation-fade uk-animation-fast"
-					      uk-icon="play-circle"></span>
+					      uk-tooltip={runButtonTooltip}
+					      class="uk-icon-button uk-animation-fade uk-animation-fast"
+					      uk-icon="play-circle"
+					      disabled={delay !== Math.floor(delay)}
+                          class:pointer-cursor={delay === Math.floor(delay)}></span>
 				{:else if status === Status.RUNNING}
 					<span on:click={pauseCalc}
 					      uk-tooltip="Pause calculation"
