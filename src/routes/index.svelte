@@ -39,7 +39,8 @@
 				Some small projects I did for fun
 			</p>
 			<a href="project/umlaut/">Umlaut</a><br>
-			<a href="project/crypto/">Cryptography</a>
+			<a href="project/crypto/">Cryptography</a><br>
+			<a href="project/pi/">Pi</a>
 		</div>
 	</div>
 	<div class="uk-width-1-3@m uk-width-1-2@s">
@@ -80,7 +81,11 @@
 			<a href="https://github.com/d20cay" class="uk-icon-button  uk-margin-small-right"
 			   uk-icon="github"></a>
 			<h4>One of my videos</h4>
-			<iframe height="100%" src="https://www.youtube.com/embed/5kVhs0jq6UI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe height="100%"
+			        src="https://www.youtube.com/embed/5kVhs0jq6UI"
+			        frameborder="0"
+			        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			        allowfullscreen></iframe>
 		</div>
 		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Contact d20cay</h3>
