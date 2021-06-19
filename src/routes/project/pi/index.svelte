@@ -20,8 +20,8 @@
 	let bulkSize = 10;
 
 	let pi = 0;
-	let points = [];
-	let piPoints = [];
+	let pointsCount = 0;
+	let piPointsCount = 0;
 
 	let interval;
 
@@ -54,8 +54,8 @@
 		calculationStarted = false;
 		clearInterval(interval);
 		pi = 0;
-		points = [];
-		piPoints = [];
+		pointsCount = 0;
+		piPointsCount = 0;
 		prepareCanvas();
 	}
 
@@ -64,12 +64,10 @@
 		const newPointsInCircle = newPoints.filter(p => Math.sqrt(Math.pow(p.x, 2) + Math.pow(p.y, 2)) <= 1);
 		const newPointsOutsideCircle = newPoints.filter(p => !newPointsInCircle.includes(p));
 
-		points.push(...newPoints);
-		points = points;
-		piPoints.push(...newPointsInCircle);
-		piPoints = piPoints;
+		pointsCount += newPoints.length;
+		piPointsCount += newPointsInCircle.length;
 
-		pi = 4 * piPoints.length / points.length;
+		pi = 4 * piPointsCount / pointsCount;
 
 		updateCanvas(newPointsInCircle, newPointsOutsideCircle);
 	}
@@ -229,8 +227,8 @@
 		</div>
 		<p>
 			Value of pi: {pi}<br>
-			<code>points</code> count: {points.length}<br>
-			<code>piPoints</code> count: {piPoints.length}<br>
+			<code>points</code> count: {pointsCount}<br>
+			<code>piPoints</code> count: {piPointsCount}<br>
 		</p>
 	</div>
 </div>
