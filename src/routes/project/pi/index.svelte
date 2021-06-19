@@ -1,6 +1,7 @@
 <script>
 	import {currentPage, Page} from "../../../stores";
 	import {onDestroy, onMount} from "svelte";
+	import {generatePoints, generatePoint} from "./pi.js";
 
 	currentPage.set(Page.PI);
 
@@ -70,18 +71,6 @@
 		pi = 4 * piPointsCount / pointsCount;
 
 		updateCanvas(newPointsInCircle, newPointsOutsideCircle);
-	}
-
-	function generatePoints(count) {
-		let p = [];
-		for (let i = 0; i < count; i++) {
-			p.push(generatePoint());
-		}
-		return p;
-	}
-
-	function generatePoint() {
-		return {x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2};
 	}
 
 	function updateCanvas(pointsInCircle, pointsOutsideCircle) {
