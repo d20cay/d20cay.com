@@ -55,6 +55,8 @@
 								<a href="project/crypto/">Cryptography</a></li>
 							<li class:uk-active={currentPage === Page.PI}>
 								<a href="project/pi/">Pi</a></li>
+							<li class:uk-active={currentPage === Page.PRIME_FACT}>
+								<a href="project/prime_factorization/">Prime Factorization</a></li>
 						</ul>
 					</div>
 				</li>
