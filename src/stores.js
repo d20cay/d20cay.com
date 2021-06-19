@@ -18,6 +18,7 @@ export const Page = {
     PRIVACY: 14,
 	PI: 15,
     PRIME_FACT: 16,
+    SUDOKU: 17,
 };
 
 export const currentPage = writable(Page.UNKNOWN);

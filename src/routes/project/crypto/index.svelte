@@ -22,7 +22,7 @@
 	]);
 
 	const CipherReversemap = new Map([
-		[Cipher.CAESAR, 'casar'],
+		[Cipher.CAESAR, 'caesar'],
 		[Cipher.VIGENERE, 'vigenere'],
 		[Cipher.SCYTALE, 'scytale'],
 		[Cipher.TRANSPOSITION, 'transposition']

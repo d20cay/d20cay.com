@@ -57,6 +57,8 @@
 								<a href="project/pi/">Pi</a></li>
 							<li class:uk-active={currentPage === Page.PRIME_FACT}>
 								<a href="project/prime_factorization/">Prime Factorization</a></li>
+							<li class:uk-active={currentPage === Page.SUDOKU}>
+								<a href="project/sudoku/">Sudoku</a></li>
 						</ul>
 					</div>
 				</li>
