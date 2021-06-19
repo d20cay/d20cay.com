@@ -16,7 +16,8 @@ export const Page = {
     ASCII: 12,
     IMPRINT: 13,
     PRIVACY: 14,
-	PI: 15
+	PI: 15,
+    PRIME_FACT: 16,
 };
 
 export const currentPage = writable(Page.UNKNOWN);
