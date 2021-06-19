@@ -2,7 +2,7 @@
 
 This repository contains the code for the d20cay.com domain.
 
-Version: 2021.23.1
+Version: 2021.24.2
 
 ## Current structure:  
 Homepage  
@@ -19,7 +19,8 @@ Homepage
 \- ue  
 \- Umlaut  
 \- Cryptography  
-\- Pi
+\- Pi  
+\- Prime Factorization
 
 \- Contact
 
