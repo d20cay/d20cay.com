@@ -25,8 +25,30 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-06-19',
+		version: '2021.24.2',
+		changes: [
+			{
+				text: 'changelog of version 2021.24.1 to indicate correct version. Was 2021.23.1.',
+				type: Type.FIXED
+			},
+			{
+				text: 'OutOfMemory exception on Pi approximation project when too many point values are stored.',
+				type: Type.FIXED
+			},
+			{
+				text: 'Pi project for some smaller code cleanup.',
+				type: Type.CHANGED
+			},
+			{
+				text: 'Prime factorization project.',
+				type: Type.ADDED
+			},
+		]
+	},
+	{
 		date: '2021-06-16',
-		version: '2021.23.1',
+		version: '2021.24.1',
 		changes: [
 			{
 				text: 'Pi approximation project.',

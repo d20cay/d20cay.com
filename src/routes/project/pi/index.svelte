@@ -1,6 +1,7 @@
 <script>
 	import {currentPage, Page} from "../../../stores";
 	import {onDestroy, onMount} from "svelte";
+	import {generatePoints} from "./pi.js";
 
 	currentPage.set(Page.PI);
 
@@ -20,8 +21,8 @@
 	let bulkSize = 10;
 
 	let pi = 0;
-	let points = [];
-	let piPoints = [];
+	let pointsCount = 0;
+	let piPointsCount = 0;
 
 	let interval;
 
@@ -54,8 +55,8 @@
 		calculationStarted = false;
 		clearInterval(interval);
 		pi = 0;
-		points = [];
-		piPoints = [];
+		pointsCount = 0;
+		piPointsCount = 0;
 		prepareCanvas();
 	}
 
@@ -64,26 +65,12 @@
 		const newPointsInCircle = newPoints.filter(p => Math.sqrt(Math.pow(p.x, 2) + Math.pow(p.y, 2)) <= 1);
 		const newPointsOutsideCircle = newPoints.filter(p => !newPointsInCircle.includes(p));
 
-		points.push(...newPoints);
-		points = points;
-		piPoints.push(...newPointsInCircle);
-		piPoints = piPoints;
+		pointsCount += newPoints.length;
+		piPointsCount += newPointsInCircle.length;
 
-		pi = 4 * piPoints.length / points.length;
+		pi = 4 * piPointsCount / pointsCount;
 
 		updateCanvas(newPointsInCircle, newPointsOutsideCircle);
-	}
-
-	function generatePoints(count) {
-		let p = [];
-		for (let i = 0; i < count; i++) {
-			p.push(generatePoint());
-		}
-		return p;
-	}
-
-	function generatePoint() {
-		return {x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2};
 	}
 
 	function updateCanvas(pointsInCircle, pointsOutsideCircle) {
@@ -179,6 +166,7 @@
 					       min="0"
 					       step="1"
 					       bind:value={delay}
+					       placeholder="1"
 					       class="uk-input uk-border-rounded"
 					       class:uk-form-danger={delay !== Math.floor(delay)}
 					       uk-tooltip={delay !== Math.floor(delay) ? 'Delay must be an integer' : undefined}>
@@ -196,6 +184,7 @@
 					       min="0"
 					       step="1"
 					       bind:value={bulkSize}
+					       placeholder="10"
 					       class="uk-input uk-border-rounded"
 					       class:uk-form-danger={bulkSize !== Math.floor(bulkSize)}
 					       uk-tooltip={bulkSize !== Math.floor(bulkSize) ? 'Bulk size must be an integer' : undefined}>
@@ -229,8 +218,8 @@
 		</div>
 		<p>
 			Value of pi: {pi}<br>
-			<code>points</code> count: {points.length}<br>
-			<code>piPoints</code> count: {piPoints.length}<br>
+			<code>points</code> count: {pointsCount}<br>
+			<code>piPoints</code> count: {piPointsCount}<br>
 		</p>
 	</div>
 </div>
