@@ -1,7 +1,7 @@
 <script>
 	import {currentPage, Page} from "../../../stores";
 	import {onDestroy, onMount} from "svelte";
-	import {generatePoints, generatePoint} from "./pi.js";
+	import {generatePoints} from "./pi.js";
 
 	currentPage.set(Page.PI);
 
@@ -166,6 +166,7 @@
 					       min="0"
 					       step="1"
 					       bind:value={delay}
+					       placeholder="1"
 					       class="uk-input uk-border-rounded"
 					       class:uk-form-danger={delay !== Math.floor(delay)}
 					       uk-tooltip={delay !== Math.floor(delay) ? 'Delay must be an integer' : undefined}>
@@ -183,6 +184,7 @@
 					       min="0"
 					       step="1"
 					       bind:value={bulkSize}
+					       placeholder="10"
 					       class="uk-input uk-border-rounded"
 					       class:uk-form-danger={bulkSize !== Math.floor(bulkSize)}
 					       uk-tooltip={bulkSize !== Math.floor(bulkSize) ? 'Bulk size must be an integer' : undefined}>
