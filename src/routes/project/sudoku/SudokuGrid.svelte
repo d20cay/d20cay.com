@@ -1,21 +1,13 @@
 <script>
-	export let board = [
-		[undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-		[undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-		[undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-		[undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-		[undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-		[undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-		[undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-		[undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-		[undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
-	];
+	export let board;
 
 	function boardRightSize(b) {
 		return b.length === 9 && b.filter(r => r.length === 9).length;
 	}
 
-	$: console.log(board);
+	function cellValid(f) {
+		return f === undefined || (f > 0 && f < 10);
+	}
 </script>
 
 <style>
@@ -54,7 +46,12 @@
 				<tr>
 					{#each row as field}
 						<td class="uk-table-shrink">
-							<input type="number" class="uk-input uk-form-blank uk-form-width-xsmall" bind:value={field}>
+							<input type="number"
+							       class="uk-input uk-form-blank uk-form-width-xsmall"
+							       bind:value={field}
+							       class:uk-form-danger={!cellValid(field)}
+							       on:input={() => board = board}
+							       uk-tooltip={cellValid(field) ? undefined : 'Field must have a value between 1 and 9'}>
 						</td>
 					{/each}
 				</tr>
