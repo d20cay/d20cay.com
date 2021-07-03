@@ -1,7 +1,7 @@
 <script>
-	import {currentPage, Pages} from "../../stores";
+	import {currentPage, MinecraftPages} from "../../stores";
 
-	currentPage.set(Pages.MC_COMMAND);
+	currentPage.set(MinecraftPages.COMMANDS);
 </script>
 
 <svelte:head>
