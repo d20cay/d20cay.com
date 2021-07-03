@@ -1,11 +1,11 @@
 <script>
-	import {currentPage, Page} from "../../../stores";
+	import {currentPage, Pages} from "../../../stores";
 	import Caesar from "./Caesar.svelte";
 	import Vigenere from "./Vigenere.svelte";
 	import {onMount} from "svelte";
 	import {updateUrl as _updateUrl} from "../../../global";
 
-	currentPage.set(Page.CRYPTO);
+	currentPage.set(Pages.CRYPTO);
 
 	const Cipher = {
 		CAESAR: 0,

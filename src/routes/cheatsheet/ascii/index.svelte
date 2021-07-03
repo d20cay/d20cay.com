@@ -1,9 +1,9 @@
 <script>
-	import {currentPage, Page} from "../../../stores";
+	import {currentPage, Pages} from "../../../stores";
 	import {asciiCharacter} from "./data";
 	import {overwriteClipboard} from "../../../global";
 
-	currentPage.set(Page.ASCII);
+	currentPage.set(Pages.ASCII);
 
 	const notACharacterCharCodes = [129, 141, 143, 144, 157];
 </script>

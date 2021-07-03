@@ -1,5 +1,5 @@
 <script>
-	import {Page} from "../stores";
+	import {Pages} from "../stores";
 
 	export let currentPage;
 </script>
@@ -21,13 +21,13 @@
 					<a href="#">Cheatsheets <span uk-icon="chevron-down"></span></a>
 					<div class="uk-navbar-dropdown uk-width-auto">
 						<ul class="uk-nav uk-navbar-dropdown-nav">
-							<li class:uk-active={currentPage === Page.CS_PROGRAMS}>
+							<li class:uk-active={currentPage === Pages.PROGRAMS}>
 								<a href="cheatsheet/programs/">Programs</a></li>
-							<li class:uk-active={currentPage === Page.CS_LINUX}>
+							<li class:uk-active={currentPage === Pages.LINUX}>
 								<a href="cheatsheet/linux/">Linux (Ubuntu)</a></li>
-							<li class:uk-active={currentPage === Page.CS_SCHOOL}>
+							<li class:uk-active={currentPage === Pages.SCHOOL}>
 								<a href="cheatsheet/school/">School</a></li>
-							<li class:uk-active={currentPage === Page.ASCII}>
+							<li class:uk-active={currentPage === Pages.ASCII}>
 								<a href="cheatsheet/ascii/">Ascii Table</a></li>
 						</ul>
 					</div>
@@ -36,11 +36,11 @@
 					<a href="#">Minecraft <span uk-icon="chevron-down"></span></a>
 					<div class="uk-navbar-dropdown uk-width-auto">
 						<ul class="uk-nav uk-navbar-dropdown-nav">
-							<li class:uk-active={currentPage === Page.MC_COMMAND}>
+							<li class:uk-active={currentPage === Pages.COMMAND}>
 								<a href="mc/command/">Minecraft Commands</a></li>
-							<li class:uk-active={currentPage === Page.MC_SERVER}>
+							<li class:uk-active={currentPage === Pages.SERVER}>
 								<a href="mc/server/">Minecraft Servers</a></li>
-							<li class:uk-active={currentPage === Page.HY_STATS}>
+							<li class:uk-active={currentPage === Pages.HY_STATS}>
 								<a href="mc/hy_stats/">Hypixel Bedwars Stats</a></li>
 						</ul>
 					</div>
@@ -49,13 +49,13 @@
 					<a href="#">Projects <span uk-icon="chevron-down"></span></a>
 					<div class="uk-navbar-dropdown uk-width-auto">
 						<ul class="uk-nav uk-navbar-dropdown-nav">
-							<li class:uk-active={currentPage === Page.UMLAUT}>
+							<li class:uk-active={currentPage === Pages.UMLAUT}>
 								<a href="project/umlaut/">Umlaut</a></li>
-							<li class:uk-active={currentPage === Page.CRYPTO}>
+							<li class:uk-active={currentPage === Pages.CRYPTO}>
 								<a href="project/crypto/">Cryptography</a></li>
-							<li class:uk-active={currentPage === Page.PI}>
+							<li class:uk-active={currentPage === Pages.PI}>
 								<a href="project/pi/">Pi</a></li>
-							<li class:uk-active={currentPage === Page.PRIME_FACT}>
+							<li class:uk-active={currentPage === Pages.PRIME_FACT}>
 								<a href="project/prime_factorization/">Prime Factorization</a></li>
 						</ul>
 					</div>
@@ -67,7 +67,7 @@
 		</div>
 		<div class="uk-navbar-right">
 			<ul class="uk-navbar-nav">
-				<li class:uk-active={currentPage === Page.CONTACT}><a href="contact/"><span
+				<li class:uk-active={currentPage === Pages.CONTACT}><a href="contact/"><span
 						class="uk-margin-small-right"
 						uk-icon="icon: mail"></span>Contact
 					me</a></li>
@@ -101,33 +101,33 @@
 					<li class="uk-parent">
 						<a>Cheatsheets</a>
 						<ul class="uk-nav-sub">
-							<li class:uk-active={currentPage === Page.CS_PROGRAMS}>
+							<li class:uk-active={currentPage === Pages.CS_PROGRAMS}>
 								<a href="cheatsheet/programs/">Programs</a></li>
-							<li class:uk-active={currentPage === Page.CS_LINUX}>
+							<li class:uk-active={currentPage === Pages.CS_LINUX}>
 								<a href="cheatsheet/linux/">Linux (Ubuntu)</a></li>
-							<li class:uk-active={currentPage === Page.CS_SCHOOL}>
+							<li class:uk-active={currentPage === Pages.CS_SCHOOL}>
 								<a href="cheatsheet/school/">School</a></li>
-							<li class:uk-active={currentPage === Page.ASCII}>
+							<li class:uk-active={currentPage === Pages.ASCII}>
 								<a href="cheatsheet/ascii/">Ascii Table</a></li>
 						</ul>
 					</li>
 					<li class="uk-parent">
 						<a>Minecraft</a>
 						<ul class="uk-nav-sub">
-							<li class:uk-active={currentPage === Page.MC_COMMAND}>
+							<li class:uk-active={currentPage === Pages.MC_COMMAND}>
 								<a href="mc/command/">Minecraft Commands</a></li>
-							<li class:uk-active={currentPage === Page.MC_SERVER}>
+							<li class:uk-active={currentPage === Pages.MC_SERVER}>
 								<a href="mc/server/">Minecraft Servers</a></li>
-							<li class:uk-active={currentPage === Page.HY_STATS}>
+							<li class:uk-active={currentPage === Pages.HY_STATS}>
 								<a href="mc/hy_stats/">Hypixel Bedwars Stats</a></li>
 						</ul>
 					</li>
 					<li class="uk-parent">
 						<a>Projects</a>
 						<ul class="uk-nav-sub">
-							<li class:uk-active={currentPage === Page.UMLAUT}>
+							<li class:uk-active={currentPage === Pages.UMLAUT}>
 								<a href="project/umlaut/">Umlaut</a></li>
-							<li class:uk-active={currentPage === Page.CRYPTO}>
+							<li class:uk-active={currentPage === Pages.CRYPTO}>
 								<a href="project/crypto/">Cryptography</a></li>
 						</ul>
 					</li>
@@ -135,7 +135,7 @@
 						<a href="https://gallifreyan.info/">Gallifreyan</a>
 					</li>
 					<li class="uk-nav-divider"></li>
-					<li class:uk-active={currentPage === Page.CONTACT}>
+					<li class:uk-active={currentPage === Pages.CONTACT}>
 						<a href="contact/"><span class="uk-margin-small-right"
 						                         uk-icon="icon: mail"></span>Contact
 							me</a></li>

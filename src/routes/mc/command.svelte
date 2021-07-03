@@ -1,7 +1,7 @@
 <script>
-	import {currentPage, Page} from "../../stores";
+	import {currentPage, Pages} from "../../stores";
 
-	currentPage.set(Page.MC_COMMAND);
+	currentPage.set(Pages.MC_COMMAND);
 </script>
 
 <svelte:head>

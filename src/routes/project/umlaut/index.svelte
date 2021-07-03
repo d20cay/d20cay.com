@@ -1,10 +1,10 @@
 <script>
 	import {onMount} from 'svelte';
-	import {currentPage, Page} from "../../../stores";
+	import {currentPage, Pages} from "../../../stores";
 	import {overwriteClipboard} from "../../../global";
 	import {UmlautChar, GreekChar, AccentChar} from "./character-helper";
 
-	currentPage.set(Page.UMLAUT);
+	currentPage.set(Pages.UMLAUT);
 
 	const ReferrerMap = new Map([
 		['ae', UmlautChar.AE.LOWERCASE],

@@ -1,9 +1,9 @@
 <script>
-	import {currentPage, Page} from "../../../stores";
+	import {currentPage, Pages} from "../../../stores";
 	import {onDestroy, onMount} from "svelte";
 	import {generatePoints} from "./pi.js";
 
-	currentPage.set(Page.PI);
+	currentPage.set(Pages.PI);
 
 	const Status = {
 		RUNNING: 0,

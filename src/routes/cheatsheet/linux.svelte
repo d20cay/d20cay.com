@@ -1,7 +1,7 @@
 <script>
-	import {currentPage, Page} from "../../stores";
+	import {currentPage, Pages} from "../../stores";
 
-	currentPage.set(Page.CS_LINUX);
+	currentPage.set(Pages.LINUX);
 </script>
 
 <svelte:head>
