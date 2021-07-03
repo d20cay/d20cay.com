@@ -1,8 +1,8 @@
 <script>
-	import {currentPage, Page} from "../../../stores";
+	import {currentPage, ProjectPages} from "../../../stores";
 	import {calculateFactors, calculatePrimes} from "./prime_factorization";
 
-	currentPage.set(Page.PRIME_FACT);
+	currentPage.set(ProjectPages.PRIME_FACT);
 
 	let input;
 	let resultInput;

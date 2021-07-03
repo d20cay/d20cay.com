@@ -1,10 +1,10 @@
 <script>
-	import {currentPage, Page} from "../../../stores";
+	import {currentPage, Pages} from "../../../stores";
 	import {onMount} from "svelte";
 	import {intelliJShortcuts, chromeOsShortcuts, googleDocsShortcuts} from "./data";
 	import {updateUrl as _updateUrl} from "../../../global";
 
-	currentPage.set(Page.CS_PROGRAMS);
+	currentPage.set(Pages.PROGRAMS);
 
 	const Section = {
 		CSP: 0,
