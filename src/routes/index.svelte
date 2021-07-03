@@ -1,5 +1,5 @@
 <script>
-    import {CheatsheetPages, currentPage, LabelMap, MinecraftPages, Pages, UriMap} from "../stores";
+    import {CheatsheetPages, currentPage, LabelMap, MinecraftPages, Pages, ProjectPages, UriMap} from "../stores";
 
     currentPage.set(Pages.HOME);
 </script>
@@ -41,11 +41,13 @@
 			<p>
 				Some small projects I did for fun
 			</p>
-			{#each Object.entries(MinecraftPages) as [_, p]}
-				<li class:uk-active={currentPage === p}>
-					<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
-				</li>
-			{/each}
+			<ul class="uk-list uk-list-collapse">
+				{#each Object.entries(ProjectPages) as [_, p]}
+					<li class:uk-active={currentPage === p}>
+						<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+					</li>
+				{/each}
+			</ul>
 		</div>
 	</div>
 	<div class="uk-width-1-3@m uk-width-1-2@s">
@@ -67,9 +69,13 @@
 				reminder for me of what's around if I forget and it might come in handy for someone else as
 				well.
 			</p>
-			<a href="mc/command/">Server Commands</a><br>
-			<a href="mc/server/">Server Overview</a><br>
-			<a href="mc/hy_stats/">Hypixel Bedwars Stats</a>
+			<ul class="uk-list uk-list-collapse">
+				{#each Object.entries(MinecraftPages) as [_, p]}
+					<li>
+						<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+					</li>
+				{/each}
+			</ul>
 		</div>
 	</div>
 	<div class="uk-width-1-3@m uk-width-1-2@s">

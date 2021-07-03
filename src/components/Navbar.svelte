@@ -1,5 +1,5 @@
 <script>
-    import {CheatsheetPages, LabelMap, MinecraftPages, Pages, UriMap} from "../stores";
+    import {CheatsheetPages, LabelMap, MinecraftPages, Pages, ProjectPages, UriMap} from "../stores";
 
     export let currentPage;
 </script>
@@ -45,14 +45,11 @@
 					<a href="#">Projects <span uk-icon="chevron-down"></span></a>
 					<div class="uk-navbar-dropdown uk-width-auto">
 						<ul class="uk-nav uk-navbar-dropdown-nav">
-							<li class:uk-active={currentPage === Pages.UMLAUT}>
-								<a href="project/umlaut/">Umlaut</a></li>
-							<li class:uk-active={currentPage === Pages.CRYPTO}>
-								<a href="project/crypto/">Cryptography</a></li>
-							<li class:uk-active={currentPage === Pages.PI}>
-								<a href="project/pi/">Pi</a></li>
-							<li class:uk-active={currentPage === Pages.PRIME_FACT}>
-								<a href="project/prime_factorization/">Prime Factorization</a></li>
+							{#each Object.entries(ProjectPages) as [_, p]}
+								<li class:uk-active={currentPage === p}>
+									<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+								</li>
+							{/each}
 						</ul>
 					</div>
 				</li>
@@ -117,10 +114,11 @@
 					<li class="uk-parent">
 						<a>Projects</a>
 						<ul class="uk-nav-sub">
-							<li class:uk-active={currentPage === Pages.UMLAUT}>
-								<a href="project/umlaut/">Umlaut</a></li>
-							<li class:uk-active={currentPage === Pages.CRYPTO}>
-								<a href="project/crypto/">Cryptography</a></li>
+							{#each Object.entries(ProjectPages) as [_, p]}
+								<li class:uk-active={currentPage === p}>
+									<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+								</li>
+							{/each}
 						</ul>
 					</li>
 					<li>
