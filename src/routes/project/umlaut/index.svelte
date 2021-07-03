@@ -1,31 +1,31 @@
 <script>
-	import {onMount} from 'svelte';
-	import {currentPage, Pages} from "../../../stores";
-	import {overwriteClipboard} from "../../../global";
-	import {UmlautChar, GreekChar, AccentChar} from "./character-helper";
+    import {onMount} from 'svelte';
+    import {currentPage, ProjectPages} from "../../../stores";
+    import {overwriteClipboard} from "../../../global";
+    import {AccentChar, GreekChar, UmlautChar} from "./character-helper";
 
-	currentPage.set(Pages.UMLAUT);
+    currentPage.set(ProjectPages.UMLAUT);
 
-	const ReferrerMap = new Map([
-		['ae', UmlautChar.AE.LOWERCASE],
-		['oe', UmlautChar.OE.LOWERCASE],
-		['ue', UmlautChar.UE.LOWERCASE]
-	]);
+    const ReferrerMap = new Map([
+        ['ae', UmlautChar.AE.LOWERCASE],
+        ['oe', UmlautChar.OE.LOWERCASE],
+        ['ue', UmlautChar.UE.LOWERCASE]
+    ]);
 
-	onMount(() => {
-		const urlParams = window.location.search;
-		const params = new URLSearchParams(urlParams);
-		const char = ReferrerMap.get(params.get('referrer'));
-		if (char) {
-			overwriteClipboard(char);
-		}
-	});
+    onMount(() => {
+        const urlParams = window.location.search;
+        const params = new URLSearchParams(urlParams);
+        const char = ReferrerMap.get(params.get('referrer'));
+        if (char) {
+            overwriteClipboard(char);
+        }
+    });
 </script>
 
 <style>
-	.copy-text-holder {
-		visibility: hidden;
-	}
+    .copy-text-holder {
+        visibility: hidden;
+    }
 </style>
 
 <svelte:head>
