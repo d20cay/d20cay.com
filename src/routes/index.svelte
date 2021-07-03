@@ -101,7 +101,7 @@
 		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Contact d20cay</h3>
 			<p>
-				Have any questions or feel like chatting? <a href="contact/">Shoot me a message</a>.
+				Have any questions or feel like chatting? <a href={UriMap.get(Pages.CONTACT)}>Shoot me a message</a>.
 			</p>
 		</div>
 	</div>

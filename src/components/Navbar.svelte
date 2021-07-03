@@ -8,7 +8,7 @@
      class="uk-visible@m">
 	<nav class="uk-navbar-container uk-margin" uk-navbar>
 		<div class="uk-navbar-left">
-			<a class="uk-navbar-item uk-logo" href="/">
+			<a class="uk-navbar-item uk-logo" href={UriMap.get(Pages.HOME)}>
 				<img data-src="img/d20cay_logo_square.png"
 				     height="70"
 				     width="70"
@@ -60,10 +60,13 @@
 		</div>
 		<div class="uk-navbar-right">
 			<ul class="uk-navbar-nav">
-				<li class:uk-active={currentPage === Pages.CONTACT}><a href="contact/"><span
-						class="uk-margin-small-right"
-						uk-icon="icon: mail"></span>Contact
-					me</a></li>
+				<li class:uk-active={currentPage === Pages.CONTACT}>
+					<a href={UriMap.get(Pages.CONTACT)}>
+						<span class="uk-margin-small-right"
+						      uk-icon="icon: mail"></span>
+						Contact me
+					</a>
+				</li>
 			</ul>
 		</div>
 	</nav>
@@ -79,7 +82,7 @@
 			</button>
 		</div>
 		<div class="uk-navbar-center">
-			<a class="uk-navbar-item uk-logo" href="/">
+			<a class="uk-navbar-item uk-logo" href={UriMap.get(Pages.HOME)}>
 				<img data-src="img/d20cay_logo_square.png"
 				     height="70"
 				     width="70"
@@ -126,9 +129,12 @@
 					</li>
 					<li class="uk-nav-divider"></li>
 					<li class:uk-active={currentPage === Pages.CONTACT}>
-						<a href="contact/"><span class="uk-margin-small-right"
-						                         uk-icon="icon: mail"></span>Contact
-							me</a></li>
+						<a href={UriMap.get(Pages.CONTACT)}>
+							<span class="uk-margin-small-right"
+							      uk-icon="icon: mail"></span>
+							Contact me
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
