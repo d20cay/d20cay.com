@@ -1,5 +1,5 @@
 <script>
-    import {CheatsheetPages, currentPage, LabelMap, Pages, UriMap} from "../stores";
+    import {CheatsheetPages, currentPage, LabelMap, MinecraftPages, Pages, UriMap} from "../stores";
 
     currentPage.set(Pages.HOME);
 </script>
@@ -41,10 +41,11 @@
 			<p>
 				Some small projects I did for fun
 			</p>
-			<a href="project/umlaut/">Umlaut</a><br>
-			<a href="project/crypto/">Cryptography</a><br>
-			<a href="project/pi/">Pi</a><br>
-			<a href="project/prime_factorization/">Prime Factorization</a>
+			{#each Object.entries(MinecraftPages) as [_, p]}
+				<li class:uk-active={currentPage === p}>
+					<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+				</li>
+			{/each}
 		</div>
 	</div>
 	<div class="uk-width-1-3@m uk-width-1-2@s">

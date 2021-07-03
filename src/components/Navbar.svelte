@@ -1,5 +1,5 @@
 <script>
-    import {CheatsheetPages, LabelMap, Pages, UriMap} from "../stores";
+    import {CheatsheetPages, LabelMap, MinecraftPages, Pages, UriMap} from "../stores";
 
     export let currentPage;
 </script>
@@ -33,12 +33,11 @@
 					<a href="#">Minecraft <span uk-icon="chevron-down"></span></a>
 					<div class="uk-navbar-dropdown uk-width-auto">
 						<ul class="uk-nav uk-navbar-dropdown-nav">
-							<li class:uk-active={currentPage === Pages.COMMAND}>
-								<a href="mc/command/">Minecraft Commands</a></li>
-							<li class:uk-active={currentPage === Pages.SERVER}>
-								<a href="mc/server/">Minecraft Servers</a></li>
-							<li class:uk-active={currentPage === Pages.HY_STATS}>
-								<a href="mc/hy_stats/">Hypixel Bedwars Stats</a></li>
+							{#each Object.entries(MinecraftPages) as [_, p]}
+								<li class:uk-active={currentPage === p}>
+									<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+								</li>
+							{/each}
 						</ul>
 					</div>
 				</li>
@@ -108,12 +107,11 @@
 					<li class="uk-parent">
 						<a>Minecraft</a>
 						<ul class="uk-nav-sub">
-							<li class:uk-active={currentPage === Pages.MC_COMMAND}>
-								<a href="mc/command/">Minecraft Commands</a></li>
-							<li class:uk-active={currentPage === Pages.MC_SERVER}>
-								<a href="mc/server/">Minecraft Servers</a></li>
-							<li class:uk-active={currentPage === Pages.HY_STATS}>
-								<a href="mc/hy_stats/">Hypixel Bedwars Stats</a></li>
+							{#each Object.entries(MinecraftPages) as [_, p]}
+								<li class:uk-active={currentPage === p}>
+									<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+								</li>
+							{/each}
 						</ul>
 					</li>
 					<li class="uk-parent">
