@@ -7,6 +7,12 @@ export const CheatsheetPages = {
     PROGRAMS: 1002,
     SCHOOL: 1003,
 };
+export const CheatsheetUriMap = new Map([
+    [CheatsheetPages.ASCII, "/cheatsheet/ascii"],
+    [CheatsheetPages.LINUX, "/cheatsheet/linux"],
+    [CheatsheetPages.PROGRAMS, "/cheatsheet/programs"],
+    [CheatsheetPages.SCHOOL, "/cheatsheet/school"],
+]);
 
 // Use values from 2000-2100 only.
 export const MinecraftPages = {
@@ -14,6 +20,11 @@ export const MinecraftPages = {
     HY_STATS: 2001,
     SERVER: 2002,
 };
+export const MinecraftUriMap = new Map([
+    [MinecraftPages.COMMANDS, "/mc/command"],
+    [MinecraftPages.HY_STATS, "/mc/hy_stats"],
+    [MinecraftPages.SERVER, "/mc/server"],
+]);
 
 // Use values from 3000-3100 only.
 export const ProjectPages = {
@@ -22,6 +33,12 @@ export const ProjectPages = {
     PRIME_FACT: 3002,
     UMLAUT: 3003,
 };
+export const ProjectUriMap = new Map([
+    [ProjectPages.CRYPTO, "/project/crypto"],
+    [ProjectPages.PI, "/project/pi"],
+    [ProjectPages.PRIME_FACT, "/project/prime_factorization"],
+    [ProjectPages.UMLAUT, "/project/umlaut"],
+]);
 
 // Use values from 0-100 only.
 export const OtherPages = {
@@ -32,7 +49,15 @@ export const OtherPages = {
     IMPRINT: 4,
     PRIVACY: 5,
 };
+export const OtherUriMap = new Map([
+    [OtherPages.HOME, "/"],
+    [OtherPages.CONTACT, "/contact"],
+    [OtherPages.CHANGELOG, "/changelog"],
+    [OtherPages.IMPRINT, "/imprint"],
+    [OtherPages.PRIVACY, "/privacy"],
+]);
 
 export const Pages = {...CheatsheetPages, ...MinecraftPages, ...ProjectPages, ...OtherPages};
+export const UriMap = new Map([...CheatsheetUriMap, ...MinecraftUriMap, ...ProjectUriMap, ...OtherUriMap]);
 
 export const currentPage = writable(Pages.UNKNOWN);
