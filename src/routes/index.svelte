@@ -40,7 +40,7 @@
 			</p>
 			<a href="project/umlaut/">Umlaut</a><br>
 			<a href="project/crypto/">Cryptography</a><br>
-			<a href="project/pi/">Pi</a>
+			<a href="project/pi/">Pi</a><br>
 			<a href="project/prime_factorization/">Prime Factorization</a>
 		</div>
 	</div>
