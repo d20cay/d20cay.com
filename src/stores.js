@@ -13,6 +13,12 @@ export const CheatsheetUriMap = new Map([
     [CheatsheetPages.PROGRAMS, "/cheatsheet/programs"],
     [CheatsheetPages.SCHOOL, "/cheatsheet/school"],
 ]);
+export const CheatsheetLabelMap = new Map([
+    [CheatsheetPages.ASCII, "Ascii Table"],
+    [CheatsheetPages.LINUX, "Linux (Ubuntu)"],
+    [CheatsheetPages.PROGRAMS, "Programs"],
+    [CheatsheetPages.SCHOOL, "School"],
+]);
 
 // Use values from 2000-2100 only.
 export const MinecraftPages = {
@@ -24,6 +30,11 @@ export const MinecraftUriMap = new Map([
     [MinecraftPages.COMMANDS, "/mc/command"],
     [MinecraftPages.HY_STATS, "/mc/hy_stats"],
     [MinecraftPages.SERVER, "/mc/server"],
+]);
+export const MinecraftLabelMap = new Map([
+    [MinecraftPages.COMMANDS, "Server Commands"],
+    [MinecraftPages.HY_STATS, "Server Overview"],
+    [MinecraftPages.SERVER, "Hypixel Bedwars Stats"],
 ]);
 
 // Use values from 3000-3100 only.
@@ -38,6 +49,12 @@ export const ProjectUriMap = new Map([
     [ProjectPages.PI, "/project/pi"],
     [ProjectPages.PRIME_FACT, "/project/prime_factorization"],
     [ProjectPages.UMLAUT, "/project/umlaut"],
+]);
+export const ProjectLabelMap = new Map([
+    [ProjectPages.CRYPTO, "Cryptography"],
+    [ProjectPages.PI, "Pi"],
+    [ProjectPages.PRIME_FACT, "Prime Factorization"],
+    [ProjectPages.UMLAUT, "Umlaut"],
 ]);
 
 // Use values from 0-100 only.
@@ -56,8 +73,14 @@ export const OtherUriMap = new Map([
     [OtherPages.IMPRINT, "/imprint"],
     [OtherPages.PRIVACY, "/privacy"],
 ]);
+export const OtherLabelMap = new Map([
+    [OtherPages.CHANGELOG, "Changelog"],
+    [OtherPages.IMPRINT, "Imprint"],
+    [OtherPages.PRIVACY, "Privacy"],
+]);
 
 export const Pages = {...CheatsheetPages, ...MinecraftPages, ...ProjectPages, ...OtherPages};
 export const UriMap = new Map([...CheatsheetUriMap, ...MinecraftUriMap, ...ProjectUriMap, ...OtherUriMap]);
+export const LabelMap = new Map([...CheatsheetLabelMap, ...MinecraftLabelMap, ...ProjectLabelMap, ...OtherLabelMap]);
 
 export const currentPage = writable(Pages.UNKNOWN);
