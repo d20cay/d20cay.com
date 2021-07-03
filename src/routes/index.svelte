@@ -1,7 +1,7 @@
 <script>
-	import {currentPage, Pages} from "../stores";
+    import {CheatsheetPages, currentPage, LabelMap, Pages, UriMap} from "../stores";
 
-	currentPage.set(Pages.HOME);
+    currentPage.set(Pages.HOME);
 </script>
 
 <svelte:head>
@@ -28,10 +28,13 @@
 				I'm a software engineer so I like to do a lot of stuff with keyboard shortcuts and while I
 				learn them I like to write them down in case I forget them at a later date.
 			</p>
-			<a href="cheatsheet/programs/">Programs</a><br>
-			<a href="cheatsheet/linux/">Linux (Ubuntu)</a><br>
-			<a href="cheatsheet/school/">School</a><br>
-			<a href="cheatsheet/ascii/">Ascii Table</a>
+			<ul class="uk-list uk-list-collapse">
+				{#each Object.entries(CheatsheetPages) as [_, p]}
+					<li>
+						<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+					</li>
+				{/each}
+			</ul>
 		</div>
 		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Projects</h3>

@@ -1,7 +1,7 @@
 <script>
-	import {Pages} from "../stores";
+    import {CheatsheetPages, LabelMap, Pages, UriMap} from "../stores";
 
-	export let currentPage;
+    export let currentPage;
 </script>
 
 <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky"
@@ -21,14 +21,11 @@
 					<a href="#">Cheatsheets <span uk-icon="chevron-down"></span></a>
 					<div class="uk-navbar-dropdown uk-width-auto">
 						<ul class="uk-nav uk-navbar-dropdown-nav">
-							<li class:uk-active={currentPage === Pages.PROGRAMS}>
-								<a href="cheatsheet/programs/">Programs</a></li>
-							<li class:uk-active={currentPage === Pages.LINUX}>
-								<a href="cheatsheet/linux/">Linux (Ubuntu)</a></li>
-							<li class:uk-active={currentPage === Pages.SCHOOL}>
-								<a href="cheatsheet/school/">School</a></li>
-							<li class:uk-active={currentPage === Pages.ASCII}>
-								<a href="cheatsheet/ascii/">Ascii Table</a></li>
+							{#each Object.entries(CheatsheetPages) as [_, p]}
+								<li class:uk-active={currentPage === p}>
+									<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+								</li>
+							{/each}
 						</ul>
 					</div>
 				</li>
@@ -101,14 +98,11 @@
 					<li class="uk-parent">
 						<a>Cheatsheets</a>
 						<ul class="uk-nav-sub">
-							<li class:uk-active={currentPage === Pages.CS_PROGRAMS}>
-								<a href="cheatsheet/programs/">Programs</a></li>
-							<li class:uk-active={currentPage === Pages.CS_LINUX}>
-								<a href="cheatsheet/linux/">Linux (Ubuntu)</a></li>
-							<li class:uk-active={currentPage === Pages.CS_SCHOOL}>
-								<a href="cheatsheet/school/">School</a></li>
-							<li class:uk-active={currentPage === Pages.ASCII}>
-								<a href="cheatsheet/ascii/">Ascii Table</a></li>
+							{#each Object.entries(CheatsheetPages) as [_, p]}
+								<li class:uk-active={currentPage === p}>
+									<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+								</li>
+							{/each}
 						</ul>
 					</li>
 					<li class="uk-parent">

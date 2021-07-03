@@ -79,7 +79,7 @@ export const OtherLabelMap = new Map([
     [OtherPages.PRIVACY, "Privacy"],
 ]);
 
-export const Pages = {...CheatsheetPages, ...MinecraftPages, ...ProjectPages, ...OtherPages};
+export const Pages = {CHEATSHEET: CheatsheetPages, MINECRAFT: MinecraftPages, PROJECT: ProjectPages, ...OtherPages};
 export const UriMap = new Map([...CheatsheetUriMap, ...MinecraftUriMap, ...ProjectUriMap, ...OtherUriMap]);
 export const LabelMap = new Map([...CheatsheetLabelMap, ...MinecraftLabelMap, ...ProjectLabelMap, ...OtherLabelMap]);
 
