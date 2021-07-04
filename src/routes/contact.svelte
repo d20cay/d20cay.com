@@ -1,7 +1,7 @@
 <script>
-	import {currentPage, Page} from "../stores";
+	import {currentPage, Pages} from "../stores";
 
-	currentPage.set(Page.CONTACT);
+	currentPage.set(Pages.CONTACT);
 </script>
 
 <svelte:head>

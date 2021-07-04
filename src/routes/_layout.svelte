@@ -1,5 +1,5 @@
 <script>
-	import {currentPage, Page} from "../stores";
+	import {currentPage, Pages} from "../stores";
 	import Navbar from '../components/Navbar.svelte';
 	import Footer from '../components/Footer.svelte';
 	import {onDestroy} from "svelte";
@@ -17,14 +17,14 @@
 	}
 </style>
 
-{#if currentPageValue !== Page.UNKNOWN && currentPageValue !== Page.HOME}
+{#if currentPageValue !== Pages.UNKNOWN && currentPageValue !== Pages.HOME}
 	<Navbar currentPage={currentPageValue}/>
 {/if}
 
 <main class="uk-container uk-container-xlarge uk-margin-large-top uk-margin-large-bottom">
 	<slot></slot>
 </main>
-{#if currentPageValue !== Page.UNKNOWN && currentPageValue !== Page.HOME}
+{#if currentPageValue !== Pages.UNKNOWN && currentPageValue !== Pages.HOME}
 	<div class="spacer"></div>
 	<Footer/>
 {/if}
