@@ -33,8 +33,8 @@ export const MinecraftUriMap = new Map([
 ]);
 export const MinecraftLabelMap = new Map([
     [MinecraftPages.COMMANDS, "Server Commands"],
-    [MinecraftPages.HY_STATS, "Server Overview"],
-    [MinecraftPages.SERVER, "Hypixel Bedwars Stats"],
+    [MinecraftPages.HY_STATS, "Hypixel Bedwars Stats"],
+    [MinecraftPages.SERVER, "Server Overview"],
 ]);
 
 // Use values from 3000-3100 only.
