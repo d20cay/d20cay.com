@@ -13,5 +13,5 @@
 </h1>
 
 <p class="uk-text-center">
-	A tool to analyze and clean up you YTM library.
+	A tool to analyze and clean up your YTM library.
 </p>
