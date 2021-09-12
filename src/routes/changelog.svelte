@@ -1,8 +1,8 @@
 <script>
-	import {currentPage, Page} from "../stores";
+	import {currentPage, Pages} from "../stores";
 	import {changelog, Type, TypeMap, TypeTextMap} from "../changelog";
 
-	currentPage.set(Page.CHANGELOG);
+	currentPage.set(Pages.CHANGELOG);
 
 	function checkPlusVersion(versionString) {
 		return versionString.match(/\d{4}\.\d{1,2}.\d{1,}\+/);

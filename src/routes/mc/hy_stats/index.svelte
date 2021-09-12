@@ -1,5 +1,5 @@
 <script>
-	import {currentPage, Page} from "../../../stores";
+	import {currentPage, MinecraftPages} from "../../../stores";
 	import {
 		isDevInstance,
 		isProdInstance,
@@ -13,7 +13,7 @@
 	import {onMount} from "svelte";
 	import ModeStats from "./ModeStats.svelte";
 
-	currentPage.set(Page.HY_STATS);
+	currentPage.set(MinecraftPages.HY_STATS);
 
 	const USER_INEXISTENT_ERROR = {code: -2, message: 'User doesn\'t have bedwars stats.'};
 	const USER_MISSING_ERROR = {code: -3, message: 'User doesn\'t exist.'};

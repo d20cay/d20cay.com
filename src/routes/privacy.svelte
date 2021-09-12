@@ -1,8 +1,8 @@
 <script>
-	import {currentPage, Page} from "../stores";
+	import {currentPage, Pages} from "../stores";
 	import Privacy from "../components/Privacy.svelte";
 
-	currentPage.set(Page.PRIVACY);
+	currentPage.set(Pages.PRIVACY);
 </script>
 
 <svelte:head>
