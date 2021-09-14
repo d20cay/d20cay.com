@@ -42,19 +42,25 @@ export const ProjectPages = {
     CRYPTO: 3000,
     PI: 3001,
     PRIME_FACT: 3002,
-    UMLAUT: 3003,
+    SECRET_SANTA: 3003,
+    UMLAUT: 3004,
+    YTM_LIB: 3005,
 };
 export const ProjectUriMap = new Map([
     [ProjectPages.CRYPTO, "/project/crypto"],
     [ProjectPages.PI, "/project/pi"],
     [ProjectPages.PRIME_FACT, "/project/prime_factorization"],
+    [ProjectPages.SECRET_SANTA, "/project/secret_santa"],
     [ProjectPages.UMLAUT, "/project/umlaut"],
+    [ProjectPages.YTM_LIB, "/project/ytm_lib_anal"]
 ]);
 export const ProjectLabelMap = new Map([
     [ProjectPages.CRYPTO, "Cryptography"],
     [ProjectPages.PI, "Pi"],
     [ProjectPages.PRIME_FACT, "Prime Factorization"],
+    [ProjectPages.SECRET_SANTA, "Secret Santa"],
     [ProjectPages.UMLAUT, "Umlaut"],
+    [ProjectPages.YTM_LIB, "YT Music Library Analysis"],
 ]);
 
 // Use values from 0-100 only.

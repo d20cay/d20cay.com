@@ -7,6 +7,7 @@ from starlette.responses import Response
 
 from constant import NO_STATS_ERROR, NO_PLAYER_ERROR
 from hypixel_stats.hypixel_stats import bedwars_overview
+from ytm.ytm import get_library
 
 app = FastAPI()
 
@@ -56,3 +57,7 @@ def read_hypixel_bedwars_stats(player: str):
         return NO_STATS_ERROR
 
     return condensed_stats
+
+@app.post("/ytm/lib/")
+async def read_ytm_library(cookie: str, x_goog_user: str):
+    return get_library(cookie, x_goog_user)
