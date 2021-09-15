@@ -1,6 +1,7 @@
 import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 from simplejson.errors import JSONDecodeError
 from starlette.requests import Request
 from starlette.responses import Response
@@ -58,6 +59,11 @@ def read_hypixel_bedwars_stats(player: str):
 
     return condensed_stats
 
+
+class YtmLibRequest(BaseModel):
+    cookie: str
+    x_goog_user: str
+
 @app.post("/ytm/lib/")
-async def read_ytm_library(cookie: str, x_goog_user: str):
-    return get_library(cookie, x_goog_user)
+async def read_ytm_library(body: YtmLibRequest):
+    return get_library(body.cookie, body.x_goog_user)
