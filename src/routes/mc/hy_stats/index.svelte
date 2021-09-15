@@ -1,7 +1,6 @@
 <script>
 	import {currentPage, MinecraftPages} from "../../../stores";
 	import {
-		isDevInstance,
 		isProdInstance,
 		LoadingStatus,
 		NotificationPosition as Pos,
@@ -75,7 +74,7 @@
 
 		expectedError = true;
 		loadingStatus = LoadingStatus.LOADING;
-		return await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
+		await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'
