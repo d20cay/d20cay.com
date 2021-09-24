@@ -174,7 +174,7 @@
 									<li>
 										<a class="uk-accordion-title" href="#">Title & Artist Duplicates
 											({analysis.duplicates.library.titleArtistDuplicates.length})</a>
-										<div class="uk-accordion-content">
+										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
 													duplicates={analysis.duplicates.library.titleArtistDuplicates}/>
 										</div>
@@ -184,7 +184,7 @@
 									<li>
 										<a class="uk-accordion-title" href="#">Title Duplicates
 											({analysis.duplicates.library.titleDuplicates.length})</a>
-										<div class="uk-accordion-content">
+										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable duplicates={analysis.duplicates.library.titleDuplicates}/>
 										</div>
 									</li>
@@ -193,7 +193,7 @@
 									<li>
 										<a class="uk-accordion-title" href="#">Simplified Title Duplicates
 											({analysis.duplicates.library.simpleTitleDuplicates.length})</a>
-										<div class="uk-accordion-content">
+										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
 													duplicates={analysis.duplicates.library.simpleTitleDuplicates}/>
 										</div>
@@ -219,7 +219,7 @@
 									<li>
 										<a class="uk-accordion-title" href="#">Title & Artist Duplicates
 											({analysis.duplicates.library.titleArtistDuplicates.length})</a>
-										<div class="uk-accordion-content">
+										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
 													duplicates={analysis.duplicates.playlists.titleArtistDuplicates}/>
 										</div>
@@ -229,7 +229,7 @@
 									<li>
 										<a class="uk-accordion-title" href="#">Title Duplicates
 											({analysis.duplicates.playlists.titleDuplicates.length})</a>
-										<div class="uk-accordion-content">
+										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
 													duplicates={analysis.duplicates.playlists.titleDuplicates}/>
 										</div>
@@ -239,7 +239,7 @@
 									<li>
 										<a class="uk-accordion-title" href="#">Simplified Title Duplicates
 											({analysis.duplicates.playlists.simpleTitleDuplicates.length})</a>
-										<div class="uk-accordion-content">
+										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
 													duplicates={analysis.duplicates.playlists.simpleTitleDuplicates}/>
 										</div>
