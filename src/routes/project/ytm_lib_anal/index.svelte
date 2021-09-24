@@ -10,7 +10,6 @@
 	} from "../../../global";
 	import {test} from "./test";
 	import {duplicateAnalysis} from "./analysis";
-	import DuplicateTableRow from "./DuplicateTableRow.svelte";
 	import DuplicatesTable from "./DuplicatesTable.svelte";
 
 	currentPage.set(ProjectPages.YTM_LIB);
@@ -93,6 +92,15 @@
 		section, where you will copy the text after <q>:cookie:</q> and <q>:x-goog-user:</q> into their respective
 		fields.
 	</p>
+
+	<div class="uk-alert-danger" uk-alert>
+		<p>Make sure you trust this website before entering your credentials! Yes, I am warning you of my own website.
+			Once you enter your credentials I could potentially store them and wreak complete havoc on your YTM library.
+			I will not, because I don't care to be this destructive. You should just be aware of this.</p>
+		<p>If you're worried I might have stolen your credentials you can log out of your YTM account from the machine
+			you got the credentials from, which will invalidate those credentials. You can also take a look at all of
+			the code on my GitHub. You can find the link to my GitHub on the homepage.</p>
+	</div>
 
 	<div uk-grid class="uk-grid-small">
 		<div class="uk-width-auto@m uk-width-1-1@s">
