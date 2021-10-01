@@ -9,6 +9,7 @@
         notify
     } from "../../../global";
     import {test} from "./test";
+    import {getSongShareString, getPlaylistShareString} from "./util";
     import {duplicateAnalysis} from "./analysis";
     import DuplicatesTable from "./DuplicatesTable.svelte";
 
@@ -139,7 +140,34 @@
 	</div>
 
 	{#if library !== undefined}
-
+		<ul uk-accordion>
+			<li>
+				<!-- svelte-ignore a11y-invalid-attribute -->
+				<a class="uk-accordion-title" href="#">Library Contents Summary</a>
+				<!--Adds padding only on the left side to create an indent for every category.-->
+				<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
+					<ol>
+						<li>Library Songs
+							<ol type="a">
+								{#each library.songs as song}
+									<li><a href={getSongShareString(song.videoId)}>{song.title}</a></li>
+								{/each}
+							</ol>
+						</li>
+						{#each library.playlists as playlist}
+							<li>
+								<a href={getPlaylistShareString(playlist.id)}>{playlist.title}</a>
+								<ol type="a">
+									{#each playlist.tracks as song}
+										<li><a href={getSongShareString(song.videoId)}>{song.title}</a></li>
+									{/each}
+								</ol>
+							</li>
+						{/each}
+					</ol>
+				</div>
+			</li>
+		</ul>
 		<ul uk-accordion>
 			<li>
 				<!-- svelte-ignore a11y-invalid-attribute -->

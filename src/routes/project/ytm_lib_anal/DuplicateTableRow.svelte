@@ -1,13 +1,7 @@
 <script>
+	import {getSongShareString, getPlaylistShareString} from "./util";
+
     export let duplicate;
-
-    function getSongShareString(videoId) {
-        return `https://music.youtube.com/watch?v=${videoId}&feature=share`;
-    }
-
-    function getPlaylistShareString(playlistId) {
-        return `https://music.youtube.com/playlist?list=${playlistId}&feature=share`;
-    }
 </script>
 
 
