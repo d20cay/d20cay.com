@@ -9,7 +9,7 @@
         notify
     } from "../../../global";
     import {test} from "./test";
-    import {getSongShareString, getPlaylistShareString} from "./util";
+    import {getPlaylistShareString, getSongShareString} from "./util";
     import {duplicateAnalysis} from "./analysis";
     import DuplicatesTable from "./DuplicatesTable.svelte";
 
@@ -167,8 +167,6 @@
 					</ol>
 				</div>
 			</li>
-		</ul>
-		<ul uk-accordion>
 			<li>
 				<!-- svelte-ignore a11y-invalid-attribute -->
 				<a class="uk-accordion-title" href="#">Duplicate analysis</a>
@@ -193,14 +191,14 @@
 						</li>
 					</ol>
 
-					<ul uk-accordion>
+					<ul uk-accordion="multiple: true">
 						<li>
 							<!-- svelte-ignore a11y-invalid-attribute -->
 							<a class="uk-accordion-title" href="#">Library Song Duplicates
 								({analysis.duplicates.library.totalDuplicates})</a>
 							<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
-								{#if analysis.duplicates.library.idDuplicates.length !== 0}
-									<ul uk-accordion>
+								<ul uk-accordion="multiple: true">
+									{#if analysis.duplicates.library.idDuplicates.length !== 0}
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">ID Duplicates
@@ -209,10 +207,8 @@
 												<DuplicatesTable duplicates={analysis.duplicates.library.idDuplicates}/>
 											</div>
 										</li>
-									</ul>
-								{/if}
-								{#if analysis.duplicates.library.titleArtistDuplicates.length !== 0}
-									<ul uk-accordion>
+									{/if}
+									{#if analysis.duplicates.library.titleArtistDuplicates.length !== 0}
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">Title & Artist Duplicates
@@ -222,10 +218,8 @@
 														duplicates={analysis.duplicates.library.titleArtistDuplicates}/>
 											</div>
 										</li>
-									</ul>
-								{/if}
-								{#if analysis.duplicates.library.titleDuplicates.length !== 0}
-									<ul uk-accordion>
+									{/if}
+									{#if analysis.duplicates.library.titleDuplicates.length !== 0}
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">Title Duplicates
@@ -235,10 +229,8 @@
 														duplicates={analysis.duplicates.library.titleDuplicates}/>
 											</div>
 										</li>
-									</ul>
-								{/if}
-								{#if analysis.duplicates.library.simpleTitleDuplicates.length !== 0}
-									<ul uk-accordion>
+									{/if}
+									{#if analysis.duplicates.library.simpleTitleDuplicates.length !== 0}
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">Simplified Title Duplicates
@@ -248,8 +240,8 @@
 														duplicates={analysis.duplicates.library.simpleTitleDuplicates}/>
 											</div>
 										</li>
-									</ul>
-								{/if}
+									{/if}
+								</ul>
 							</div>
 						</li>
 						<li>
@@ -257,8 +249,8 @@
 							<a class="uk-accordion-title" href="#">Playlist Duplicates
 								({analysis.duplicates.playlists.totalDuplicates})</a>
 							<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
+								<ul uk-accordion="multiple: true">
 								{#if analysis.duplicates.playlists.idDuplicates.length !== 0}
-									<ul uk-accordion>
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">ID Duplicates
@@ -268,10 +260,8 @@
 														duplicates={analysis.duplicates.playlists.idDuplicates}/>
 											</div>
 										</li>
-									</ul>
 								{/if}
 								{#if analysis.duplicates.playlists.titleArtistDuplicates.length !== 0}
-									<ul uk-accordion>
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">Title & Artist Duplicates
@@ -281,10 +271,8 @@
 														duplicates={analysis.duplicates.playlists.titleArtistDuplicates}/>
 											</div>
 										</li>
-									</ul>
 								{/if}
 								{#if analysis.duplicates.playlists.titleDuplicates.length !== 0}
-									<ul uk-accordion>
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">Title Duplicates
@@ -294,10 +282,8 @@
 														duplicates={analysis.duplicates.playlists.titleDuplicates}/>
 											</div>
 										</li>
-									</ul>
 								{/if}
 								{#if analysis.duplicates.playlists.simpleTitleDuplicates.length !== 0}
-									<ul uk-accordion>
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">Simplified Title Duplicates
@@ -307,8 +293,8 @@
 														duplicates={analysis.duplicates.playlists.simpleTitleDuplicates}/>
 											</div>
 										</li>
-									</ul>
 								{/if}
+								</ul>
 							</div>
 						</li>
 					</ul>
