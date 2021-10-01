@@ -76,12 +76,12 @@
 </svelte:head>
 
 <h1 class="uk-text-center">
-	classNameusic Library Analysis
+	Music Library Analysis
 </h1>
 
-<div class="uk-width-2-3@m ukclassNamen-center">
+<div class="uk-width-2-3@m uk-align-center">
 	<p class="uk-text-center">
-		classNameool to analyze and clean up your YTM library.
+		Tool to analyze and clean up your YTM library.
 	</p>
 
 	<p>
