@@ -84,7 +84,8 @@ def duplicate_type_check(t1, t2):
 
 def simplify_title(title):
     # Remove any () and containing text from titles.
-    return re.sub(r'\(.*\)', '', title)
+    removed_brackets = re.sub(r"\(.*\)", "", title)
+    return re.sub(r"\s+", " ", removed_brackets).strip()
 
 
 class DuplicateIssueType(str, Enum):

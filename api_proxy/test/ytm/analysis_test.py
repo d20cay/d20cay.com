@@ -12,7 +12,7 @@ class TestAnalysis(unittest.TestCase):
         self.assertEqual(simplify_title("Halle(lujah(ha)"), "Halle", "Should remove (lujah(ha) and leave Halle")
 
     def test_ytm_analyze_id_duplicate_library_library(self):
-        DUPLICATE_ID_LIBRARY_LIBRARY_SONG_LIBRARY = {
+        library = {
             "songs": [{
                 "videoId": "a",
                 "title": "Heat Waves",
@@ -29,7 +29,7 @@ class TestAnalysis(unittest.TestCase):
             }],
             "playlists": []
         }
-        DUPLICATE_ID_LIBRARY_LIBRARY_SONG_ISSUES = {"library": {"totalDuplicateCount": 1, "idDuplicates": [{
+        issues = {"library": {"totalDuplicateCount": 1, "idDuplicates": [{
             "type": DuplicateIssueType.ID_DUPLICATE,
             "videoId": "a",
             "title": "Heat Waves",
@@ -46,15 +46,171 @@ class TestAnalysis(unittest.TestCase):
             ],
             "duplicatePlaylist": None,
         }], "simpleTitleDuplicates": [], "titleArtistDuplicates": [], "titleDuplicates": []},
-                                                    "playlists": {"totalDuplicateCount": 0, "idDuplicates": [],
-                                                                  "simpleTitleDuplicates": [],
-                                                                  "titleArtistDuplicates": [],
-                                                                  "titleDuplicates": []}}
-        self.assertEqual(ytm_analyze(DUPLICATE_ID_LIBRARY_LIBRARY_SONG_LIBRARY),
-                         DUPLICATE_ID_LIBRARY_LIBRARY_SONG_ISSUES)
+                  "playlists": {"totalDuplicateCount": 0, "idDuplicates": [],
+                                "simpleTitleDuplicates": [],
+                                "titleArtistDuplicates": [],
+                                "titleDuplicates": []}}
+        self.assertEqual(ytm_analyze(library), issues)
+
+    def test_ytm_analyze_title_artist_duplicate_library_library(self):
+        library = {
+            "songs": [{
+                "videoId": "a",
+                "title": "Heat Waves",
+                "artists": [
+                    {"name": "Glass animals", "id": "b"},
+                    {"name": "iann dior", "id": "c"}
+                ]}, {
+                "videoId": "b",
+                "title": "Heat Waves",
+                "artists": [
+                    {"name": "Glass animals", "id": "b"},
+                    {"name": "iann dior", "id": "c"}
+                ]
+            }],
+            "playlists": []
+        }
+        issues = {"library": {"totalDuplicateCount": 2, "titleArtistDuplicates": [{
+            "type": DuplicateIssueType.TITLE_ARTIST_DUPLICATE,
+            "videoId": "a",
+            "title": "Heat Waves",
+            "artists": [
+                {"name": "Glass animals", "id": "b"},
+                {"name": "iann dior", "id": "c"}
+            ],
+            "playlist": None,
+            "duplicateVideoId": "b",
+            "duplicateTitle": "Heat Waves",
+            "duplicateArtists": [
+                {"name": "Glass animals", "id": "b"},
+                {"name": "iann dior", "id": "c"}
+            ],
+            "duplicatePlaylist": None,
+        }, {
+            "type": DuplicateIssueType.TITLE_ARTIST_DUPLICATE,
+            "videoId": "b",
+            "title": "Heat Waves",
+            "artists": [
+                {"name": "Glass animals", "id": "b"},
+                {"name": "iann dior", "id": "c"}
+            ],
+            "playlist": None,
+            "duplicateVideoId": "a",
+            "duplicateTitle": "Heat Waves",
+            "duplicateArtists": [
+                {"name": "Glass animals", "id": "b"},
+                {"name": "iann dior", "id": "c"}
+            ],
+            "duplicatePlaylist": None,
+        }], "simpleTitleDuplicates": [], "idDuplicates": [], "titleDuplicates": []},
+                  "playlists": {"totalDuplicateCount": 0, "idDuplicates": [],
+                                "simpleTitleDuplicates": [],
+                                "titleArtistDuplicates": [],
+                                "titleDuplicates": []}}
+        self.assertEqual(ytm_analyze(library), issues)
+
+    def test_ytm_analyze_title_duplicate_library_library(self):
+        library = {
+            "songs": [{
+                "videoId": "a",
+                "title": "Heat Waves",
+                "artists": [
+                    {"name": "Glass animals", "id": "b"},
+                    {"name": "iann dior", "id": "c"}
+                ]}, {
+                "videoId": "b",
+                "title": "Heat Waves",
+                "artists": [
+                    {"name": "Glass animals", "id": "b"}
+                ]
+            }],
+            "playlists": []
+        }
+        issues = {"library": {"totalDuplicateCount": 2, "titleDuplicates": [{
+            "type": DuplicateIssueType.TITLE_DUPLICATE,
+            "videoId": "a",
+            "title": "Heat Waves",
+            "artists": [
+                {"name": "Glass animals", "id": "b"},
+                {"name": "iann dior", "id": "c"}
+            ],
+            "playlist": None,
+            "duplicateVideoId": "b",
+            "duplicateTitle": "Heat Waves",
+            "duplicateArtists": [{"name": "Glass animals", "id": "b"}],
+            "duplicatePlaylist": None,
+        }, {
+            "type": DuplicateIssueType.TITLE_DUPLICATE,
+            "videoId": "b",
+            "title": "Heat Waves",
+            "artists": [{"name": "Glass animals", "id": "b"}],
+            "playlist": None,
+            "duplicateVideoId": "a",
+            "duplicateTitle": "Heat Waves",
+            "duplicateArtists": [
+                {"name": "Glass animals", "id": "b"},
+                {"name": "iann dior", "id": "c"}
+            ],
+            "duplicatePlaylist": None,
+        }], "simpleTitleDuplicates": [], "idDuplicates": [], "titleArtistDuplicates": []},
+                  "playlists": {"totalDuplicateCount": 0, "idDuplicates": [],
+                                "simpleTitleDuplicates": [],
+                                "titleArtistDuplicates": [],
+                                "titleDuplicates": []}}
+        self.assertEqual(ytm_analyze(library), issues)
+
+    def test_ytm_analyze_simple_title_duplicate_library_library(self):
+        library = {
+            "songs": [{
+                "videoId": "a",
+                "title": "Heat Waves (Acoustic)",
+                "artists": [
+                    {"name": "Glass animals", "id": "b"},
+                    {"name": "iann dior", "id": "c"}
+                ]}, {
+                "videoId": "b",
+                "title": "Heat Waves",
+                "artists": [
+                    {"name": "Glass animals", "id": "b"}
+                ]
+            }],
+            "playlists": []
+        }
+        issues = {"library": {"totalDuplicateCount": 2, "simpleTitleDuplicates": [{
+            "type": DuplicateIssueType.SIMPLE_TITLE_DUPLICATE,
+            "videoId": "a",
+            "title": "Heat Waves (Acoustic)",
+            "artists": [
+                {"name": "Glass animals", "id": "b"},
+                {"name": "iann dior", "id": "c"}
+            ],
+            "playlist": None,
+            "duplicateVideoId": "b",
+            "duplicateTitle": "Heat Waves",
+            "duplicateArtists": [{"name": "Glass animals", "id": "b"}],
+            "duplicatePlaylist": None,
+        }, {
+            "type": DuplicateIssueType.SIMPLE_TITLE_DUPLICATE,
+            "videoId": "b",
+            "title": "Heat Waves",
+            "artists": [{"name": "Glass animals", "id": "b"}],
+            "playlist": None,
+            "duplicateVideoId": "a",
+            "duplicateTitle": "Heat Waves (Acoustic)",
+            "duplicateArtists": [
+                {"name": "Glass animals", "id": "b"},
+                {"name": "iann dior", "id": "c"}
+            ],
+            "duplicatePlaylist": None,
+        }], "titleDuplicates": [], "idDuplicates": [], "titleArtistDuplicates": []},
+                  "playlists": {"totalDuplicateCount": 0, "idDuplicates": [],
+                                "simpleTitleDuplicates": [],
+                                "titleArtistDuplicates": [],
+                                "titleDuplicates": []}}
+        self.assertEqual(ytm_analyze(library), issues)
 
     def test_ytm_analyze_id_duplicate_library_playlists(self):
-        DUPLICATE_ID_LIBRARY_PLAYLISTS_SONG_LIBRARY = {
+        library = {
             "songs": [{
                 "videoId": "a",
                 "title": "Heat Waves",
@@ -76,7 +232,7 @@ class TestAnalysis(unittest.TestCase):
                 }]
             }]
         }
-        DUPLICATE_ID_LIBRARY_PLAYLISTS_SONG_ISSUES = {"library": {"totalDuplicateCount": 1, "idDuplicates": [{
+        issues = {"library": {"totalDuplicateCount": 1, "idDuplicates": [{
             "type": DuplicateIssueType.ID_DUPLICATE,
             "videoId": "a",
             "title": "Heat Waves",
@@ -93,12 +249,12 @@ class TestAnalysis(unittest.TestCase):
             ],
             "duplicatePlaylist": {"id": "d", "title": "Best"},
         }], "simpleTitleDuplicates": [], "titleArtistDuplicates": [], "titleDuplicates": []},
-                                                      "playlists": {"totalDuplicateCount": 0, "idDuplicates": [],
-                                                                    "simpleTitleDuplicates": [],
-                                                                    "titleArtistDuplicates": [],
-                                                                    "titleDuplicates": []}}
-        self.assertEqual(ytm_analyze(DUPLICATE_ID_LIBRARY_PLAYLISTS_SONG_LIBRARY),
-                         DUPLICATE_ID_LIBRARY_PLAYLISTS_SONG_ISSUES)
+                  "playlists": {"totalDuplicateCount": 0, "idDuplicates": [],
+                                "simpleTitleDuplicates": [],
+                                "titleArtistDuplicates": [],
+                                "titleDuplicates": []}}
+        self.assertEqual(ytm_analyze(library),
+                         issues)
 
 
 if __name__ == "__main__":
