@@ -9,6 +9,7 @@ from starlette.responses import Response
 from constant import NO_STATS_ERROR, NO_PLAYER_ERROR
 from hypixel_stats.hypixel_stats import bedwars_overview
 from ytm.ytm import get_library
+from ytm.analysis import ytm_analyze
 
 app = FastAPI()
 
@@ -66,4 +67,5 @@ class YtmLibRequest(BaseModel):
 
 @app.post("/ytm/lib/")
 async def read_ytm_library(body: YtmLibRequest):
-    return get_library(body.cookie, body.x_goog_user)
+    library = get_library(body.cookie, body.x_goog_user)
+    return {'library': library, analysis: ytm_analyze(library)}
