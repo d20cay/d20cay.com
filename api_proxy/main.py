@@ -68,4 +68,4 @@ class YtmLibRequest(BaseModel):
 @app.post("/ytm/lib/")
 async def read_ytm_library(body: YtmLibRequest):
     library = get_library(body.cookie, body.x_goog_user)
-    return {'library': library, analysis: ytm_analyze(library)}
+    return {'library': library, 'analysis': ytm_analyze(library)}
