@@ -253,8 +253,55 @@ class TestAnalysis(unittest.TestCase):
                                 "simpleTitleDuplicates": [],
                                 "titleArtistDuplicates": [],
                                 "titleDuplicates": []}}
-        self.assertEqual(ytm_analyze(library),
-                         issues)
+        self.assertEqual(ytm_analyze(library), issues)
+
+    def test_ytm_analyze_id_duplicate_paylist_playlists(self):
+        library = {
+            "songs": [],
+            "playlists": [{
+                "id": "d",
+                "title": "Best",
+                "tracks": [{
+                    "videoId": "a",
+                    "title": "Heat Waves",
+                    "artists": [
+                        {"name": "Glass animals", "id": "b"},
+                        {"name": "iann dior", "id": "c"}
+                    ]
+                }]
+            }, {
+                "id": "e",
+                "title": "f",
+                "tracks": [{
+                    "videoId": "a",
+                    "title": "Heat Waves",
+                    "artists": [
+                        {"name": "Glass animals", "id": "b"},
+                        {"name": "iann dior", "id": "c"}
+                    ]
+                }]
+            }]
+        }
+        issues = {"library": {"totalDuplicateCount": 0, "idDuplicates": [], "simpleTitleDuplicates": [],
+                              "titleArtistDuplicates": [], "titleDuplicates": []},
+                  "playlists": {"totalDuplicateCount": 1, "idDuplicates": [{
+                      "type": DuplicateIssueType.ID_DUPLICATE,
+                      "videoId": "a",
+                      "title": "Heat Waves",
+                      "artists": [
+                          {"name": "Glass animals", "id": "b"},
+                          {"name": "iann dior", "id": "c"}
+                      ],
+                      "playlist": {"id": "e", "title": "f"},
+                      "duplicateVideoId": "a",
+                      "duplicateTitle": "Heat Waves",
+                      "duplicateArtists": [
+                          {"name": "Glass animals", "id": "b"},
+                          {"name": "iann dior", "id": "c"}
+                      ],
+                      "duplicatePlaylist": {"id": "d", "title": "Best"},
+                  }], "simpleTitleDuplicates": [], "titleArtistDuplicates": [], "titleDuplicates": []}}
+        self.assertEqual(ytm_analyze(library), issues)
 
 
 if __name__ == "__main__":
