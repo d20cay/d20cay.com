@@ -1,7 +1,7 @@
 <script>
-	import {getSongShareString, getPlaylistShareString} from "./util";
+	import {getPlaylistShareString, getSongShareString} from "./util";
 
-    export let duplicate;
+	export let duplicate;
 </script>
 
 
@@ -15,15 +15,14 @@
 	<td>{duplicate.artists.map(a => a.name)}</td>
 	<td>{duplicate.duplicateArtists.map(a => a.name)}</td>
 	<td>
-		{#if duplicate.playlist === undefined}
+		{#if duplicate.playlist === null || duplicate.playlist === undefined}
 			Library Songs
 		{:else}
 			<a href={getPlaylistShareString(duplicate.playlist.id)}>{duplicate.playlist.title}</a>
 		{/if}
 	</td>
 	<td>
-		{#if duplicate.duplicatePlaylist === undefined} Library
-			Songs
+		{#if duplicate.duplicatePlaylist === null || duplicate.playlist === undefined} Library Songs
 		{:else}
 			<a href={getPlaylistShareString(duplicate.duplicatePlaylist.id)}>{duplicate.duplicatePlaylist.title}</a>
 		{/if}

@@ -1,75 +1,61 @@
 <script>
-    import {currentPage, ProjectPages} from "../../../stores";
-    import {
-        isProdInstance,
-        LoadingStatus,
-        NotificationPosition as Pos,
-        NotificationStatus as Status,
-        NotificationTimeout as Timeout,
-        notify
-    } from "../../../global";
-    import {test} from "./test";
-    import {getPlaylistShareString, getSongShareString} from "./util";
-    import {duplicateAnalysis} from "./analysis";
-    import DuplicatesTable from "./DuplicatesTable.svelte";
+	import {currentPage, ProjectPages} from "../../../stores";
+	import {
+		isProdInstance,
+		LoadingStatus,
+		NotificationPosition as Pos,
+		NotificationStatus as Status,
+		NotificationTimeout as Timeout,
+		notify
+	} from "../../../global";
+	import {getPlaylistShareString, getSongShareString} from "./util";
+	import DuplicatesTable from "./DuplicatesTable.svelte";
 
-    currentPage.set(ProjectPages.YTM_LIB);
+	currentPage.set(ProjectPages.YTM_LIB);
 
-    const INCORRECT_PAYLOAD = {code: -5, message: 'POST body in incorrect format.'};
+	const INCORRECT_PAYLOAD = {code: -5, message: 'POST body in incorrect format.'};
 
-    let loadingStatus = LoadingStatus.IDLE;
+	let loadingStatus = LoadingStatus.IDLE;
 
-    let cookie;
-    let x_goog_user;
-    let library;
-    let analysis;
+	let cookie;
+	let x_goog_user;
+	let library;
+	let analysis;
 
-    $: analysis = analyze(library);
+	function inputsValid() {
+		return cookie !== "" && x_goog_user !== "";
+	}
 
-    function inputsValid() {
-        return cookie !== "" && x_goog_user !== "";
-    }
+	async function requestLibData() {
+		const prodApiUrl = `https://api.d20cay.com/ytm/lib`;
+		const devApiUrl = `http://localhost:8000/ytm/lib`;
 
-    async function requestLibData() {
-        const prodApiUrl = `https://api.d20cay.com/ytm/lib`;
-        const devApiUrl = `http://localhost:8000/ytm/lib`;
-
-        // TODO: remove for prod
-        library = test;
-        return;
-
-        loadingStatus = LoadingStatus.LOADING;
-        await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({cookie, x_goog_user})
-        }).then(response => {
-            if (response.status === 422) {
-                throw INCORRECT_PAYLOAD;
-            }
-            return response.json();
-        }).then(data => {
-            loadingStatus = LoadingStatus.IDLE;
-            library = data;
-            notify('Successfully fetched library contents.',
-                Status.SUCCESS,
-                Pos.BOTTOM_LEFT,
-                Timeout.QUICK);
-        }).catch(() => {
-            loadingStatus = LoadingStatus.IDLE;
-            notify('Error fetching library contents.', Status.DANGER, Pos.BOTTOM_LEFT, Timeout.CRITICAL);
-        });
-    }
-
-    function analyze(library) {
-        if (library === undefined) {
-            return undefined;
-        }
-        // TODO: Remove for prod
-        return {'duplicates': duplicateAnalysis(library)};
-    }
+		loadingStatus = LoadingStatus.LOADING;
+		await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({cookie, x_goog_user})
+		}).then(response => {
+			if (response.status === 422) {
+				throw INCORRECT_PAYLOAD;
+			}
+			return response.json();
+		}).then(data => {
+			loadingStatus = LoadingStatus.IDLE;
+			library = data.library;
+			analysis = data.analysis;
+			console.log(data);
+			notify('Successfully fetched library contents and analysis data.',
+					Status.SUCCESS,
+					Pos.BOTTOM_LEFT,
+					Timeout.QUICK);
+		}).catch(() => {
+			loadingStatus = LoadingStatus.IDLE;
+			notify('Error fetching library contents and analysis data.', Status.DANGER, Pos.BOTTOM_LEFT, Timeout.CRITICAL);
+		});
+	}
 </script>
 
 <svelte:head>
@@ -250,7 +236,7 @@
 								({analysis.duplicates.playlists.totalDuplicates})</a>
 							<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 								<ul uk-accordion="multiple: true">
-								{#if analysis.duplicates.playlists.idDuplicates.length !== 0}
+									{#if analysis.duplicates.playlists.idDuplicates.length !== 0}
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">ID Duplicates
@@ -260,8 +246,8 @@
 														duplicates={analysis.duplicates.playlists.idDuplicates}/>
 											</div>
 										</li>
-								{/if}
-								{#if analysis.duplicates.playlists.titleArtistDuplicates.length !== 0}
+									{/if}
+									{#if analysis.duplicates.playlists.titleArtistDuplicates.length !== 0}
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">Title & Artist Duplicates
@@ -271,8 +257,8 @@
 														duplicates={analysis.duplicates.playlists.titleArtistDuplicates}/>
 											</div>
 										</li>
-								{/if}
-								{#if analysis.duplicates.playlists.titleDuplicates.length !== 0}
+									{/if}
+									{#if analysis.duplicates.playlists.titleDuplicates.length !== 0}
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">Title Duplicates
@@ -282,8 +268,8 @@
 														duplicates={analysis.duplicates.playlists.titleDuplicates}/>
 											</div>
 										</li>
-								{/if}
-								{#if analysis.duplicates.playlists.simpleTitleDuplicates.length !== 0}
+									{/if}
+									{#if analysis.duplicates.playlists.simpleTitleDuplicates.length !== 0}
 										<li>
 											<!-- svelte-ignore a11y-invalid-attribute -->
 											<a class="uk-accordion-title" href="#">Simplified Title Duplicates
@@ -293,7 +279,7 @@
 														duplicates={analysis.duplicates.playlists.simpleTitleDuplicates}/>
 											</div>
 										</li>
-								{/if}
+									{/if}
 								</ul>
 							</div>
 						</li>
