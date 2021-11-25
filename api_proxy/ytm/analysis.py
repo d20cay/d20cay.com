@@ -33,9 +33,9 @@ def ytm_analyze(library):
         playlist_song_issues = list(filter(lambda duplicate: duplicate is not None, [
             build_duplicate_issue(t1["track"], t1["playlist"], t2["track"], t2["playlist"]) for t2 in other_songs]))
 
-    return {
+    return {"duplicates": {
         "library": categorize_issues(library_song_issues), "playlists": categorize_issues(playlist_song_issues)
-    }
+    }}
 
 
 def categorize_issues(issues):
