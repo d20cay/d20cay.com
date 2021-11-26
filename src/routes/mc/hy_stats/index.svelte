@@ -1,19 +1,18 @@
 <script>
-	import {currentPage, Page} from "../../../stores";
+	import {currentPage, MinecraftPages} from "../../../stores";
 	import {
-		isDevInstance,
 		isProdInstance,
 		LoadingStatus,
 		NotificationPosition as Pos,
 		NotificationStatus as Status,
 		NotificationTimeout as Timeout,
 		notify,
-		overwriteClipboard, updateUrl
+		updateUrl
 	} from "../../../global";
 	import {onMount} from "svelte";
 	import ModeStats from "./ModeStats.svelte";
 
-	currentPage.set(Page.HY_STATS);
+	currentPage.set(MinecraftPages.HY_STATS);
 
 	const USER_INEXISTENT_ERROR = {code: -2, message: 'User doesn\'t have bedwars stats.'};
 	const USER_MISSING_ERROR = {code: -3, message: 'User doesn\'t exist.'};
@@ -54,7 +53,7 @@
 	let uuid = '';
 	let stats = {};
 	$: downloadableStats =
-		"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(stats));
+			"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(stats));
 	$: downloadFileName = downloadableStatsFileName(stats, new Date());
 
 	let linkMode;
@@ -75,46 +74,46 @@
 
 		expectedError = true;
 		loadingStatus = LoadingStatus.LOADING;
-		return await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
+		await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'
 			}
 		}).then(response => response.json()).then(data => {
 			if ('error' in data) {
-				if (data.error === 'Bedwars stats not found.') {
+				if (data.error === USER_INEXISTENT_ERROR.code) {
 					throw USER_INEXISTENT_ERROR;
 				}
-				if (data.error === 'Player not found.') {
+				if (data.error === USER_MISSING_ERROR.code) {
 					throw USER_MISSING_ERROR;
 				}
-				if (data.error === 'Stats not found.') {
+				if (data.error === STATS_MISSING_ERROR.code) {
 					throw STATS_MISSING_ERROR;
 				}
 			}
 			loadingStatus = LoadingStatus.IDLE;
 			stats = data;
 			notify(`Successfully fetched stats. ${status}`,
-				Status.SUCCESS,
-				Pos.BOTTOM_LEFT,
-				Timeout.QUICK);
+					Status.SUCCESS,
+					Pos.BOTTOM_LEFT,
+					Timeout.QUICK);
 		}).catch(status => {
 			loadingStatus = LoadingStatus.FAILED;
 			if (status ===
-				USER_INEXISTENT_ERROR ||
-				status ===
-				USER_MISSING_ERROR ||
-				status ===
-				STATS_MISSING_ERROR) {
+					USER_INEXISTENT_ERROR ||
+					status ===
+					USER_MISSING_ERROR ||
+					status ===
+					STATS_MISSING_ERROR) {
 				isolatedUsername = username;
 				expectedError = true;
 			} else {
 				expectedError = false;
 			}
 			notify(`Error fetching stats. ${'message' in status ? status.message : status}`,
-				expectedError ? Status.WARNING : Status.DANGER,
-				Pos.BOTTOM_LEFT,
-				Timeout.CRITICAL);
+					expectedError ? Status.WARNING : Status.DANGER,
+					Pos.BOTTOM_LEFT,
+					Timeout.CRITICAL);
 		});
 	}
 
@@ -142,10 +141,10 @@
 </script>
 
 <style>
-    /** Changes the mouse cursor into a point (hand) when hovering over objects with this class. */
-    .pointer-cursor:hover {
-        cursor: pointer;
-    }
+	/** Changes the mouse cursor into a point (hand) when hovering over objects with this class. */
+	.pointer-cursor:hover {
+		cursor: pointer;
+	}
 </style>
 
 <svelte:head>

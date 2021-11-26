@@ -1,7 +1,7 @@
 <script>
-	import {currentPage, Page} from "../stores";
+    import {CheatsheetPages, currentPage, LabelMap, MinecraftPages, Pages, ProjectPages, UriMap} from "../stores";
 
-	currentPage.set(Page.HOME);
+    currentPage.set(Pages.HOME);
 </script>
 
 <svelte:head>
@@ -28,20 +28,26 @@
 				I'm a software engineer so I like to do a lot of stuff with keyboard shortcuts and while I
 				learn them I like to write them down in case I forget them at a later date.
 			</p>
-			<a href="cheatsheet/programs/">Programs</a><br>
-			<a href="cheatsheet/linux/">Linux (Ubuntu)</a><br>
-			<a href="cheatsheet/school/">School</a><br>
-			<a href="cheatsheet/ascii/">Ascii Table</a>
+			<ul class="uk-list uk-list-collapse">
+				{#each Object.entries(CheatsheetPages) as [_, p]}
+					<li>
+						<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+					</li>
+				{/each}
+			</ul>
 		</div>
 		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Projects</h3>
 			<p>
 				Some small projects I did for fun
 			</p>
-			<a href="project/umlaut/">Umlaut</a><br>
-			<a href="project/crypto/">Cryptography</a><br>
-			<a href="project/pi/">Pi</a>
-			<a href="project/prime_factorization/">Prime Factorization</a>
+			<ul class="uk-list uk-list-collapse">
+				{#each Object.entries(ProjectPages) as [_, p]}
+					<li class:uk-active={currentPage === p}>
+						<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+					</li>
+				{/each}
+			</ul>
 		</div>
 	</div>
 	<div class="uk-width-1-3@m uk-width-1-2@s">
@@ -63,9 +69,13 @@
 				reminder for me of what's around if I forget and it might come in handy for someone else as
 				well.
 			</p>
-			<a href="mc/command/">Server Commands</a><br>
-			<a href="mc/server/">Server Overview</a><br>
-			<a href="mc/hy_stats/">Hypixel Bedwars Stats</a>
+			<ul class="uk-list uk-list-collapse">
+				{#each Object.entries(MinecraftPages) as [_, p]}
+					<li>
+						<a href={UriMap.get(p)}>{LabelMap.get(p)}</a>
+					</li>
+				{/each}
+			</ul>
 		</div>
 	</div>
 	<div class="uk-width-1-3@m uk-width-1-2@s">
@@ -91,7 +101,7 @@
 		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Contact d20cay</h3>
 			<p>
-				Have any questions or feel like chatting? <a href="contact/">Shoot me a message</a>.
+				Have any questions or feel like chatting? <a href={UriMap.get(Pages.CONTACT)}>Shoot me a message</a>.
 			</p>
 		</div>
 	</div>

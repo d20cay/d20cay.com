@@ -2,17 +2,17 @@
 
 This repository contains the code for the d20cay.com domain.
 
-Version: 2021.24.2
+Version: 2021.47.1
 
-## Current structure:  
+## Current structure:
+
 Homepage  
-\-  Clip Studio Paint Cheatsheet  
-\-  Linux Cheatsheet  
-\-  School Cheatsheets  
+\- Clip Studio Paint Cheatsheet  
+\- Linux Cheatsheet  
+\- School Cheatsheets
 
-\-  Minecraft Servers  
-\-  Minecraft Cheatsheet
-\-  Hypixel Player Stats
+\- Minecraft Servers  
+\- Minecraft Cheatsheet \- Hypixel Player Stats
 
 \- ae  
 \- oe  
@@ -40,3 +40,5 @@ Homepage
 ## Proxy Api
 
 Run `uvicorn main:app --host localhost` from the folder the main.py file resides in. Add `--reload` if in dev mode.
+If `uvicorn` isn't installed properly you might need to start it
+with `python -m uvicorn main:app --host localhost --reload`.
