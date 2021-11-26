@@ -14,6 +14,8 @@
 	currentPage.set(ProjectPages.YTM_LIB);
 
 	const INCORRECT_PAYLOAD = {code: -5, message: 'POST body in incorrect format.'};
+	const MAX_DEFAULT_PLAYLIST_ITEM_COUNT = 30;
+	const PLAYLIST_ITEM_INCREMENT = 50;
 
 	let loadingStatus = LoadingStatus.IDLE;
 
@@ -21,6 +23,12 @@
 	let x_goog_user;
 	let library;
 	let analysis;
+
+	// Stores current amount of songs displayed for each playlist in the library overview.
+	$: playlistItemDisplayCount =
+			library === undefined ?
+					undefined :
+					new Array(library.playlists.length + 1).fill(MAX_DEFAULT_PLAYLIST_ITEM_COUNT);
 
 	function inputsValid() {
 		return cookie !== "" && x_goog_user !== "";
@@ -53,10 +61,25 @@
 					Timeout.QUICK);
 		}).catch(() => {
 			loadingStatus = LoadingStatus.IDLE;
-			notify('Error fetching library contents and analysis data.', Status.DANGER, Pos.BOTTOM_LEFT, Timeout.CRITICAL);
+			notify('Error fetching library contents and analysis data.',
+					Status.DANGER,
+					Pos.BOTTOM_LEFT,
+					Timeout.CRITICAL);
 		});
 	}
+
+	function increasePlaylistItemDisplayCount(index) {
+		let newPlaylistItemDisplayCount = [...playlistItemDisplayCount]
+		newPlaylistItemDisplayCount[index] += PLAYLIST_ITEM_INCREMENT;
+		playlistItemDisplayCount = newPlaylistItemDisplayCount
+	}
 </script>
+
+<style>
+	.more-li {
+		list-style: none;
+	}
+</style>
 
 <svelte:head>
 	<title>d20cay | YT Music Library Analysis Project</title>
@@ -133,19 +156,41 @@
 				<!--Adds padding only on the left side to create an indent for every category.-->
 				<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 					<ol>
-						<li>Library Songs
+						<li>Library Songs ({library.songs.length} items)
 							<ol type="a">
-								{#each library.songs as song}
-									<li><a href={getSongShareString(song.videoId)}>{song.title}</a></li>
+								{#each library.songs as song, i}
+									{#if i < playlistItemDisplayCount[0]}
+										<li><a href={getSongShareString(song.videoId)}>{song.title}</a></li>
+									{/if}
+									{#if i ===
+									playlistItemDisplayCount[0] - 1 &&
+									playlistItemDisplayCount[0] <
+									library.songs.length}
+										<li class="more-li"><a
+												on:click={() => increasePlaylistItemDisplayCount(0)}>+{library.songs.length -
+										playlistItemDisplayCount[0]} more</a>
+										</li>
+									{/if}
 								{/each}
 							</ol>
 						</li>
-						{#each library.playlists as playlist}
+						{#each library.playlists as playlist, i}
 							<li>
-								<a href={getPlaylistShareString(playlist.id)}>{playlist.title}</a>
+								<a href={getPlaylistShareString(playlist.id)}>{playlist.title}</a> ({playlist.tracks.length} items)
 								<ol type="a">
-									{#each playlist.tracks as song}
-										<li><a href={getSongShareString(song.videoId)}>{song.title}</a></li>
+									{#each playlist.tracks as song, j}
+										{#if j < playlistItemDisplayCount[i]}
+											<li><a href={getSongShareString(song.videoId)}>{song.title}</a></li>
+										{/if}
+										{#if j ===
+										playlistItemDisplayCount[i] - 1 &&
+										playlistItemDisplayCount[i] <
+										library.songs.length}
+											<li class="more-li"><a
+													on:click={() => increasePlaylistItemDisplayCount(i)}>+{playlist.tracks.length -
+											playlistItemDisplayCount[i]} more</a>
+											</li>
+										{/if}
 									{/each}
 								</ol>
 							</li>
