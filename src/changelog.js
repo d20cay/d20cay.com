@@ -25,6 +25,20 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-11-26',
+		version: '2021.47.1',
+		changes: [
+			{
+				text: 'YTM library analysis project. This was huge. I worked on this for basically half a year.',
+				type: Type.ADDED
+			},
+			{
+				text: 'Adds secret santa page. Still under construction!',
+				type: Type.ADDED
+			}
+		]
+	},
+	{
 		date: '2021-06-19',
 		version: '2021.24.2',
 		changes: [
