@@ -16,8 +16,10 @@
 	const INCORRECT_PAYLOAD = {code: -5, message: 'POST body in incorrect format.'};
 	const MAX_DEFAULT_PLAYLIST_ITEM_COUNT = 30;
 	const PLAYLIST_ITEM_INCREMENT = 50;
+	const WAIT_TIME_FOR_LONG_LOAD_INDICATION = 5 * 1000;
 
 	let loadingStatus = LoadingStatus.IDLE;
+	let loadTakingLong = false;
 
 	let cookie;
 	let x_goog_user;
@@ -39,6 +41,7 @@
 		const devApiUrl = `http://localhost:8000/ytm/lib`;
 
 		loadingStatus = LoadingStatus.LOADING;
+		const loadTakingLongTimeout = setTimeout(() => loadTakingLong = true, WAIT_TIME_FOR_LONG_LOAD_INDICATION)
 		await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
 			method: 'POST',
 			headers: {
@@ -46,6 +49,8 @@
 			},
 			body: JSON.stringify({cookie, x_goog_user})
 		}).then(response => {
+			clearTimeout(loadTakingLongTimeout);
+			loadTakingLong = false;
 			if (response.status === 422) {
 				throw INCORRECT_PAYLOAD;
 			}
@@ -102,7 +107,7 @@
 	fields.
 </p>
 
-<div class="uk-alert-danger" uk-alert>
+<div class="uk-alert-danger uk-border-rounded" uk-alert>
 	<p>Make sure you trust this website before entering your credentials! Yes, I am warning you of my own website.
 		Once you enter your credentials I could potentially store them and wreak complete havoc on your YTM library.
 		I will not, because I don't care to be this destructive. You should just be aware of this.</p>
@@ -333,6 +338,16 @@
 		</li>
 	</ul>
 {:else}
+	{#if loadTakingLong}
+		<div class="uk-alert-primary uk-border-rounded" uk-alert>
+			<p>The loading duration of this tool might be quite extensive. My library contains about 1500 items, which
+				results in an output file of 2 MB, which has to be processed in approximately 3.8 * 10^6
+				comparisons. Depending on the amount of duplicates the output file might even double and needs to be
+				sent from the backend to the frontend. Trust me when I tell you that you can't write the analysis in
+				javascript. I tried. I really did.</p>
+			<p>In my case the whole run takes about <i>40 seconds</i> from the small sample I took.</p>
+		</div>
+	{/if}
 	<p class="uk-text-center uk-margin-medium">
 		Nothing here yet. Enter your credentials to show information and options here.
 	</p>
