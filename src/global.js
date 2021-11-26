@@ -80,7 +80,3 @@ export function updateUrl(parameters) {
 export function isProdInstance() {
 	return prodUrlRegex.test(window.location.href);
 }
-
-export function isDevInstance() {
-	return !isProdInstance();
-}
