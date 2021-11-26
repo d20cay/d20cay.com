@@ -181,7 +181,7 @@
 						<li>
 							<!-- svelte-ignore a11y-invalid-attribute -->
 							<a class="uk-accordion-title" href="#">Library Song Duplicates
-								({analysis.duplicates.library.totalDuplicates})</a>
+								({analysis.duplicates.library.totalDuplicateCount})</a>
 							<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 								<ul uk-accordion="multiple: true">
 									{#if analysis.duplicates.library.idDuplicates.length !== 0}
@@ -233,7 +233,7 @@
 						<li>
 							<!-- svelte-ignore a11y-invalid-attribute -->
 							<a class="uk-accordion-title" href="#">Playlist Duplicates
-								({analysis.duplicates.playlists.totalDuplicates})</a>
+								({analysis.duplicates.playlists.totalDuplicateCount})</a>
 							<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 								<ul uk-accordion="multiple: true">
 									{#if analysis.duplicates.playlists.idDuplicates.length !== 0}
