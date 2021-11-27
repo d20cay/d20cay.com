@@ -25,6 +25,24 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-11-27',
+		version: '2021.47.2',
+		changes: [
+			{
+				text: 'missing "+" character in python script for playlist duplicates, which caused there to be little to no duplicates, because they kept being overwritten.',
+				type: Type.FIXED
+			},
+			{
+				text: 'logging for analysis runtime.',
+				type: Type.ADDED
+			},
+			{
+				text: 'analysis tests for new JSON format.',
+				type: Type.FIXED
+			}
+		]
+	},
+	{
 		date: '2021-11-26',
 		version: '2021.47.1',
 		changes: [

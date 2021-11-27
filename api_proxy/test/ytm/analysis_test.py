@@ -1,6 +1,8 @@
+import json
 import unittest
 
 from ytm.analysis import simplify_title, ytm_analyze, DuplicateIssueType
+from ytm.ytm import get_library
 
 
 class TestAnalysis(unittest.TestCase):
@@ -50,7 +52,8 @@ class TestAnalysis(unittest.TestCase):
                                 "simpleTitleDuplicates": [],
                                 "titleArtistDuplicates": [],
                                 "titleDuplicates": []}}
-        self.assertEqual(ytm_analyze(library), issues)
+        analysis = {"duplicates": issues}
+        self.assertEqual(ytm_analyze(library), analysis)
 
     def test_ytm_analyze_title_artist_duplicate_library_library(self):
         library = {
@@ -107,7 +110,8 @@ class TestAnalysis(unittest.TestCase):
                                 "simpleTitleDuplicates": [],
                                 "titleArtistDuplicates": [],
                                 "titleDuplicates": []}}
-        self.assertEqual(ytm_analyze(library), issues)
+        analysis = {"duplicates": issues}
+        self.assertEqual(ytm_analyze(library), analysis)
 
     def test_ytm_analyze_title_duplicate_library_library(self):
         library = {
@@ -157,7 +161,8 @@ class TestAnalysis(unittest.TestCase):
                                 "simpleTitleDuplicates": [],
                                 "titleArtistDuplicates": [],
                                 "titleDuplicates": []}}
-        self.assertEqual(ytm_analyze(library), issues)
+        analysis = {"duplicates": issues}
+        self.assertEqual(ytm_analyze(library), analysis)
 
     def test_ytm_analyze_simple_title_duplicate_library_library(self):
         library = {
@@ -207,7 +212,8 @@ class TestAnalysis(unittest.TestCase):
                                 "simpleTitleDuplicates": [],
                                 "titleArtistDuplicates": [],
                                 "titleDuplicates": []}}
-        self.assertEqual(ytm_analyze(library), issues)
+        analysis = {"duplicates": issues}
+        self.assertEqual(ytm_analyze(library), analysis)
 
     def test_ytm_analyze_id_duplicate_library_playlists(self):
         library = {
@@ -253,7 +259,8 @@ class TestAnalysis(unittest.TestCase):
                                 "simpleTitleDuplicates": [],
                                 "titleArtistDuplicates": [],
                                 "titleDuplicates": []}}
-        self.assertEqual(ytm_analyze(library), issues)
+        analysis = {"duplicates": issues}
+        self.assertEqual(ytm_analyze(library), analysis)
 
     def test_ytm_analyze_id_duplicate_paylist_playlists(self):
         library = {
@@ -301,7 +308,8 @@ class TestAnalysis(unittest.TestCase):
                       ],
                       "duplicatePlaylist": {"id": "d", "title": "Best"},
                   }], "simpleTitleDuplicates": [], "titleArtistDuplicates": [], "titleDuplicates": []}}
-        self.assertEqual(ytm_analyze(library), issues)
+        analysis = {"duplicates": issues}
+        self.assertEqual(ytm_analyze(library), analysis)
 
 
 if __name__ == "__main__":
