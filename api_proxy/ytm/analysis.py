@@ -38,7 +38,7 @@ def ytm_analyze(library):
     analysis = {"duplicates": {
         "library": categorize_issues(library_song_issues), "playlists": categorize_issues(playlist_song_issues)
     }}
-    logging.info("Analysis completed in {}. Found {} issues.".format(datetime.datetime.now() - start_time), analysis["duplicates"]["library"]["totalDuplicateCount"] + analysis["duplicates"]["playlists"]["totalDuplicateCount"])
+    logging.info("Analysis completed in {}. Found {} issues.".format(datetime.datetime.now() - start_time, analysis["duplicates"]["library"]["totalDuplicateCount"] + analysis["duplicates"]["playlists"]["totalDuplicateCount"]))
     return analysis
 
 
