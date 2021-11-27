@@ -1,3 +1,4 @@
+import datetime
 import logging
 import re
 from enum import Enum
@@ -6,6 +7,7 @@ logging.basicConfig(format='%(asctime)s %(levelname)s - %(message)s', level=logg
 
 
 def ytm_analyze(library):
+    start_time = datetime.datetime.now()
     # Filter out Likes playlist
     playlists = list(filter(lambda pl: pl["title"] != "Your Likes", [pl for pl in library["playlists"]]))
     # List of all songs
@@ -30,12 +32,14 @@ def ytm_analyze(library):
     playlist_song_issues = []
     for i, t1 in enumerate(playlist_songs):
         other_songs = [s for j, s in enumerate(playlist_songs) if i != j]
-        playlist_song_issues = list(filter(lambda duplicate: duplicate is not None, [
+        playlist_song_issues += list(filter(lambda duplicate: duplicate is not None, [
             build_duplicate_issue(t1["track"], t1["playlist"], t2["track"], t2["playlist"]) for t2 in other_songs]))
 
-    return {"duplicates": {
+    analysis = {"duplicates": {
         "library": categorize_issues(library_song_issues), "playlists": categorize_issues(playlist_song_issues)
     }}
+    logging.info("Analysis completed in {}. Found {} issues.".format(datetime.datetime.now() - start_time), analysis["duplicates"]["library"]["totalDuplicateCount"] + analysis["duplicates"]["playlists"]["totalDuplicateCount"])
+    return analysis
 
 
 def categorize_issues(issues):
