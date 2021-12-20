@@ -13,7 +13,9 @@ def get_library(cookie, x_goog_authuser):
 
 def strip_library(songs, playlists):
     playlists = list(map(
-        lambda playlist: {"id": playlist["id"], "title": playlist["title"], "tracks": strip_songs(playlist["tracks"])},
+        lambda playlist: {"id": playlist["id"], "title": playlist["title"],
+                          "author": playlist["author"] if "author" in playlist else "",
+                          "tracks": strip_songs(playlist["tracks"])},
         playlists))
     return {"songs": strip_songs(songs), "playlists": playlists}
 

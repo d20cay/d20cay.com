@@ -22,15 +22,20 @@
 	let loadTakingLong = false;
 
 	let cookie;
-	let x_goog_user;
+	let x_goog_user = 1;
+	let excludeAll = true;
+	let excludeForeign = false;
+	let username;
 	let library;
 	let analysis;
 
+	$: excludeForeign = username !== undefined && username !== null && username !== "";
+
 	// Stores current amount of songs displayed for each playlist in the library overview.
 	$: playlistItemDisplayCount =
-			library === undefined ?
-					undefined :
-					new Array(library.playlists.length + 1).fill(MAX_DEFAULT_PLAYLIST_ITEM_COUNT);
+		library === undefined ?
+			undefined :
+			new Array(library.playlists.length + 1).fill(MAX_DEFAULT_PLAYLIST_ITEM_COUNT);
 
 	function inputsValid() {
 		return cookie !== "" && x_goog_user !== "";
@@ -47,7 +52,13 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({cookie, x_goog_user})
+			body: JSON.stringify({
+				cookie,
+				x_goog_user,
+				excludeAllPlaylist: excludeAll,
+				excludeForeignPlaylists: excludeForeign,
+				username
+			})
 		}).then(response => {
 			clearTimeout(loadTakingLongTimeout);
 			loadTakingLong = false;
@@ -61,15 +72,15 @@
 			analysis = data.analysis;
 			console.log(data);
 			notify('Successfully fetched library contents and analysis data.',
-					Status.SUCCESS,
-					Pos.BOTTOM_LEFT,
-					Timeout.QUICK);
+				Status.SUCCESS,
+				Pos.BOTTOM_LEFT,
+				Timeout.QUICK);
 		}).catch(() => {
 			loadingStatus = LoadingStatus.IDLE;
 			notify('Error fetching library contents and analysis data.',
-					Status.DANGER,
-					Pos.BOTTOM_LEFT,
-					Timeout.CRITICAL);
+				Status.DANGER,
+				Pos.BOTTOM_LEFT,
+				Timeout.CRITICAL);
 		});
 	}
 
@@ -151,6 +162,46 @@
 		</button>
 	</div>
 </div>
+
+<ul uk-accordion>
+	<li>
+		<a class="uk-accordion-title normal-text" href="#">Advanced</a>
+		<div class="uk-accordion-content">
+			<div uk-grid class="uk-grid-small">
+				<div class="uk-width-1-3@m uk-width-1-1@s">
+					<input id="exclude-all-checkbox"
+					       type="checkbox"
+					       bind:checked={excludeAll}
+					       class="uk-checkbox uk-border-rounded">
+					<label for="exclude-all-checkbox" class="uk-form-label">
+						Exclude any playlists named "All" from analysis. (case-sensitive)
+					</label><br>
+
+					<input id="exclude-foreign-checkbox"
+					       disabled
+					       type="checkbox"
+					       bind:checked={excludeForeign}
+					       class="uk-checkbox uk-border-rounded">
+					<label for="exclude-foreign-checkbox" class="uk-form-label">
+						Ignore playlists not created by `username`. This is automatically enabled as soon as you write
+						something in the username field.
+					</label>
+				</div>
+
+				<div class="uk-width-auto@m uk-width-1-1@s">
+					<label for="username-input" class="uk-form-label">
+						Username
+					</label>
+					<input id="username-input"
+					       type="text"
+					       bind:value={username}
+					       class="uk-input uk-border-rounded">
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>
+
 
 {#if library !== undefined}
 	<ul uk-accordion>

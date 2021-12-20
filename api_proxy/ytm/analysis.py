@@ -6,10 +6,16 @@ from enum import Enum
 logging.basicConfig(format='%(asctime)s %(levelname)s - %(message)s', level=logging.DEBUG)
 
 
-def ytm_analyze(library):
+def ytm_analyze(library, exclude_all_playlist, exclude_foreign_playlists, username):
+    if exclude_foreign_playlists and username is None:
+        logging.warning('Not excluding foreign playlists because username is not set.')
+
     start_time = datetime.datetime.now()
     # Filter out Likes playlist
-    playlists = list(filter(lambda pl: pl["title"] != "Your Likes", [pl for pl in library["playlists"]]))
+
+    playlists = list(
+        filter(lambda pl: playlist_passes_filter(pl, exclude_all_playlist, exclude_foreign_playlists, username),
+               [pl for pl in library["playlists"]]))
     # List of all songs
     playlist_songs = [{"track": track, "playlist": {"id": pl["id"], "title": pl["title"]}} for pl in playlists
                       for track in pl["tracks"]]
@@ -35,10 +41,17 @@ def ytm_analyze(library):
         playlist_song_issues += list(filter(lambda duplicate: duplicate is not None, [
             build_duplicate_issue(t1["track"], t1["playlist"], t2["track"], t2["playlist"]) for t2 in other_songs]))
 
-    analysis = {"duplicates": {
+    excluded_pl = map(lambda pl: {"id": pl["id"], "author": pl["author"], "title": pl["title"]}, list(filter(
+        lambda pl_before: playlist_passes_filter(pl_before, exclude_all_playlist, exclude_foreign_playlists, username),
+        library["playlists"])))
+    analysis = {"excludedPlaylists": {}, "duplicates": {
         "library": categorize_issues(library_song_issues), "playlists": categorize_issues(playlist_song_issues)
     }}
-    logging.info("Analysis completed in {}. Found {} issues.".format(datetime.datetime.now() - start_time, analysis["duplicates"]["library"]["totalDuplicateCount"] + analysis["duplicates"]["playlists"]["totalDuplicateCount"]))
+    logging.info("Analysis completed in {}. Found {} issues.".format(datetime.datetime.now() - start_time,
+                                                                     analysis["duplicates"]["library"][
+                                                                         "totalDuplicateCount"] +
+                                                                     analysis["duplicates"]["playlists"][
+                                                                         "totalDuplicateCount"]))
     return analysis
 
 
@@ -89,6 +102,13 @@ def simplify_title(title):
     # Remove any () and containing text from titles.
     removed_brackets = re.sub(r"\(.*\)", "", title)
     return re.sub(r"\s+", " ", removed_brackets).strip()
+
+
+def playlist_passes_filter(pl, exclude_all_playlist, exclude_foreign_playlists, username):
+    likes = pl["title"] == "Your Likes"
+    all = pl["title"] == "All"
+    foreign = pl["author"] != username
+    return not likes or (not all and exclude_all_playlist) or (not foreign and exclude_foreign_playlists)
 
 
 class DuplicateIssueType(str, Enum):
