@@ -41,10 +41,10 @@ def ytm_analyze(library, exclude_all_playlist, exclude_foreign_playlists, userna
         playlist_song_issues += list(filter(lambda duplicate: duplicate is not None, [
             build_duplicate_issue(t1["track"], t1["playlist"], t2["track"], t2["playlist"]) for t2 in other_songs]))
 
-    excluded_pl = map(lambda pl: {"id": pl["id"], "author": pl["author"], "title": pl["title"]}, list(filter(
-        lambda pl_before: playlist_passes_filter(pl_before, exclude_all_playlist, exclude_foreign_playlists, username),
-        library["playlists"])))
-    analysis = {"excludedPlaylists": {}, "duplicates": {
+    excluded_pl = list(map(lambda pl: {"id": pl["id"], "author": pl["author"], "title": pl["title"]}, list(filter(
+        lambda pl_before: not playlist_passes_filter(pl_before, exclude_all_playlist, exclude_foreign_playlists,
+                                                     username), library["playlists"]))))
+    analysis = {"excludedPlaylists": excluded_pl, "duplicates": {
         "library": categorize_issues(library_song_issues), "playlists": categorize_issues(playlist_song_issues)
     }}
     logging.info("Analysis completed in {}. Found {} issues.".format(datetime.datetime.now() - start_time,
@@ -106,9 +106,9 @@ def simplify_title(title):
 
 def playlist_passes_filter(pl, exclude_all_playlist, exclude_foreign_playlists, username):
     likes = pl["title"] == "Your Likes"
-    all = pl["title"] == "All"
-    foreign = pl["author"] != username
-    return not likes or (not all and exclude_all_playlist) or (not foreign and exclude_foreign_playlists)
+    all_pl = pl["title"] == "All"
+    foreign = "author" in pl and "name" in pl["author"] and pl["author"]["name"] != username
+    return not (likes or (all_pl and exclude_all_playlist) or (foreign and exclude_foreign_playlists))
 
 
 class DuplicateIssueType(str, Enum):

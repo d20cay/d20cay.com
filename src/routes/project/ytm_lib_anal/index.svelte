@@ -1,6 +1,7 @@
 <script>
 	import {currentPage, ProjectPages} from "../../../stores";
 	import {
+		downloadableFileName,
 		isProdInstance,
 		LoadingStatus,
 		NotificationPosition as Pos,
@@ -29,13 +30,20 @@
 	let library;
 	let analysis;
 
+	$: downloadableAnalysis =
+			"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({library, analysis}));
+
 	$: excludeForeign = username !== undefined && username !== null && username !== "";
 
 	// Stores current amount of songs displayed for each playlist in the library overview.
 	$: playlistItemDisplayCount =
-		library === undefined ?
-			undefined :
-			new Array(library.playlists.length + 1).fill(MAX_DEFAULT_PLAYLIST_ITEM_COUNT);
+			library === undefined ?
+					undefined :
+					new Array(library.playlists.length + 1).fill(MAX_DEFAULT_PLAYLIST_ITEM_COUNT);
+
+	function downloadFileName() {
+		return downloadableFileName("", "ytm_analysis", new Date())
+	}
 
 	function inputsValid() {
 		return cookie !== "" && x_goog_user !== "";
@@ -72,15 +80,15 @@
 			analysis = data.analysis;
 			console.log(data);
 			notify('Successfully fetched library contents and analysis data.',
-				Status.SUCCESS,
-				Pos.BOTTOM_LEFT,
-				Timeout.QUICK);
+					Status.SUCCESS,
+					Pos.BOTTOM_LEFT,
+					Timeout.QUICK);
 		}).catch(() => {
 			loadingStatus = LoadingStatus.IDLE;
 			notify('Error fetching library contents and analysis data.',
-				Status.DANGER,
-				Pos.BOTTOM_LEFT,
-				Timeout.CRITICAL);
+					Status.DANGER,
+					Pos.BOTTOM_LEFT,
+					Timeout.CRITICAL);
 		});
 	}
 
@@ -148,19 +156,33 @@
 		       class="uk-input uk-border-rounded">
 	</div>
 	<div class="uk-width-auto">
-		<label for="alignment-hack">&nbsp;<br></label>
-		<button on:click={requestLibData}
-		        class="uk-button uk-button-primary uk-border-rounded"
-		        disabled={!inputsValid()}>
-			{#if loadingStatus === LoadingStatus.IDLE || loadingStatus === LoadingStatus.FAILED}
-				Run
-			{:else if loadingStatus === LoadingStatus.LOADING}
+		<div class="uk-margin">
+			<label for="alignment-hack">&nbsp;<br></label>
+			<button on:click={requestLibData}
+			        class="uk-button uk-button-primary uk-border-rounded"
+			        disabled={!inputsValid()}>
+				{#if loadingStatus === LoadingStatus.IDLE || loadingStatus === LoadingStatus.FAILED}
+					Run
+				{:else if loadingStatus === LoadingStatus.LOADING}
 					<span uk-tooltip="Loading..."
 					      class="uk-animation-fade uk-animation-fast"><div
 							uk-spinner></div></span>
-			{/if}
-		</button>
+				{/if}
+			</button>
+		</div>
 	</div>
+	{#if analysis !== undefined && library !== undefined}
+		<div class="uk-width-auto">
+			<label for="alignment-hack">&nbsp;<br></label>
+			<div class="uk-flex-bottom">
+				<a href={downloadableAnalysis}
+				   download={downloadFileName()}
+				   uk-tooltip="Download analysis result"
+				   class="uk-icon-button pointer-cursor uk-animation-fade uk-animation-fast"
+				   uk-icon="download"></a>
+			</div>
+		</div>
+	{/if}
 </div>
 
 <ul uk-accordion>
