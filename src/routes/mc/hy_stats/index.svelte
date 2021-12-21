@@ -1,6 +1,7 @@
 <script>
 	import {currentPage, MinecraftPages} from "../../../stores";
 	import {
+		downloadableFileName,
 		isProdInstance,
 		LoadingStatus,
 		NotificationPosition as Pos,
@@ -54,7 +55,10 @@
 	let stats = {};
 	$: downloadableStats =
 			"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(stats));
-	$: downloadFileName = downloadableStatsFileName(stats, new Date());
+
+	function downloadFileName() {
+		return downloadableFileName(stats.playername, "hypixel_stats", new Date())
+	}
 
 	let linkMode;
 	let mode;
@@ -115,21 +119,6 @@
 					Pos.BOTTOM_LEFT,
 					Timeout.CRITICAL);
 		});
-	}
-
-	function downloadableStatsFileName(stats, date) {
-		const year = formatDatePart(date.getFullYear());
-		const month = formatDatePart((date.getMonth() + 1));
-		const day = formatDatePart(date.getDate());
-		const hours = formatDatePart(date.getHours());
-		const minutes = formatDatePart(date.getMinutes());
-		const seconds = formatDatePart(date.getSeconds());
-		return `${stats.playername}_stats_${year}-${month}-${day}_${hours}-${minutes}-${seconds}.json`;
-	}
-
-	function formatDatePart(num) {
-		const numString = num.toString();
-		return numString.length > 1 ? numString : "0" + numString;
 	}
 
 	function keyPressed(e) {
@@ -236,7 +225,7 @@
 				<label for="alignment-hack">&nbsp;<br></label>
 				<div class="uk-flex-bottom">
 					<a href={downloadableStats}
-					   download={downloadFileName}
+					   download={downloadFileName()}
 					   uk-tooltip="Download stats"
 					   class="uk-icon-button pointer-cursor uk-animation-fade uk-animation-fast"
 					   uk-icon="download"></a>

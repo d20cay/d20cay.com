@@ -25,6 +25,24 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-12-21',
+		version: '2021.51.1',
+		changes: [
+			{
+				text: 'YTM Analysis setting to ignore All playlist.',
+				type: Type.ADDED
+			},
+			{
+				text: 'YTM Analysis setting to ignore foreign playlists.',
+				type: Type.ADDED
+			},
+			{
+				text: 'YTM Analysis setting to cache request data in cookies.',
+				type: Type.ADDED
+			},
+		]
+	},
+	{
 		date: '2021-11-27',
 		version: '2021.47.2',
 		changes: [
