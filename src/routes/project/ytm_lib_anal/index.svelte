@@ -1,6 +1,8 @@
 <script>
+	import {onMount} from 'svelte';
 	import {currentPage, ProjectPages} from "../../../stores";
 	import {
+		downloadableFileName,
 		isProdInstance,
 		LoadingStatus,
 		NotificationPosition as Pos,
@@ -22,15 +24,87 @@
 	let loadTakingLong = false;
 
 	let cookie;
-	let x_goog_user;
+	let x_goog_user = 1;
+	let excludeAll = true;
+	let excludeForeign = false;
+	let username;
+	let cacheRequest = false;
+
 	let library;
 	let analysis;
+
+	onMount(() => {
+		const cookieCookie = getCookie("cookie");
+		if (cookieCookie) {
+			cookie = unescapeSemicolon(cookieCookie);
+		}
+		const cookieX_goog_user = getCookie("x_goog_user");
+		if (cookieX_goog_user) {
+			x_goog_user = cookieX_goog_user;
+		}
+		const cookieExcludeAll = getCookie("excludeAll");
+		if (cookieExcludeAll) {
+			excludeAll = cookieExcludeAll;
+		}
+		const cookieExcludeForeign = getCookie("excludeForeign");
+		if (cookieExcludeForeign) {
+			excludeForeign = cookieExcludeForeign;
+		}
+		const cookieUsername = getCookie("username");
+		if (cookieUsername) {
+			username = cookieUsername;
+		}
+		const cookieCacheRequest = getCookie("cacheRequest");
+		if (cookieCacheRequest) {
+			cacheRequest = cookieCacheRequest;
+		}
+	});
+
+	function getCookie(cname) {
+		let name = cname + "=";
+		let cookieParts = decodeURIComponent(document.cookie).split('; ');
+		for (const cookiePart of cookieParts) {
+			if (cookiePart.startsWith(name)) {
+				const value = cookiePart.slice(-(cookiePart.length - name.length));
+				if (value === "true") {
+					return true;
+				} else if (value === "false") {
+					return false;
+				} else if (!isNaN(value)) {
+					return parseInt(value);
+				}
+				return value;
+			}
+		}
+		return undefined;
+	}
+
+	function isInteger(value) {
+		return /^\d+$/.test(value);
+	}
+
+	function escapeSemicolon(inputStr) {
+		return inputStr.replace(/;\s/g, '\\semicolon');
+	}
+
+	function unescapeSemicolon(inputStr) {
+		return inputStr.replace(/\\semicolon/g, '; ');
+	}
+
+	$: downloadableAnalysis =
+			"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({library, analysis}));
+
+	$: excludeForeign = username !== undefined && username !== null && username !== "";
 
 	// Stores current amount of songs displayed for each playlist in the library overview.
 	$: playlistItemDisplayCount =
 			library === undefined ?
 					undefined :
 					new Array(library.playlists.length + 1).fill(MAX_DEFAULT_PLAYLIST_ITEM_COUNT);
+
+	function downloadFileName() {
+		return downloadableFileName("", "ytm_analysis", new Date())
+	}
 
 	function inputsValid() {
 		return cookie !== "" && x_goog_user !== "";
@@ -40,6 +114,25 @@
 		const prodApiUrl = `https://api.d20cay.com/ytm/lib`;
 		const devApiUrl = `http://localhost:8000/ytm/lib`;
 
+		if (cookie) {
+			document.cookie = `cookie=${escapeSemicolon(cookie)};`;
+		}
+		if (x_goog_user) {
+			document.cookie = `x_goog_user=${x_goog_user};`;
+		}
+		if (excludeAll !== undefined || excludeAll !== null) {
+			document.cookie = `excludeAll=${excludeAll};`;
+		}
+		if (excludeForeign !== undefined || excludeForeign !== null) {
+			document.cookie = `excludeForeign=${excludeForeign};`;
+		}
+		if (username) {
+			document.cookie = `username=${username};`;
+		}
+		if (cacheRequest !== undefined || cacheRequest !== null) {
+			document.cookie = `cacheRequest=${cacheRequest};`;
+		}
+
 		loadingStatus = LoadingStatus.LOADING;
 		const loadTakingLongTimeout = setTimeout(() => loadTakingLong = true, WAIT_TIME_FOR_LONG_LOAD_INDICATION)
 		await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
@@ -47,7 +140,13 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({cookie, x_goog_user})
+			body: JSON.stringify({
+				cookie,
+				x_goog_user,
+				excludeAllPlaylist: excludeAll,
+				excludeForeignPlaylists: excludeForeign,
+				username
+			})
 		}).then(response => {
 			clearTimeout(loadTakingLongTimeout);
 			loadTakingLong = false;
@@ -137,20 +236,86 @@
 		       class="uk-input uk-border-rounded">
 	</div>
 	<div class="uk-width-auto">
-		<label for="alignment-hack">&nbsp;<br></label>
-		<button on:click={requestLibData}
-		        class="uk-button uk-button-primary uk-border-rounded"
-		        disabled={!inputsValid()}>
-			{#if loadingStatus === LoadingStatus.IDLE || loadingStatus === LoadingStatus.FAILED}
-				Run
-			{:else if loadingStatus === LoadingStatus.LOADING}
+		<div class="uk-margin">
+			<label for="alignment-hack">&nbsp;<br></label>
+			<button on:click={requestLibData}
+			        class="uk-button uk-button-primary uk-border-rounded"
+			        disabled={!inputsValid()}>
+				{#if loadingStatus === LoadingStatus.IDLE || loadingStatus === LoadingStatus.FAILED}
+					Run
+				{:else if loadingStatus === LoadingStatus.LOADING}
 					<span uk-tooltip="Loading..."
 					      class="uk-animation-fade uk-animation-fast"><div
 							uk-spinner></div></span>
-			{/if}
-		</button>
+				{/if}
+			</button>
+		</div>
 	</div>
+	{#if analysis !== undefined && library !== undefined}
+		<div class="uk-width-auto">
+			<label for="alignment-hack">&nbsp;<br></label>
+			<div class="uk-flex-bottom">
+				<a href={downloadableAnalysis}
+				   download={downloadFileName()}
+				   uk-tooltip="Download analysis result"
+				   class="uk-icon-button pointer-cursor uk-animation-fade uk-animation-fast"
+				   uk-icon="download"></a>
+			</div>
+		</div>
+	{/if}
 </div>
+
+<ul uk-accordion>
+	<li>
+		<a class="uk-accordion-title normal-text" href="#">Advanced</a>
+		<div class="uk-accordion-content">
+			<div uk-grid class="uk-grid-small">
+				<div class="uk-width-1-3@m uk-width-1-1@s">
+					<input id="exclude-all-checkbox"
+					       type="checkbox"
+					       bind:checked={excludeAll}
+					       class="uk-checkbox uk-border-rounded">
+					<label for="exclude-all-checkbox" class="uk-form-label">
+						Exclude any playlists named "All" from analysis. (case-sensitive)
+					</label><br>
+
+					<input id="exclude-foreign-checkbox"
+					       disabled
+					       type="checkbox"
+					       bind:checked={excludeForeign}
+					       class="uk-checkbox uk-border-rounded">
+					<label for="exclude-foreign-checkbox" class="uk-form-label">
+						Ignore playlists not created by `username`. This is automatically enabled as soon as you write
+						something in the username field.
+					</label><br>
+
+					<input id="cache-request-checkbox"
+					       type="checkbox"
+					       bind:checked={cacheRequest}
+					       class="uk-checkbox uk-border-rounded">
+					<label for="cache-request-checkbox" class="uk-form-label">
+						Only enable this if you know what you're doing. Save request data in cookies. This allows the
+						website to load the cookies when the website is loaded the next time so you don't havae to go
+						dig out the cookie out of the developer options in YT Music. Note that the cookies will stay
+						saved if you unchecked the checkbox. To delete the cookies you'll have to delete them through
+						your browser.
+					</label>
+				</div>
+
+				<div class="uk-width-auto@m uk-width-1-1@s">
+					<label for="username-input" class="uk-form-label">
+						Username
+					</label>
+					<input id="username-input"
+					       type="text"
+					       bind:value={username}
+					       class="uk-input uk-border-rounded">
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>
+
 
 {#if library !== undefined}
 	<ul uk-accordion>

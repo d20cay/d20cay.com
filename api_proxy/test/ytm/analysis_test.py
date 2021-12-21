@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from ytm.analysis import simplify_title, ytm_analyze, DuplicateIssueType
+from ytm.analysis import simplify_title, ytm_analyze, DuplicateIssueType, playlist_passes_filter
 from ytm.ytm import get_library
 
 
@@ -310,6 +310,36 @@ class TestAnalysis(unittest.TestCase):
                   }], "simpleTitleDuplicates": [], "titleArtistDuplicates": [], "titleDuplicates": []}}
         analysis = {"duplicates": issues}
         self.assertEqual(ytm_analyze(library), analysis)
+
+    def test_playlist_passes_filter_all(self):
+        pl = {
+            "title": "All"
+        }
+        self.assertFalse(playlist_passes_filter(pl, True, False, ""))
+
+    def test_playlist_passes_filter_foreign(self):
+        pl = {
+            "title": "0x43",
+            "author": {
+                "name": "YouTube Music"
+            }
+        }
+        self.assertFalse(playlist_passes_filter(pl, True, True, "d20cay"))
+
+    def test_playlist_passes_filter_likes(self):
+        pl = {
+            "title": "Your Likes"
+        }
+        self.assertFalse(playlist_passes_filter(pl, True, True, "d20cay"))
+
+    def test_playlist_passes_filter_normal(self):
+        pl = {
+            "title": "0x43",
+            "author": {
+                "name": "d20cay"
+            }
+        }
+        self.assertTrue(playlist_passes_filter(pl, True, True, "d20cay"))
 
 
 if __name__ == "__main__":
