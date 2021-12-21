@@ -1,4 +1,5 @@
 <script>
+	import {onMount} from 'svelte';
 	import {currentPage, ProjectPages} from "../../../stores";
 	import {
 		downloadableFileName,
@@ -27,8 +28,68 @@
 	let excludeAll = true;
 	let excludeForeign = false;
 	let username;
+	let cacheRequest = false;
+
 	let library;
 	let analysis;
+
+	onMount(() => {
+		const cookieCookie = getCookie("cookie");
+		if (cookieCookie) {
+			cookie = unescapeSemicolon(cookieCookie);
+		}
+		const cookieX_goog_user = getCookie("x_goog_user");
+		if (cookieX_goog_user) {
+			x_goog_user = cookieX_goog_user;
+		}
+		const cookieExcludeAll = getCookie("excludeAll");
+		if (cookieExcludeAll) {
+			excludeAll = cookieExcludeAll;
+		}
+		const cookieExcludeForeign = getCookie("excludeForeign");
+		if (cookieExcludeForeign) {
+			excludeForeign = cookieExcludeForeign;
+		}
+		const cookieUsername = getCookie("username");
+		if (cookieUsername) {
+			username = cookieUsername;
+		}
+		const cookieCacheRequest = getCookie("cacheRequest");
+		if (cookieCacheRequest) {
+			cacheRequest = cookieCacheRequest;
+		}
+	});
+
+	function getCookie(cname) {
+		let name = cname + "=";
+		let cookieParts = decodeURIComponent(document.cookie).split('; ');
+		for (const cookiePart of cookieParts) {
+			if (cookiePart.startsWith(name)) {
+				const value = cookiePart.slice(-(cookiePart.length - name.length));
+				if (value === "true") {
+					return true;
+				} else if (value === "false") {
+					return false;
+				} else if (!isNaN(value)) {
+					return parseInt(value);
+				}
+				return value;
+			}
+		}
+		return undefined;
+	}
+
+	function isInteger(value) {
+		return /^\d+$/.test(value);
+	}
+
+	function escapeSemicolon(inputStr) {
+		return inputStr.replace(/;\s/g, '\\semicolon');
+	}
+
+	function unescapeSemicolon(inputStr) {
+		return inputStr.replace(/\\semicolon/g, '; ');
+	}
 
 	$: downloadableAnalysis =
 			"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({library, analysis}));
@@ -52,6 +113,25 @@
 	async function requestLibData() {
 		const prodApiUrl = `https://api.d20cay.com/ytm/lib`;
 		const devApiUrl = `http://localhost:8000/ytm/lib`;
+
+		if (cookie) {
+			document.cookie = `cookie=${escapeSemicolon(cookie)};`;
+		}
+		if (x_goog_user) {
+			document.cookie = `x_goog_user=${x_goog_user};`;
+		}
+		if (excludeAll !== undefined || excludeAll !== null) {
+			document.cookie = `excludeAll=${excludeAll};`;
+		}
+		if (excludeForeign !== undefined || excludeForeign !== null) {
+			document.cookie = `excludeForeign=${excludeForeign};`;
+		}
+		if (username) {
+			document.cookie = `username=${username};`;
+		}
+		if (cacheRequest !== undefined || cacheRequest !== null) {
+			document.cookie = `cacheRequest=${cacheRequest};`;
+		}
 
 		loadingStatus = LoadingStatus.LOADING;
 		const loadTakingLongTimeout = setTimeout(() => loadTakingLong = true, WAIT_TIME_FOR_LONG_LOAD_INDICATION)
@@ -207,6 +287,18 @@
 					<label for="exclude-foreign-checkbox" class="uk-form-label">
 						Ignore playlists not created by `username`. This is automatically enabled as soon as you write
 						something in the username field.
+					</label><br>
+
+					<input id="cache-request-checkbox"
+					       type="checkbox"
+					       bind:checked={cacheRequest}
+					       class="uk-checkbox uk-border-rounded">
+					<label for="cache-request-checkbox" class="uk-form-label">
+						Only enable this if you know what you're doing. Save request data in cookies. This allows the
+						website to load the cookies when the website is loaded the next time so you don't havae to go
+						dig out the cookie out of the developer options in YT Music. Note that the cookies will stay
+						saved if you unchecked the checkbox. To delete the cookies you'll have to delete them through
+						your browser.
 					</label>
 				</div>
 
