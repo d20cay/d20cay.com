@@ -61,22 +61,6 @@ export const LoadingStatus = {
     FAILED: 2
 };
 
-export function overwriteClipboard(string) {
-    const el = document.createElement('textarea');
-    el.setAttribute("class", "copy-text-holder");
-    el.value = string;
-
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-
-    notify(`Copied "${string}" to clipboard.`,
-        NotificationStatus.SUCCESS,
-        NotificationPosition.BOTTOM_LEFT,
-        NotificationTimeout.FLASH);
-}
-
 /**
  * Updates url parameters silently.
  *

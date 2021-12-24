@@ -39,9 +39,11 @@
 			<p>
 				Bear in mind that this is translated from German, so some of the terms might not be correct.
 			</p>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="resources/cheatsheets/school/math/math_cheatsheet.pdf"
 			   class="uk-icon-button uk-margin-small-right"
 			   uk-icon="file-pdf"></a>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="resources/cheatsheets/school/math/math_cheatsheet.md"
 			   class="uk-icon-button uk-margin-small-right"
 			   uk-icon="file-text" uk-tooltip="Markdown file" download></a>
@@ -53,9 +55,11 @@
 			<p>
 				This is written in German and I can't be bothered to translate it myself.
 			</p>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="resources/cheatsheets/school/physics/physics_cheatsheet.pdf"
 			   class="uk-icon-button uk-margin-small-right"
 			   uk-icon="file-pdf"></a>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="resources/cheatsheets/school/physics/physics_cheatsheet.md"
 			   class="uk-icon-button uk-margin-small-right"
 			   uk-icon="file-text" uk-tooltip="Markdown file" download></a>
@@ -67,9 +71,11 @@
 			<p>
 				Bear in mind that this is translated from German, so some of the terms might not be correct.
 			</p>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="resources/cheatsheets/school/bpmn/bpmn_summary.pdf"
 			   class="uk-icon-button uk-margin-small-right"
 			   uk-icon="file-pdf"></a>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="resources/cheatsheets/school/bpmn/bpmn_summary.md"
 			   class="uk-icon-button uk-margin-small-right"
 			   uk-icon="file-text" uk-tooltip="Markdown file" download></a>

@@ -60,6 +60,8 @@
 									<span id="{`char${character.dec}`}">{@html `&#${character.dec};`}</span>
 								</td>
 								<td>
+									<!-- svelte-ignore a11y-missing-content -->
+									<!-- svelte-ignore a11y-missing-attribute -->
 									<a on:click={() => overwriteClipboard(String.fromCharCode(character.dec))}
 									   uk-tooltip="Copy character"
 									   class="uk-icon-button uk-margin-small-right"

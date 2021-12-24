@@ -81,20 +81,25 @@
 	<div>
 		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Social Media</h3>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="https://www.youtube.com/channel/UCbFegF_v_6ywmP6EOkdnFIA"
 			   class="uk-icon-button  uk-margin-small-right" uk-icon="youtube"></a>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="https://www.twitch.tv/d20cay"
 			   class="uk-icon-button  uk-margin-small-right" uk-icon="twitch"></a>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="https://www.reddit.com/user/d20cay" class="uk-icon-button  uk-margin-small-right"
 			   uk-icon="reddit"></a>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="https://twitter.com/d20cay" class="uk-icon-button  uk-margin-small-right"
 			   uk-icon="twitter"></a>
+			<!-- svelte-ignore a11y-missing-content -->
 			<a href="https://github.com/d20cay" class="uk-icon-button  uk-margin-small-right"
 			   uk-icon="github"></a>
 			<h4>One of my videos</h4>
 			<iframe height="100%"
+			        title="Example video from d20cay"
 			        src="https://www.youtube.com/embed/5kVhs0jq6UI"
-			        frameborder="0"
 			        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 			        allowfullscreen></iframe>
 		</div>

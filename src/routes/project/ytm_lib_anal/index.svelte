@@ -255,6 +255,7 @@
 		<div class="uk-width-auto">
 			<label for="alignment-hack">&nbsp;<br></label>
 			<div class="uk-flex-bottom">
+				<!-- svelte-ignore a11y-missing-content -->
 				<a href={downloadableAnalysis}
 				   download={downloadFileName()}
 				   uk-tooltip="Download analysis result"
@@ -267,6 +268,7 @@
 
 <ul uk-accordion>
 	<li>
+		<!-- svelte-ignore a11y-missing-attribute -->
 		<a class="uk-accordion-title normal-text">Advanced</a>
 		<div class="uk-accordion-content">
 			<div uk-grid class="uk-grid-small">
@@ -335,6 +337,7 @@
 								playlistItemDisplayCount[0] - 1 &&
 								playlistItemDisplayCount[0] <
 								library.songs.length}
+									<!-- svelte-ignore a11y-missing-attribute -->
 									<li class="more-li"><a
 											on:click={() => increasePlaylistItemDisplayCount(0)}>+{library.songs.length -
 									playlistItemDisplayCount[0]} more</a>
@@ -356,6 +359,7 @@
 									playlistItemDisplayCount[i] - 1 &&
 									playlistItemDisplayCount[i] <
 									library.songs.length}
+										<!-- svelte-ignore a11y-missing-attribute -->
 										<li class="more-li"><a
 												on:click={() => increasePlaylistItemDisplayCount(i)}>+{playlist.tracks.length -
 										playlistItemDisplayCount[i]} more</a>
@@ -394,6 +398,7 @@
 
 				<ul uk-accordion="multiple: true">
 					<li>
+						<!-- svelte-ignore a11y-missing-attribute -->
 						<a class="uk-accordion-title">Library Song Duplicates
 							({analysis.duplicates.library.totalDuplicateCount})</a>
 						<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">

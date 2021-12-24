@@ -159,6 +159,7 @@
 
 		<ul uk-accordion>
 			<li>
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<a class="uk-accordion-title normal-text">Mod</a>
 				<div class="uk-accordion-content">
 					<p>
@@ -183,6 +184,7 @@
 
 					<h4>Download the mod</h4>
 					<div class="uk-flex uk-flex-center">
+						<!-- svelte-ignore a11y-missing-content -->
 						<a href="resources/mc/hy_stats/hybwstats-1.1.0.jar"
 						   class="uk-icon-button uk-margin-small-right"
 						   uk-tooltip="Download HyBwStats mod"
@@ -224,6 +226,7 @@
 			<div class="uk-width-auto">
 				<label for="alignment-hack">&nbsp;<br></label>
 				<div class="uk-flex-bottom">
+					<!-- svelte-ignore a11y-missing-content -->
 					<a href={downloadableStats}
 					   download={downloadFileName()}
 					   uk-tooltip="Download stats"
@@ -236,6 +239,7 @@
 			<div class="uk-width-auto">
 				<label for="alignment-hack">&nbsp;<br></label>
 				<div class="uk-flex-bottom">
+					<!-- svelte-ignore a11y-missing-content -->
 					<a href={`https://plancke.io/hypixel/player/stats/${username}#BedWars`}
 					   target="_blank"
 					   uk-tooltip="See on plancke.io"
@@ -266,47 +270,37 @@
 	{:else if Object.keys(stats).length}
 		<ul uk-tab>
 			<li class:uk-active={linkMode === Mode.GLOBAL}>
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<a>Global</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.EIGHT_ONE}>
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<a>Solo</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.EIGHT_TWO}>
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<a>Doubles</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.FOUR_THREE}>
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<a>Threes</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.FOUR_FOUR}>
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<a>Fours</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.TWO_FOUR}>
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<a>4v4</a>
 			</li>
 		</ul>
 		<ul class="uk-switcher uk-margin">
-			<li>
-				<ModeStats {stats}
-				           {loadingStatus}
-				           {expectedError}
-				           {isolatedUsername}
-				           mode="global"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_1"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_2"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_3"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_4"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="2_4"/>
-			</li>
+			<li><ModeStats {stats} mode="global"/></li>
+			<li><ModeStats {stats} mode="8_1"/></li>
+			<li><ModeStats {stats} mode="8_2"/></li>
+			<li><ModeStats {stats} mode="4_3"/></li>
+			<li><ModeStats {stats} mode="4_4"/></li>
+			<li><ModeStats {stats} mode="2_4"/></li>
 		</ul>
 	{:else}
 		<p class="uk-text-center uk-margin-medium">
