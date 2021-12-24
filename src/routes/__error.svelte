@@ -1,8 +1,20 @@
-<script>
-	export let status;
-	export let error;
+<script context="module">
+	/** @type {import('@sveltejs/kit').ErrorLoad} */
+	export function load({error, status}) {
+		return {
+			props: {
+				error,
+				status
+			}
+		};
+	}
+</script>
 
-	const dev = process.env.NODE_ENV === 'development';
+<script>
+	import {dev} from '$app/env';
+
+	export let error;
+	export let status;
 </script>
 
 <style>

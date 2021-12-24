@@ -18,7 +18,8 @@
 
 			<ul class="uk-navbar-nav">
 				<li>
-					<a href="#">Cheatsheets <span uk-icon="chevron-down"></span></a>
+					<!-- svelte-ignore a11y-missing-attribute -->
+					<a>Cheatsheets <span uk-icon="chevron-down"></span></a>
 					<div class="uk-navbar-dropdown uk-width-auto">
 						<ul class="uk-nav uk-navbar-dropdown-nav">
 							{#each Object.entries(CheatsheetPages) as [_, p]}
@@ -30,7 +31,8 @@
 					</div>
 				</li>
 				<li>
-					<a href="#">Minecraft <span uk-icon="chevron-down"></span></a>
+					<!-- svelte-ignore a11y-missing-attribute -->
+					<a>Minecraft <span uk-icon="chevron-down"></span></a>
 					<div class="uk-navbar-dropdown uk-width-auto">
 						<ul class="uk-nav uk-navbar-dropdown-nav">
 							{#each Object.entries(MinecraftPages) as [_, p]}
@@ -42,7 +44,8 @@
 					</div>
 				</li>
 				<li>
-					<a href="#">Projects <span uk-icon="chevron-down"></span></a>
+					<!-- svelte-ignore a11y-missing-attribute -->
+					<a>Projects <span uk-icon="chevron-down"></span></a>
 					<div class="uk-navbar-dropdown uk-width-auto">
 						<ul class="uk-nav uk-navbar-dropdown-nav">
 							{#each Object.entries(ProjectPages) as [_, p]}
@@ -95,6 +98,7 @@
 
 				<ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
 					<li class="uk-parent">
+						<!-- svelte-ignore a11y-missing-attribute -->
 						<a>Cheatsheets</a>
 						<ul class="uk-nav-sub">
 							{#each Object.entries(CheatsheetPages) as [_, p]}
@@ -105,6 +109,7 @@
 						</ul>
 					</li>
 					<li class="uk-parent">
+						<!-- svelte-ignore a11y-missing-attribute -->
 						<a>Minecraft</a>
 						<ul class="uk-nav-sub">
 							{#each Object.entries(MinecraftPages) as [_, p]}
@@ -115,6 +120,7 @@
 						</ul>
 					</li>
 					<li class="uk-parent">
+						<!-- svelte-ignore a11y-missing-attribute -->
 						<a>Projects</a>
 						<ul class="uk-nav-sub">
 							{#each Object.entries(ProjectPages) as [_, p]}
@@ -125,6 +131,7 @@
 						</ul>
 					</li>
 					<li>
+						<!-- svelte-ignore a11y-missing-attribute -->
 						<a href="https://gallifreyan.info/">Gallifreyan</a>
 					</li>
 					<li class="uk-nav-divider"></li>

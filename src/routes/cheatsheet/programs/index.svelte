@@ -76,7 +76,8 @@
 </div>
 <ul id="accordion" uk-accordion>
 	<li class:uk-open={linkSection === Section.CSP} on:click={() => updateSectionState(Section.CSP)}>
-		<a class="uk-accordion-title" href="#">Clip Studio Paint</a>
+		<!-- svelte-ignore a11y-missing-attribute -->
+		<a class="uk-accordion-title">Clip Studio Paint</a>
 		<div class="uk-accordion-content">
 			<div uk-grid>
 				<div class="uk-width-1-3@m uk-width-1-2@s">
@@ -273,7 +274,8 @@
 	</li>
 	<li class:uk-open={linkSection === Section.INTELLIJ}
 	    on:click={() => updateSectionState(Section.INTELLIJ)}>
-		<a class="uk-accordion-title" href="#">IntelliJ</a>
+		<!-- svelte-ignore a11y-missing-attribute -->
+		<a class="uk-accordion-title">IntelliJ</a>
 		<div class="uk-accordion-content">
 			<div class="uk-overflow-auto">
 				<table class="uk-table uk-table-hover uk-table-small">
@@ -299,7 +301,8 @@
 	</li>
 	<li class:uk-open={linkSection === Section.CHROME_OS}
 	    on:click={() => updateSectionState(Section.CHROME_OS)}>
-		<a class="uk-accordion-title" href="#">ChromeOS</a>
+		<!-- svelte-ignore a11y-missing-attribute -->
+		<a class="uk-accordion-title">ChromeOS</a>
 		<div class="uk-accordion-content">
 			<div class="uk-overflow-auto">
 				<table class="uk-table uk-table-hover uk-table-small">
@@ -322,8 +325,8 @@
 		</div>
 	</li>
 	<li class:uk-open={linkSection === Section.GOOGLE_DOCS}
-	    on:click={() => updateSectionState(Section.GOOGLE_DOCS)}>
-		<a class="uk-accordion-title" href="#">Google Docs</a>
+	    on:click={() => updateSectionState(Section.GOOGLE_DOCS)}><!-- svelte-ignore a11y-missing-attribute -->
+		<a class="uk-accordion-title">Google Docs</a>
 		<div class="uk-accordion-content">
 			<div class="uk-overflow-auto">
 				<table class="uk-table uk-table-hover uk-table-small">
