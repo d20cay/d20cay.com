@@ -129,7 +129,7 @@
 		<div class="uk-form-controls">
 			<ul uk-accordion>
 				<li>
-					<a class="uk-accordion-title" style="font-size: medium" href="#">Vigenère
+					<a class="uk-accordion-title" style="font-size: medium">Vigenère
 						Square</a>
 					<div class="uk-accordion-content">
 						<table class="uk-table table-small uk-overflow-auto">

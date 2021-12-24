@@ -26,6 +26,7 @@
 				<DuplicateTableRow {duplicate}/>
 			{/if}
 			{#if i === issueItemCount - 1 && issueItemCount < duplicates.length}
+				<!-- svelte-ignore a11y-missing-attribute -->
 				<li class="more-li"><a on:click={() => issueItemCount += ISSUE_ITEM_INCREMENT}>+{duplicates.length -
 				issueItemCount} more</a>
 				</li>

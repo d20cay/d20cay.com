@@ -21,25 +21,30 @@
 		<div>
 			<ul uk-accordion>
 				<li>
-					<a class="uk-accordion-title normal-text" href="#">Social Media</a>
+					<!-- svelte-ignore a11y-missing-attribute -->
+					<a class="uk-accordion-title normal-text">Social Media</a>
 					<div class="uk-accordion-content">
 						<div class="uk-child-width-1-4" uk-grid>
 							<div>
+								<!-- svelte-ignore a11y-missing-content -->
 								<a href="https://www.youtube.com/channel/UCbFegF_v_6ywmP6EOkdnFIA"
 								   class="uk-icon-button uk-margin-small-right"
 								   uk-icon="youtube"></a>
 							</div>
 							<div>
+								<!-- svelte-ignore a11y-missing-content -->
 								<a href="https://www.reddit.com/user/d20cay"
 								   class="uk-icon-button uk-margin-small-right"
 								   uk-icon="reddit"></a>
 							</div>
 							<div>
+								<!-- svelte-ignore a11y-missing-content -->
 								<a href="https://twitter.com/d20cay"
 								   class="uk-icon-button uk-margin-small-right"
 								   uk-icon="twitter"></a>
 							</div>
 							<div>
+								<!-- svelte-ignore a11y-missing-content -->
 								<a href="https://github.com/d20cay"
 								   class="uk-icon-button uk-margin-small-right"
 								   uk-icon="github"></a>
