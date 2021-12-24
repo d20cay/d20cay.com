@@ -267,7 +267,7 @@
 
 <ul uk-accordion>
 	<li>
-		<a class="uk-accordion-title normal-text" href="#">Advanced</a>
+		<a class="uk-accordion-title normal-text">Advanced</a>
 		<div class="uk-accordion-content">
 			<div uk-grid class="uk-grid-small">
 				<div class="uk-width-1-3@m uk-width-1-1@s">
@@ -320,8 +320,8 @@
 {#if library !== undefined}
 	<ul uk-accordion>
 		<li>
-			<!-- svelte-ignore a11y-invalid-attribute -->
-			<a class="uk-accordion-title" href="#">Library Contents Summary</a>
+			<!-- svelte-ignore a11y-missing-attribute -->
+			<a class="uk-accordion-title">Library Contents Summary</a>
 			<!--Adds padding only on the left side to create an indent for every category.-->
 			<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 				<ol>
@@ -369,8 +369,8 @@
 			</div>
 		</li>
 		<li>
-			<!-- svelte-ignore a11y-invalid-attribute -->
-			<a class="uk-accordion-title" href="#">Duplicate analysis</a>
+			<!-- svelte-ignore a11y-missing-attribute -->
+			<a class="uk-accordion-title">Duplicate analysis</a>
 			<!--Adds padding only on the left side to create an indent for every category.-->
 			<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 				<p>
@@ -394,15 +394,14 @@
 
 				<ul uk-accordion="multiple: true">
 					<li>
-						<!-- svelte-ignore a11y-invalid-attribute -->
-						<a class="uk-accordion-title" href="#">Library Song Duplicates
+						<a class="uk-accordion-title">Library Song Duplicates
 							({analysis.duplicates.library.totalDuplicateCount})</a>
 						<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 							<ul uk-accordion="multiple: true">
 								{#if analysis.duplicates.library.idDuplicates.length !== 0}
 									<li>
-										<!-- svelte-ignore a11y-invalid-attribute -->
-										<a class="uk-accordion-title" href="#">ID Duplicates
+										<!-- svelte-ignore a11y-missing-attribute -->
+										<a class="uk-accordion-title">ID Duplicates
 											({analysis.duplicates.library.idDuplicates.length})</a>
 										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable duplicates={analysis.duplicates.library.idDuplicates}/>
@@ -411,8 +410,8 @@
 								{/if}
 								{#if analysis.duplicates.library.titleArtistDuplicates.length !== 0}
 									<li>
-										<!-- svelte-ignore a11y-invalid-attribute -->
-										<a class="uk-accordion-title" href="#">Title & Artist Duplicates
+										<!-- svelte-ignore a11y-missing-attribute -->
+										<a class="uk-accordion-title">Title & Artist Duplicates
 											({analysis.duplicates.library.titleArtistDuplicates.length})</a>
 										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
@@ -422,8 +421,8 @@
 								{/if}
 								{#if analysis.duplicates.library.titleDuplicates.length !== 0}
 									<li>
-										<!-- svelte-ignore a11y-invalid-attribute -->
-										<a class="uk-accordion-title" href="#">Title Duplicates
+										<!-- svelte-ignore a11y-missing-attribute -->
+										<a class="uk-accordion-title">Title Duplicates
 											({analysis.duplicates.library.titleDuplicates.length})</a>
 										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
@@ -433,8 +432,8 @@
 								{/if}
 								{#if analysis.duplicates.library.simpleTitleDuplicates.length !== 0}
 									<li>
-										<!-- svelte-ignore a11y-invalid-attribute -->
-										<a class="uk-accordion-title" href="#">Simplified Title Duplicates
+										<!-- svelte-ignore a11y-missing-attribute -->
+										<a class="uk-accordion-title">Simplified Title Duplicates
 											({analysis.duplicates.library.simpleTitleDuplicates.length})</a>
 										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
@@ -446,15 +445,15 @@
 						</div>
 					</li>
 					<li>
-						<!-- svelte-ignore a11y-invalid-attribute -->
-						<a class="uk-accordion-title" href="#">Playlist Duplicates
+						<!-- svelte-ignore a11y-missing-attribute -->
+						<a class="uk-accordion-title">Playlist Duplicates
 							({analysis.duplicates.playlists.totalDuplicateCount})</a>
 						<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 							<ul uk-accordion="multiple: true">
 								{#if analysis.duplicates.playlists.idDuplicates.length !== 0}
 									<li>
-										<!-- svelte-ignore a11y-invalid-attribute -->
-										<a class="uk-accordion-title" href="#">ID Duplicates
+										<!-- svelte-ignore a11y-missing-attribute -->
+										<a class="uk-accordion-title">ID Duplicates
 											({analysis.duplicates.playlists.idDuplicates.length})</a>
 										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
@@ -464,8 +463,8 @@
 								{/if}
 								{#if analysis.duplicates.playlists.titleArtistDuplicates.length !== 0}
 									<li>
-										<!-- svelte-ignore a11y-invalid-attribute -->
-										<a class="uk-accordion-title" href="#">Title & Artist Duplicates
+										<!-- svelte-ignore a11y-missing-attribute -->
+										<a class="uk-accordion-title">Title & Artist Duplicates
 											({analysis.duplicates.library.titleArtistDuplicates.length})</a>
 										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
@@ -475,8 +474,8 @@
 								{/if}
 								{#if analysis.duplicates.playlists.titleDuplicates.length !== 0}
 									<li>
-										<!-- svelte-ignore a11y-invalid-attribute -->
-										<a class="uk-accordion-title" href="#">Title Duplicates
+										<!-- svelte-ignore a11y-missing-attribute -->
+										<a class="uk-accordion-title">Title Duplicates
 											({analysis.duplicates.playlists.titleDuplicates.length})</a>
 										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable
@@ -486,8 +485,8 @@
 								{/if}
 								{#if analysis.duplicates.playlists.simpleTitleDuplicates.length !== 0}
 									<li>
-										<!-- svelte-ignore a11y-invalid-attribute -->
-										<a class="uk-accordion-title" href="#">Simplified Title Duplicates
+										<!-- svelte-ignore a11y-missing-attribute -->
+										<a class="uk-accordion-title">Simplified Title Duplicates
 											({analysis.duplicates.playlists.simpleTitleDuplicates.length})</a>
 										<div class="uk-accordion-content uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom">
 											<DuplicatesTable

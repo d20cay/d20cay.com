@@ -74,14 +74,14 @@
 <div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 	<ul uk-tab>
 		<li class:uk-active={linkCipher === Cipher.CAESAR}>
-			<a href="#" on:click={() => updateCipherState(Cipher.CAESAR)}>Caesar</a>
+			<a on:click={() => updateCipherState(Cipher.CAESAR)}>Caesar</a>
 		</li>
 		<li class:uk-active={linkCipher === Cipher.VIGENERE}>
-			<a href="#" on:click={() => updateCipherState(Cipher.VIGENERE)}>Vigenère</a></li>
+			<a on:click={() => updateCipherState(Cipher.VIGENERE)}>Vigenère</a></li>
 		<li class:uk-active={linkCipher === Cipher.SCYTALE}>
-			<a href="#" on:click={() => updateCipherState(Cipher.SCYTALE)}>Scytale</a></li>
+			<a on:click={() => updateCipherState(Cipher.SCYTALE)}>Scytale</a></li>
 		<li class:uk-active={linkCipher === Cipher.TRANSPOSITION}>
-			<a href="#" on:click={() => updateCipherState(Cipher.TRANSPOSITION)}>Transposition</a>
+			<a on:click={() => updateCipherState(Cipher.TRANSPOSITION)}>Transposition</a>
 		</li>
 	</ul>
 	<ul class="uk-switcher uk-margin">

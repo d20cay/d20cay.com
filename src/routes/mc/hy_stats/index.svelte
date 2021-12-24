@@ -159,7 +159,7 @@
 
 		<ul uk-accordion>
 			<li>
-				<a class="uk-accordion-title normal-text" href="#">Mod</a>
+				<a class="uk-accordion-title normal-text">Mod</a>
 				<div class="uk-accordion-content">
 					<p>
 						I created a mod to go along with this page. It allows you to open this page
@@ -266,22 +266,22 @@
 	{:else if Object.keys(stats).length}
 		<ul uk-tab>
 			<li class:uk-active={linkMode === Mode.GLOBAL}>
-				<a href="#">Global</a>
+				<a>Global</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.EIGHT_ONE}>
-				<a href="#">Solo</a>
+				<a>Solo</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.EIGHT_TWO}>
-				<a href="#">Doubles</a>
+				<a>Doubles</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.FOUR_THREE}>
-				<a href="#">Threes</a>
+				<a>Threes</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.FOUR_FOUR}>
-				<a href="#">Fours</a>
+				<a>Fours</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.TWO_FOUR}>
-				<a href="#">4v4</a>
+				<a>4v4</a>
 			</li>
 		</ul>
 		<ul class="uk-switcher uk-margin">
