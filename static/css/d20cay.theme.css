@@ -694,7 +694,7 @@ a.uk-link-reset,
 .uk-divider-icon {
   position: relative;
   height: 20px;
-  background-image: url("../../images/backgrounds/divider-icon.svg");
+  background-image: url("../img/backgrounds/divider-icon.svg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
@@ -835,7 +835,7 @@ a.uk-link-reset,
   width: 30px;
   height: 1.5em;
   margin-bottom: -1.5em;
-  background-image: url("../../images/backgrounds/list-bullet.svg");
+  background-image: url("../img/backgrounds/list-bullet.svg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
@@ -1675,7 +1675,7 @@ select.uk-form-width-xsmall {
   -moz-appearance: none;
   /* 2 */
   padding-right: 20px;
-  background-image: url("../../images/backgrounds/form-select.svg");
+  background-image: url("../img/backgrounds/form-select.svg");
   background-repeat: no-repeat;
   background-position: 100% 50%;
 }
@@ -1691,7 +1691,7 @@ select.uk-form-width-xsmall {
  * Disabled
  */
 .uk-select:not([multiple]):not([size]):disabled {
-  background-image: url("../../images/backgrounds/form-select.svg");
+  background-image: url("../img/backgrounds/form-select.svg");
 }
 /* Datalist
  ========================================================================== */
@@ -1705,7 +1705,7 @@ select.uk-form-width-xsmall {
 }
 .uk-input[list]:hover,
 .uk-input[list]:focus {
-  background-image: url("../../images/backgrounds/form-datalist.svg");
+  background-image: url("../img/backgrounds/form-datalist.svg");
 }
 /* 1 */
 .uk-input[list]::-webkit-calendar-picker-indicator {
@@ -1774,13 +1774,13 @@ select.uk-form-width-xsmall {
  * Icons
  */
 .uk-radio:checked {
-  background-image: url("../../images/backgrounds/form-radio.svg");
+  background-image: url("../img/backgrounds/form-radio.svg");
 }
 .uk-checkbox:checked {
-  background-image: url("../../images/backgrounds/form-checkbox.svg");
+  background-image: url("../img/backgrounds/form-checkbox.svg");
 }
 .uk-checkbox:indeterminate {
-  background-image: url("../../images/backgrounds/form-checkbox-indeterminate.svg");
+  background-image: url("../img/backgrounds/form-checkbox-indeterminate.svg");
 }
 /*
  * Disabled
@@ -1791,13 +1791,13 @@ select.uk-form-width-xsmall {
   border-color: #e5e5e5;
 }
 .uk-radio:disabled:checked {
-  background-image: url("../../images/backgrounds/form-radio.svg");
+  background-image: url("../img/backgrounds/form-radio.svg");
 }
 .uk-checkbox:disabled:checked {
-  background-image: url("../../images/backgrounds/form-checkbox.svg");
+  background-image: url("../img/backgrounds/form-checkbox.svg");
 }
 .uk-checkbox:disabled:indeterminate {
-  background-image: url("../../images/backgrounds/form-checkbox-indeterminate.svg");
+  background-image: url("../img/backgrounds/form-checkbox-indeterminate.svg");
 }
 /* Legend
  ========================================================================== */
@@ -3559,12 +3559,12 @@ select.uk-form-width-xsmall {
   height: 1.4em;
   margin-left: 10px;
   float: right;
-  background-image: url("../../images/backgrounds/accordion-close.svg");
+  background-image: url("../img/backgrounds/accordion-close.svg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
 .uk-open > .uk-accordion-title::before {
-  background-image: url("../../images/backgrounds/accordion-open.svg");
+  background-image: url("../img/backgrounds/accordion-open.svg");
 }
 /* Hover */
 .uk-accordion-title:hover {
@@ -5017,12 +5017,12 @@ ul.uk-nav-sub {
   width: 1.5em;
   height: 1.5em;
   margin-left: auto;
-  background-image: url("../../images/backgrounds/nav-parent-close.svg");
+  background-image: url("../img/backgrounds/nav-parent-close.svg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
 .uk-nav-parent-icon > .uk-parent.uk-open > a::after {
-  background-image: url("../../images/backgrounds/nav-parent-open.svg");
+  background-image: url("../img/backgrounds/nav-parent-open.svg");
 }
 /* Header
  ========================================================================== */
@@ -9833,7 +9833,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-divider-icon,
 .uk-overlay-primary .uk-divider-icon,
 .uk-offcanvas-bar .uk-divider-icon {
-  background-image: url("../../images/backgrounds/divider-icon.svg");
+  background-image: url("../img/backgrounds/divider-icon.svg");
 }
 .uk-light .uk-divider-icon::before,
 .uk-light .uk-divider-icon::after,
@@ -9948,7 +9948,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-list-bullet > ::before,
 .uk-overlay-primary .uk-list-bullet > ::before,
 .uk-offcanvas-bar .uk-list-bullet > ::before {
-  background-image: url("../../images/backgrounds/list-bullet.svg");
+  background-image: url("../img/backgrounds/list-bullet.svg");
 }
 .uk-light .uk-list-divider > :nth-child(n+2),
 .uk-section-primary:not(.uk-preserve-color) .uk-list-divider > :nth-child(n+2),
@@ -10355,7 +10355,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-select:not([multiple]):not([size]),
 .uk-overlay-primary .uk-select:not([multiple]):not([size]),
 .uk-offcanvas-bar .uk-select:not([multiple]):not([size]) {
-  background-image: url("../../images/backgrounds/form-select.svg");
+  background-image: url("../img/backgrounds/form-select.svg");
 }
 .uk-light .uk-input[list]:hover,
 .uk-light .uk-input[list]:focus,
@@ -10379,7 +10379,7 @@ iframe.uk-cover {
 .uk-overlay-primary .uk-input[list]:focus,
 .uk-offcanvas-bar .uk-input[list]:hover,
 .uk-offcanvas-bar .uk-input[list]:focus {
-  background-image: url("../../images/backgrounds/form-datalist.svg");
+  background-image: url("../img/backgrounds/form-datalist.svg");
 }
 .uk-light .uk-radio,
 .uk-light .uk-checkbox,
@@ -10513,7 +10513,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-radio:checked,
 .uk-overlay-primary .uk-radio:checked,
 .uk-offcanvas-bar .uk-radio:checked {
-  background-image: url("../../images/backgrounds/form-radio.svg");
+  background-image: url("../img/backgrounds/form-radio.svg");
 }
 .uk-light .uk-checkbox:checked,
 .uk-section-primary:not(.uk-preserve-color) .uk-checkbox:checked,
@@ -10526,7 +10526,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-checkbox:checked,
 .uk-overlay-primary .uk-checkbox:checked,
 .uk-offcanvas-bar .uk-checkbox:checked {
-  background-image: url("../../images/backgrounds/form-checkbox.svg");
+  background-image: url("../img/backgrounds/form-checkbox.svg");
 }
 .uk-light .uk-checkbox:indeterminate,
 .uk-section-primary:not(.uk-preserve-color) .uk-checkbox:indeterminate,
@@ -10539,7 +10539,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-checkbox:indeterminate,
 .uk-overlay-primary .uk-checkbox:indeterminate,
 .uk-offcanvas-bar .uk-checkbox:indeterminate {
-  background-image: url("../../images/backgrounds/form-checkbox-indeterminate.svg");
+  background-image: url("../img/backgrounds/form-checkbox-indeterminate.svg");
 }
 .uk-light .uk-form-label,
 .uk-section-primary:not(.uk-preserve-color) .uk-form-label,
@@ -11174,7 +11174,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-nav-parent-icon > .uk-parent > a::after,
 .uk-overlay-primary .uk-nav-parent-icon > .uk-parent > a::after,
 .uk-offcanvas-bar .uk-nav-parent-icon > .uk-parent > a::after {
-  background-image: url("../../images/backgrounds/nav-parent-close.svg");
+  background-image: url("../img/backgrounds/nav-parent-close.svg");
 }
 .uk-light .uk-nav-parent-icon > .uk-parent.uk-open > a::after,
 .uk-section-primary:not(.uk-preserve-color) .uk-nav-parent-icon > .uk-parent.uk-open > a::after,
@@ -11187,7 +11187,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-nav-parent-icon > .uk-parent.uk-open > a::after,
 .uk-overlay-primary .uk-nav-parent-icon > .uk-parent.uk-open > a::after,
 .uk-offcanvas-bar .uk-nav-parent-icon > .uk-parent.uk-open > a::after {
-  background-image: url("../../images/backgrounds/nav-parent-open.svg");
+  background-image: url("../img/backgrounds/nav-parent-open.svg");
 }
 .uk-light .uk-nav-default > li > a,
 .uk-section-primary:not(.uk-preserve-color) .uk-nav-default > li > a,
@@ -12126,7 +12126,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-accordion-title::before,
 .uk-overlay-primary .uk-accordion-title::before,
 .uk-offcanvas-bar .uk-accordion-title::before {
-  background-image: url("../../images/backgrounds/accordion-close.svg");
+  background-image: url("../img/backgrounds/accordion-close.svg");
 }
 .uk-light .uk-open > .uk-accordion-title::before,
 .uk-section-primary:not(.uk-preserve-color) .uk-open > .uk-accordion-title::before,
@@ -12139,7 +12139,7 @@ iframe.uk-cover {
 .uk-card-secondary > :not([class*='uk-card-media']) .uk-open > .uk-accordion-title::before,
 .uk-overlay-primary .uk-open > .uk-accordion-title::before,
 .uk-offcanvas-bar .uk-open > .uk-accordion-title::before {
-  background-image: url("../../images/backgrounds/accordion-open.svg");
+  background-image: url("../img/backgrounds/accordion-open.svg");
 }
 /* ========================================================================
    Component: Print
