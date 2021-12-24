@@ -1,10 +1,5 @@
 <script>
-	import {LoadingStatus} from "../../../global";
-
 	export let stats;
-	export let loadingStatus;
-	export let expectedError;
-	export let isolatedUsername;
 	export let mode;
 
 	function vo(value) {

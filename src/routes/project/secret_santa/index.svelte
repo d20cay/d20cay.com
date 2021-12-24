@@ -48,9 +48,6 @@
 		<div class="uk-width-auto">
 			<label for={`name-${i}-input`} class="uk-form-label">
 				Name
-				<span class="uk-margin-small-right pointer-cursor"
-				      uk-icon="info"
-				      uk-tooltip="The name of one of the people that will be participating the secret santa event."></span>
 			</label>
 			<input id="input-input"
 			       type="text"

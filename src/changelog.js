@@ -25,6 +25,66 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-12-24',
+		version: '2021.51.2',
+		changes: [
+			{
+				text: 'underlying framework to svelte-kit since sapper isn\'t being actively maintained anymore.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
+		date: '2021-12-21',
+		version: '2021.51.1',
+		changes: [
+			{
+				text: 'YTM Analysis setting to ignore All playlist.',
+				type: Type.ADDED
+			},
+			{
+				text: 'YTM Analysis setting to ignore foreign playlists.',
+				type: Type.ADDED
+			},
+			{
+				text: 'YTM Analysis setting to cache request data in cookies.',
+				type: Type.ADDED
+			},
+		]
+	},
+	{
+		date: '2021-11-27',
+		version: '2021.47.2',
+		changes: [
+			{
+				text: 'missing "+" character in python script for playlist duplicates, which caused there to be little to no duplicates, because they kept being overwritten.',
+				type: Type.FIXED
+			},
+			{
+				text: 'logging for analysis runtime.',
+				type: Type.ADDED
+			},
+			{
+				text: 'analysis tests for new JSON format.',
+				type: Type.FIXED
+			}
+		]
+	},
+	{
+		date: '2021-11-26',
+		version: '2021.47.1',
+		changes: [
+			{
+				text: 'YTM library analysis project. This was huge. I worked on this for basically half a year.',
+				type: Type.ADDED
+			},
+			{
+				text: 'Adds secret santa page. Still under construction!',
+				type: Type.ADDED
+			}
+		]
+	},
+	{
 		date: '2021-06-19',
 		version: '2021.24.2',
 		changes: [

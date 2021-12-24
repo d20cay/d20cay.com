@@ -49,6 +49,7 @@
 								href="https://www.curseforge.com/minecraft/mc-mods/lithium/files">Download</a>,
 							<a href="https://github.com/jellysquid3/lithium-fabric">GitHub</a>)
 						</td>
+						<!-- svelte-ignore a11y-missing-content -->
 						<td>Carpet <a href="resources/mc/server/config/1_16_1/carpet.conf"
 						              class="uk-icon-button uk-margin-small-right"
 						              uk-icon="download" download></a></td>

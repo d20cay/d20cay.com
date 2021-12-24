@@ -1,14 +1,14 @@
 <script>
 	import {currentPage, MinecraftPages} from "../../../stores";
 	import {
-		isDevInstance,
+		downloadableFileName,
 		isProdInstance,
 		LoadingStatus,
 		NotificationPosition as Pos,
 		NotificationStatus as Status,
 		NotificationTimeout as Timeout,
 		notify,
-		overwriteClipboard, updateUrl
+		updateUrl
 	} from "../../../global";
 	import {onMount} from "svelte";
 	import ModeStats from "./ModeStats.svelte";
@@ -54,8 +54,11 @@
 	let uuid = '';
 	let stats = {};
 	$: downloadableStats =
-		"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(stats));
-	$: downloadFileName = downloadableStatsFileName(stats, new Date());
+			"data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(stats));
+
+	function downloadFileName() {
+		return downloadableFileName(stats.playername, "hypixel_stats", new Date())
+	}
 
 	let linkMode;
 	let mode;
@@ -75,62 +78,47 @@
 
 		expectedError = true;
 		loadingStatus = LoadingStatus.LOADING;
-		return await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
+		await fetch(isProdInstance() ? prodApiUrl : devApiUrl, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'
 			}
 		}).then(response => response.json()).then(data => {
 			if ('error' in data) {
-				if (data.error === 'Bedwars stats not found.') {
+				if (data.error === USER_INEXISTENT_ERROR.code) {
 					throw USER_INEXISTENT_ERROR;
 				}
-				if (data.error === 'Player not found.') {
+				if (data.error === USER_MISSING_ERROR.code) {
 					throw USER_MISSING_ERROR;
 				}
-				if (data.error === 'Stats not found.') {
+				if (data.error === STATS_MISSING_ERROR.code) {
 					throw STATS_MISSING_ERROR;
 				}
 			}
 			loadingStatus = LoadingStatus.IDLE;
 			stats = data;
 			notify(`Successfully fetched stats. ${status}`,
-				Status.SUCCESS,
-				Pos.BOTTOM_LEFT,
-				Timeout.QUICK);
+					Status.SUCCESS,
+					Pos.BOTTOM_LEFT,
+					Timeout.QUICK);
 		}).catch(status => {
 			loadingStatus = LoadingStatus.FAILED;
 			if (status ===
-				USER_INEXISTENT_ERROR ||
-				status ===
-				USER_MISSING_ERROR ||
-				status ===
-				STATS_MISSING_ERROR) {
+					USER_INEXISTENT_ERROR ||
+					status ===
+					USER_MISSING_ERROR ||
+					status ===
+					STATS_MISSING_ERROR) {
 				isolatedUsername = username;
 				expectedError = true;
 			} else {
 				expectedError = false;
 			}
 			notify(`Error fetching stats. ${'message' in status ? status.message : status}`,
-				expectedError ? Status.WARNING : Status.DANGER,
-				Pos.BOTTOM_LEFT,
-				Timeout.CRITICAL);
+					expectedError ? Status.WARNING : Status.DANGER,
+					Pos.BOTTOM_LEFT,
+					Timeout.CRITICAL);
 		});
-	}
-
-	function downloadableStatsFileName(stats, date) {
-		const year = formatDatePart(date.getFullYear());
-		const month = formatDatePart((date.getMonth() + 1));
-		const day = formatDatePart(date.getDate());
-		const hours = formatDatePart(date.getHours());
-		const minutes = formatDatePart(date.getMinutes());
-		const seconds = formatDatePart(date.getSeconds());
-		return `${stats.playername}_stats_${year}-${month}-${day}_${hours}-${minutes}-${seconds}.json`;
-	}
-
-	function formatDatePart(num) {
-		const numString = num.toString();
-		return numString.length > 1 ? numString : "0" + numString;
 	}
 
 	function keyPressed(e) {
@@ -142,10 +130,10 @@
 </script>
 
 <style>
-    /** Changes the mouse cursor into a point (hand) when hovering over objects with this class. */
-    .pointer-cursor:hover {
-        cursor: pointer;
-    }
+	/** Changes the mouse cursor into a point (hand) when hovering over objects with this class. */
+	.pointer-cursor:hover {
+		cursor: pointer;
+	}
 </style>
 
 <svelte:head>
@@ -171,7 +159,8 @@
 
 		<ul uk-accordion>
 			<li>
-				<a class="uk-accordion-title normal-text" href="#">Mod</a>
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a class="uk-accordion-title normal-text">Mod</a>
 				<div class="uk-accordion-content">
 					<p>
 						I created a mod to go along with this page. It allows you to open this page
@@ -195,6 +184,7 @@
 
 					<h4>Download the mod</h4>
 					<div class="uk-flex uk-flex-center">
+						<!-- svelte-ignore a11y-missing-content -->
 						<a href="resources/mc/hy_stats/hybwstats-1.1.0.jar"
 						   class="uk-icon-button uk-margin-small-right"
 						   uk-tooltip="Download HyBwStats mod"
@@ -236,8 +226,9 @@
 			<div class="uk-width-auto">
 				<label for="alignment-hack">&nbsp;<br></label>
 				<div class="uk-flex-bottom">
+					<!-- svelte-ignore a11y-missing-content -->
 					<a href={downloadableStats}
-					   download={downloadFileName}
+					   download={downloadFileName()}
 					   uk-tooltip="Download stats"
 					   class="uk-icon-button pointer-cursor uk-animation-fade uk-animation-fast"
 					   uk-icon="download"></a>
@@ -248,6 +239,7 @@
 			<div class="uk-width-auto">
 				<label for="alignment-hack">&nbsp;<br></label>
 				<div class="uk-flex-bottom">
+					<!-- svelte-ignore a11y-missing-content -->
 					<a href={`https://plancke.io/hypixel/player/stats/${username}#BedWars`}
 					   target="_blank"
 					   uk-tooltip="See on plancke.io"
@@ -278,47 +270,37 @@
 	{:else if Object.keys(stats).length}
 		<ul uk-tab>
 			<li class:uk-active={linkMode === Mode.GLOBAL}>
-				<a href="#">Global</a>
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a>Global</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.EIGHT_ONE}>
-				<a href="#">Solo</a>
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a>Solo</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.EIGHT_TWO}>
-				<a href="#">Doubles</a>
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a>Doubles</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.FOUR_THREE}>
-				<a href="#">Threes</a>
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a>Threes</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.FOUR_FOUR}>
-				<a href="#">Fours</a>
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a>Fours</a>
 			</li>
 			<li class:uk-active={linkMode === Mode.TWO_FOUR}>
-				<a href="#">4v4</a>
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a>4v4</a>
 			</li>
 		</ul>
 		<ul class="uk-switcher uk-margin">
-			<li>
-				<ModeStats {stats}
-				           {loadingStatus}
-				           {expectedError}
-				           {isolatedUsername}
-				           mode="global"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_1"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="8_2"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_3"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="4_4"/>
-			</li>
-			<li>
-				<ModeStats {stats} {loadingStatus} {expectedError} {isolatedUsername} mode="2_4"/>
-			</li>
+			<li><ModeStats {stats} mode="global"/></li>
+			<li><ModeStats {stats} mode="8_1"/></li>
+			<li><ModeStats {stats} mode="8_2"/></li>
+			<li><ModeStats {stats} mode="4_3"/></li>
+			<li><ModeStats {stats} mode="4_4"/></li>
+			<li><ModeStats {stats} mode="2_4"/></li>
 		</ul>
 	{:else}
 		<p class="uk-text-center uk-margin-medium">
