@@ -11,18 +11,16 @@
 <h1 class="uk-text-center">
 	d20cay
 </h1>
-<div uk-grid>
-	<div class="uk-width-2-3@m uk-align-center">
-		<p>
-			Hi there,<br>
-			I'm d20cay, pronounced "decay", and I do stuff. You'll find stuff below.
-		</p>
-	</div>
+<div class="uk-margin-large-bottom">
+	<p class="uk-text-center">
+		Hi there,
+		I'm d20cay, pronounced "decay", and I do stuff. You'll find stuff below.
+	</p>
 </div>
 
 <div class="uk-grid uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid>
 	<div>
-		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
+		<div class="uk-card uk-card-hover uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Cheatsheets</h3>
 			<p>
 				I'm a software engineer so I like to do a lot of stuff with keyboard shortcuts and while I
@@ -36,7 +34,7 @@
 				{/each}
 			</ul>
 		</div>
-		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
+		<div class="uk-card uk-card-hover uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Projects</h3>
 			<p>
 				Some small projects I did for fun
@@ -51,7 +49,7 @@
 		</div>
 	</div>
 	<div>
-		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
+		<div class="uk-card uk-card-hover uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Gallifreyan</h3>
 			<p>
 				I'm a big fan of the BBC show Doctor Who, which introduced me to the world of Gallifreyan.
@@ -60,7 +58,7 @@
 				<a href="https://gallifreyan.info/">gallifreyan.info</a>.
 			</p>
 		</div>
-		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
+		<div class="uk-card uk-card-hover uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Minecraft</h3>
 			<p>
 				The only game I really play consistently is Minecraft. I have tried other games but I always
@@ -79,7 +77,7 @@
 		</div>
 	</div>
 	<div>
-		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
+		<div class="uk-card uk-card-hover uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Social Media</h3>
 			<!-- svelte-ignore a11y-missing-content -->
 			<a href="https://www.youtube.com/channel/UCbFegF_v_6ywmP6EOkdnFIA"
@@ -103,7 +101,7 @@
 			        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 			        allowfullscreen></iframe>
 		</div>
-		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
+		<div class="uk-card uk-card-hover uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Contact d20cay</h3>
 			<p>
 				Have any questions or feel like chatting? <a href={UriMap.get(Pages.CONTACT)}>Shoot me a message</a>.
