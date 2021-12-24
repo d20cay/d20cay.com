@@ -25,6 +25,16 @@ export const TypeTextMap = new Map([
 
 export const changelog = [
 	{
+		date: '2021-12-24',
+		version: '2021.51.2',
+		changes: [
+			{
+				text: 'underlying framework to svelte-kit since sapper isn\'t being actively maintained anymore.',
+				type: Type.CHANGED
+			},
+		]
+	},
+	{
 		date: '2021-12-21',
 		version: '2021.51.1',
 		changes: [
