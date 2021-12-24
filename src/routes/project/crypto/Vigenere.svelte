@@ -129,6 +129,7 @@
 		<div class="uk-form-controls">
 			<ul uk-accordion>
 				<li>
+					<!-- svelte-ignore a11y-missing-attribute -->
 					<a class="uk-accordion-title" style="font-size: medium">Vigenère
 						Square</a>
 					<div class="uk-accordion-content">
