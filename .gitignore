@@ -7,3 +7,4 @@ api_proxy/__pycache__/
 src/node_modules/
 node_modules/
 .svelte-kit/
+build/

@@ -1,52 +1,37 @@
 <script>
-    import {onMount} from 'svelte';
-    import {currentPage, ProjectPages} from "../../../stores";
-    import {
-	    NotificationPosition,
-	    NotificationStatus,
-	    NotificationTimeout,
-	    notify
-    } from "../../../global";
-    import {AccentChar, GreekChar, UmlautChar} from "./character-helper";
+	import {onMount} from 'svelte';
+	import {currentPage, ProjectPages} from "../../../stores";
+	import {
+		NotificationPosition,
+		NotificationStatus,
+		NotificationTimeout,
+		notify,
+		overwriteClipboard
+	} from "../../../global";
+	import {AccentChar, GreekChar, UmlautChar} from "./character-helper";
 
-    currentPage.set(ProjectPages.UMLAUT);
+	currentPage.set(ProjectPages.UMLAUT);
 
-    const ReferrerMap = new Map([
-        ['ae', UmlautChar.AE.LOWERCASE],
-        ['oe', UmlautChar.OE.LOWERCASE],
-        ['ue', UmlautChar.UE.LOWERCASE]
-    ]);
+	const ReferrerMap = new Map([
+		['ae', UmlautChar.AE.LOWERCASE],
+		['oe', UmlautChar.OE.LOWERCASE],
+		['ue', UmlautChar.UE.LOWERCASE]
+	]);
 
-    onMount(() => {
-        const urlParams = window.location.search;
-        const params = new URLSearchParams(urlParams);
-        const char = ReferrerMap.get(params.get('referrer'));
-        if (char) {
-            overwriteClipboard(char);
-        }
-    });
-
-    export function overwriteClipboard(string) {
-	    const el = document.createElement('textarea');
-	    el.setAttribute("class", "copy-text-holder");
-	    el.value = string;
-
-	    document.body.appendChild(el);
-	    el.select();
-	    document.execCommand('copy');
-	    document.body.removeChild(el);
-
-	    notify(`Copied "${string}" to clipboard.`,
-			    NotificationStatus.SUCCESS,
-			    NotificationPosition.BOTTOM_LEFT,
-			    NotificationTimeout.FLASH);
-    }
+	onMount(() => {
+		const urlParams = window.location.search;
+		const params = new URLSearchParams(urlParams);
+		const char = ReferrerMap.get(params.get('referrer'));
+		if (char) {
+			overwriteClipboard(char);
+		}
+	});
 </script>
 
 <style>
-    .copy-text-holder {
-        visibility: hidden;
-    }
+	.copy-text-holder {
+		visibility: hidden;
+	}
 </style>
 
 <svelte:head>
