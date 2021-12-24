@@ -1,7 +1,7 @@
 <script>
-    import {CheatsheetPages, currentPage, LabelMap, MinecraftPages, Pages, ProjectPages, UriMap} from "../stores";
+	import {CheatsheetPages, currentPage, LabelMap, MinecraftPages, Pages, ProjectPages, UriMap} from "../stores";
 
-    currentPage.set(Pages.HOME);
+	currentPage.set(Pages.HOME);
 </script>
 
 <svelte:head>
@@ -20,8 +20,8 @@
 	</div>
 </div>
 
-<div uk-grid>
-	<div class="uk-width-1-3@m uk-width-1-2@s">
+<div class="uk-grid uk-child-width-1-3@m uk-child-width-1-2@s" uk-grid>
+	<div>
 		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Cheatsheets</h3>
 			<p>
@@ -50,7 +50,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="uk-width-1-3@m uk-width-1-2@s">
+	<div>
 		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Gallifreyan</h3>
 			<p>
@@ -78,7 +78,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="uk-width-1-3@m uk-width-1-2@s">
+	<div>
 		<div class="uk-card uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Social Media</h3>
 			<a href="https://www.youtube.com/channel/UCbFegF_v_6ywmP6EOkdnFIA"
