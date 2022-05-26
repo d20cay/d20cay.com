@@ -1,5 +1,6 @@
 <script>
 	import {CheatsheetPages, currentPage, LabelMap, MinecraftPages, Pages, ProjectPages, UriMap} from "../stores";
+	import {Icons} from "../icons";
 
 	currentPage.set(Pages.HOME);
 </script>
@@ -79,21 +80,21 @@
 	<div>
 		<div class="uk-card uk-card-hover uk-card-default uk-card-body uk-margin uk-border-rounded">
 			<h3 class="uk-card-title">Social Media</h3>
-			<!-- svelte-ignore a11y-missing-content -->
-			<a href="https://www.youtube.com/channel/UCbFegF_v_6ywmP6EOkdnFIA"
-			   class="uk-icon-button  uk-margin-small-right" uk-icon="youtube"></a>
-			<!-- svelte-ignore a11y-missing-content -->
-			<a href="https://www.twitch.tv/d20cay"
-			   class="uk-icon-button  uk-margin-small-right" uk-icon="twitch"></a>
-			<!-- svelte-ignore a11y-missing-content -->
-			<a href="https://www.reddit.com/user/d20cay" class="uk-icon-button  uk-margin-small-right"
-			   uk-icon="reddit"></a>
-			<!-- svelte-ignore a11y-missing-content -->
-			<a href="https://twitter.com/d20cay" class="uk-icon-button  uk-margin-small-right"
-			   uk-icon="twitter"></a>
-			<!-- svelte-ignore a11y-missing-content -->
-			<a href="https://github.com/d20cay" class="uk-icon-button  uk-margin-small-right"
-			   uk-icon="github"></a>
+			<a href="https://www.youtube.com/channel/UCbFegF_v_6ywmP6EOkdnFIA" class="uk-icon-button  uk-margin-small-right">
+				{@html Icons.YOUTUBE}
+			</a>
+			<a href="https://www.twitch.tv/d20cay" class="uk-icon-button  uk-margin-small-right">
+				{@html Icons.TWITCH}
+			</a>
+			<a href="https://www.reddit.com/user/d20cay" class="uk-icon-button  uk-margin-small-right">
+				{@html Icons.REDDIT}
+			</a>
+			<a href="https://twitter.com/d20cay" class="uk-icon-button  uk-margin-small-right">
+				{@html Icons.TWITTER}
+			</a>
+			<a href="https://github.com/d20cay" class="uk-icon-button  uk-margin-small-right">
+				{@html Icons.GITHUB}
+			</a>
 			<h4>One of my videos</h4>
 			<iframe height="100%"
 			        title="Example video from d20cay"
